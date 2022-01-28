@@ -1,14 +1,14 @@
 {
-  "projectName": "TomorrowsPromiseWebA",
+  "projectName": "ITWPWebApp",
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {
-    "framework": "angular",
+    "framework": "react",
     "config": {
       "SourceDir": "src",
-      "DistributionDir": "dist/TomorrowsPromiseWebApp",
+      "DistributionDir": "build",
       "BuildCommand": "npm.cmd run-script build",
-      "StartCommand": "ng serve"
+      "StartCommand": "npm.cmd run-script start"
     }
   },
   "providers": [
