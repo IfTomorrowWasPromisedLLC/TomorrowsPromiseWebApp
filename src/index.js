@@ -5,10 +5,24 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
+import Amplify from 'aws-amplify';
+import "@aws-amplify/ui-react/styles.css";
+import {AmplifyProvider} from "@aws-amplify/ui-react";
+import awsconfig from './aws-exports';
+
+import Button from 'react-bootstrap/Button'
+
+Amplify.configure(awsconfig);
+
+
 ReactDOM.render(
- <BrowserRouter>
-    <App />
-    </BrowserRouter>,
+  <React.StrictMode>
+    <BrowserRouter>
+    <AmplifyProvider>
+      <App />
+    </AmplifyProvider>
+  </BrowserRouter>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
