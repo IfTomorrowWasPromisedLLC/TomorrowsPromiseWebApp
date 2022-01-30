@@ -8,10 +8,15 @@ const Ul = styled.ul`
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    margin-top: 40px;
+
     li{
         padding: 18px 10px;
+        text-decoration: none;
+        .nav-links{
+            color: white;
+        }
     }
-
    @media (max-width: 768px) {
     flex-flow: column nowrap;
     background-color: blueviolet;
@@ -26,6 +31,11 @@ const Ul = styled.ul`
 
     li{
         color: #fff;
+        :hover{
+            background-color: salmon;
+            border-radius: 4px;
+            transition: all 0.2s ease-out;
+        }
     }
 
    }
@@ -36,12 +46,13 @@ const ButtonContainer = styled.div``;
 const Button = styled.button``;
 
 const HamburgerNav = ({ open }) => {
+
   return (
     <Ul open={open}>
           {MenuItems.map((item, index) => {
               return (
                   <li key={index}>
-                      <Link className={item.className} to={item.url}>
+                      <Link className={item.classname} to={item.url}>
                           {item.title}
                       </Link>
                   </li>

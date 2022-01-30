@@ -4,15 +4,16 @@ import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { MenuItems } from "./MenuItems";
-import itwp_logo from "../../assets/header-icons/ITWP_logo_jpg.jpg";
+import itwp_logo from "../../assets/header-icons/ITWP_logo_NoBG.png";
 import Burger from "./Burger";
 
 //Styled Components
 const NavbarContainer = styled.div`
+  padding: 64px 0px;
   width: 100%;
   height: 100px;
   z-index: 20;
-  background: #ffff;
+  background: #2E428B;
 `;
 
 const NavbarWrap = styled.div`
@@ -26,11 +27,17 @@ const NavbarWrap = styled.div`
 `;
 
 const Logo = styled.div`
+
+  background: url(${itwp_logo}) no-repeat;
+  background-position: center center;
+  background-clip: padding-box;
+  background-size: 220px 220px;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 100%;
   width: 128px;
   height: 128px;
-  background: url(${itwp_logo}) 0 45% no-repeat;
-  background-size: 100% 100%;
-  cursor: pointer;
+
 `;
 
 const Nav = styled.div``;
@@ -59,7 +66,6 @@ const Navbar = () => {
           <Nav>
         <Burger/>
           </Nav>
-
         </NavbarWrap>
       </NavbarContainer>
     );

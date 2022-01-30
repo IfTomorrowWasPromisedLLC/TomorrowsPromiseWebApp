@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Auth from "./components/Auth/Auth";
+import Home from "./pages/Home"
 
 export default function App() {
   return (

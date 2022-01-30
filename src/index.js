@@ -10,8 +10,6 @@ import "@aws-amplify/ui-react/styles.css";
 import {AmplifyProvider} from "@aws-amplify/ui-react";
 import awsconfig from './aws-exports';
 
-import Button from 'react-bootstrap/Button'
-
 Amplify.configure(awsconfig);
 
 
