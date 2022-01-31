@@ -12,14 +12,21 @@ const Ul = styled.ul`
 
     li{
         padding: 18px 10px;
-        text-decoration: none;
         .nav-links{
             color: white;
+            text-decoration: none;
+        }
+        :hover{
+            background-color: grey;
+            border-radius: 4px;
+            transition: all 0.2s ease-out;
         }
     }
+
    @media (max-width: 768px) {
     flex-flow: column nowrap;
-    background-color: blueviolet;
+    background-color: grey;
+    border-width: 10px;
     position: fixed;
     transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
     top: 0;
@@ -30,21 +37,20 @@ const Ul = styled.ul`
     transition: transform 0.3s ease-in-out;
 
     li{
-        color: #fff;
         :hover{
-            background-color: salmon;
+            background-color: #2E428B;
             border-radius: 4px;
             transition: all 0.2s ease-out;
         }
+        .nav-links{
+            color: white;
+            text-decoration: none;
+        }
     }
-
    }
 `;
-
 const ButtonContainer = styled.div``;
-
 const Button = styled.button``;
-
 const HamburgerNav = ({ open }) => {
 
   return (

@@ -30,11 +30,10 @@ const Logo = styled.div`
 
   background: url(${itwp_logo}) no-repeat;
   background-position: center center;
-  background-clip: padding-box;
-  background-size: 220px 220px;
+  background-clip: border-box;
+  background-size: 264px 264px;
   cursor: pointer;
   overflow: hidden;
-  border-radius: 100%;
   width: 128px;
   height: 128px;
 
@@ -56,6 +55,8 @@ const NavUl = styled.ul`
 const NavLi = styled.li``;
 
 const NavBarLink = styled.link``;
+// End Styled Components
+
 
 const Navbar = () => {
 

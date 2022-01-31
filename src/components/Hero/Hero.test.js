@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Account from './Account';
+import Hero from './Hero';
 
-describe('<Account />', () => {
+describe('<Hero />', () => {
   test('it should mount', () => {
-    render(<Account />);
+    render(<Hero />);
     
-    const account = screen.getByTestId('Account');
+    const hero = screen.getByTestId('Hero');
 
-    expect(account).toBeInTheDocument();
+    expect(hero).toBeInTheDocument();
   });
 });
