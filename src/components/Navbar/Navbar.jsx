@@ -1,9 +1,5 @@
-import React, { Component, useState } from "react";
-import PropTypes from "prop-types";
-import styles from "./Navbar.module.css";
-import { Link } from "react-router-dom";
+import React from "react";
 import styled from "styled-components";
-import { MenuItems } from "./MenuItems";
 import itwp_logo from "../../assets/header-icons/ITWP_logo_NoBG.png";
 import Burger from "./Burger";
 
@@ -13,7 +9,7 @@ const NavbarContainer = styled.div`
   width: 100%;
   height: 100px;
   z-index: 20;
-  background: #2e428b;
+  background: #2E428B;
 `;
 
 const NavbarWrap = styled.div`
@@ -35,36 +31,27 @@ const Logo = styled.div`
   overflow: hidden;
   width: 128px;
   height: 128px;
+
 `;
 
 const Nav = styled.div``;
 
-const NavUl = styled.ul`
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  flex-flow: row nowrap;
-
-  li {
-    padding: 18px 10px;
-  }
-`;
-
-const NavLi = styled.li``;
-
-const NavBarLink = styled.link``;
 // End Styled Components
 
+
 const Navbar = () => {
-  return (
-    <NavbarWrap data-testid="Navbar">
-      <Logo />
-      <Nav>
-        <Burger />
-      </Nav>
-    </NavbarWrap>
-  );
-};
+
+    return (
+      <NavbarContainer data-testid="Navbar">
+        <NavbarWrap >
+          <Logo data-testid="Logo" />
+          <Nav>
+        <Burger/>
+          </Nav>
+        </NavbarWrap>
+      </NavbarContainer>
+    );
+  }
 
 Navbar.propTypes = {};
 

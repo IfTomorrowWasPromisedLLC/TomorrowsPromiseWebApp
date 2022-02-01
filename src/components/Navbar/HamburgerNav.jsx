@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { MenuItems } from "./MenuItems";
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Ul = styled.ul`
   list-style: none;
@@ -38,7 +38,6 @@ const Ul = styled.ul`
     transition: transform 0.3s ease-in-out;
 
     li {
-      padding: 18px 10px;
       .nav-links {
         :hover {
           background-color: #2e428b;
@@ -55,7 +54,7 @@ const HamburgerNav = ({ open }) => {
     <Ul open={open}>
       {MenuItems.map((item, index) => {
         return (
-          <li key={index} onClick={() =>{"/{item.url}"}}>
+          <li key={index} onClick={"/{item.url}"}>
             <Link className={item.classname} to={item.url}>
               {item.title}
             </Link>
