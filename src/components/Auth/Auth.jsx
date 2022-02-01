@@ -4,8 +4,9 @@ import styles from './Auth.module.css';
 
 function Auth(){
   return (
-    <></>
-    );
+  <div data-testid="Auth">
+    
+  </div>   );
 }
 
 export default Auth;

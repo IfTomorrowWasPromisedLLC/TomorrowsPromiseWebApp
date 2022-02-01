@@ -10,9 +10,10 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
 
 export default function App() {
-  const [theme, themeToggler] = useDarkMode();
+  const [theme, themeToggler, mountedComponent] = useDarkMode(); 
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
+  if(!mountedComponent) return <div/>
   return (
     <ThemeProvider theme={themeMode}>
       <GlobalStyles></GlobalStyles>

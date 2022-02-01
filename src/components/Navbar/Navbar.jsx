@@ -13,7 +13,7 @@ const NavbarContainer = styled.div`
   width: 100%;
   height: 100px;
   z-index: 20;
-  background: #2E428B;
+  background: #2e428b;
 `;
 
 const NavbarWrap = styled.div`
@@ -27,7 +27,6 @@ const NavbarWrap = styled.div`
 `;
 
 const Logo = styled.div`
-
   background: url(${itwp_logo}) no-repeat;
   background-position: center center;
   background-clip: border-box;
@@ -36,7 +35,6 @@ const Logo = styled.div`
   overflow: hidden;
   width: 128px;
   height: 128px;
-
 `;
 
 const Nav = styled.div``;
@@ -46,7 +44,7 @@ const NavUl = styled.ul`
   display: flex;
   justify-content: space-around;
   flex-flow: row nowrap;
-  
+
   li {
     padding: 18px 10px;
   }
@@ -57,20 +55,16 @@ const NavLi = styled.li``;
 const NavBarLink = styled.link``;
 // End Styled Components
 
-
 const Navbar = () => {
-
-    return (
-      <NavbarContainer>
-        <NavbarWrap >
-          <Logo />
-          <Nav>
-        <Burger/>
-          </Nav>
-        </NavbarWrap>
-      </NavbarContainer>
-    );
-  }
+  return (
+    <NavbarWrap data-testid="Navbar">
+      <Logo />
+      <Nav>
+        <Burger />
+      </Nav>
+    </NavbarWrap>
+  );
+};
 
 Navbar.propTypes = {};
 
