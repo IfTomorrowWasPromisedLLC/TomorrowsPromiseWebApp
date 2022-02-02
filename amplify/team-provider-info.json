@@ -10,6 +10,11 @@
       "StackName": "amplify-itwpwebapp-dev-200239",
       "StackId": "arn:aws:cloudformation:us-east-1:837453702100:stack/amplify-itwpwebapp-dev-200239/03161330-7fd6-11ec-8178-126619318597",
       "AmplifyAppId": "d3i8jon72bak1r"
+    },
+    "categories": {
+      "auth": {
+        "itwpwebapp39cedce5": {}
+      }
     }
   }
 }

@@ -38,6 +38,7 @@ const Ul = styled.ul`
     transition: transform 0.3s ease-in-out;
 
     li {
+      padding: 18px 10px;
       .nav-links {
         :hover {
           background-color: #2e428b;
