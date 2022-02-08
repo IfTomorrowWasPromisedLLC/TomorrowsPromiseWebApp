@@ -1,7 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { MenuItems } from "./MenuItems";
-import { Link } from "react-router-dom";
 
 const Ul = styled.ul`
   list-style: none;
@@ -55,7 +55,7 @@ const HamburgerNav = ({ open }) => {
     <Ul open={open}>
       {MenuItems.map((item, index) => {
         return (
-          <li key={index} onClick={"/{item.url}"}>
+          <li key={index} onClick={()=>"/{item.url}"}>
             <Link className={item.classname} to={item.url}>
               {item.title}
             </Link>

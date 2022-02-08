@@ -3,17 +3,24 @@ import Amplify from "aws-amplify";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import awsExports from "../../aws-exports";
+import styled from "styled-components";
 Amplify.configure(awsExports);
+
+const AuthWrapper = styled.div``;
+const ButtonContainer = styled.div``;
+const Button = styled.button``;
 
 function Auth() {
   return (
     <Authenticator socialProviders={["amazon", "facebook", "google"]}>
       {({ signOut, user }) => (
-        <main>
+        <AuthWrapper>
           <h1>Hello {user.attributes.email}</h1>
           {console.log()}
-          <button onClick={signOut}>Sign out</button>
-        </main>
+          <ButtonContainer>
+            <Button onClick={signOut}>Sign Out</Button>
+          </ButtonContainer>
+          </AuthWrapper>
       )}
     </Authenticator>
   );

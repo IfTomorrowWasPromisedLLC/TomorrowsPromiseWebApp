@@ -8,6 +8,7 @@ import { GlobalStyles } from "./components/GlobalStyles";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
 import Account from "./pages/Account";
+import Footer from "./components/Footer/Footer";
 
 export default function App() {
   const [theme, themeToggler, mountedComponent] = useDarkMode();
@@ -20,9 +21,15 @@ export default function App() {
       <Navbar />
       <Toggle theme={theme} toggleTheme={themeToggler} />
       <Routes>
-        <Route path="/" element={ <Home />} />
-        <Route path="/account" element={<Account/>} />
+        <Route path="/" element={ <Home /> } />
+        <Route path="/about" />
+        <Route path="/products" />
+        <Route path="/pricing" />
+        <Route path="/faq" />
+        <Route path="/account" element={ <Account/> } />
+
       </Routes>
+      <Footer/>
     </ThemeProvider>
   );
 }

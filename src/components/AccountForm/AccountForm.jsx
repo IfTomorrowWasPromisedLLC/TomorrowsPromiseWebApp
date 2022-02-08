@@ -1,23 +1,25 @@
+import Amplify, { Auth } from "aws-amplify";
 import React, { Component } from "react";
-import {
-  Form,
-  Button,
-  Message,
-  Input,
-  Segment,
-  Select,
-} from "semantic-ui-react";
+import { Button, Form, Message } from "semantic-ui-react";
 import styled from "styled-components";
-import { Auth } from "aws-amplify";
-import Amplify from "aws-amplify";
 import aws_exports from "../../aws-exports";
 Amplify.configure(aws_exports);
 
 const AccountFormContainer = styled.div``;
-const styledForm = styled(Form)``;
+const StyledForm = styled(Form)``;
 const ButtonContainer = styled.div`
+  background-color: white;
+  margin: 10px;
   .btn {
-    color: green;
+    width: 50%;
+    height: 40px;
+    background-color: green;
+    border-radius: 10px;
+    border-color: white;
+    :hover{
+      box-shadow: 10px 5px 5px green;
+      border-color: green;
+    }
   }
 `;
 
@@ -43,8 +45,7 @@ class AccountForm extends Component {
       phone_number: "",
       address: "",
     };
-
-    this.canChangeState = false;
+    this.isEditable = false;
   }
 
   componentDidMount() {
@@ -85,24 +86,35 @@ class AccountForm extends Component {
       });
   }
 
+  allowChange = () => {
+    console.log("handling editable var");
+    this.isEditable = true;
+    console.log(this.isEditable)
+  };
+
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
   };
 
   handleSubmit = () => {
-    Auth.updateUserAttributes(this.state.authData, {
-      email: this.state.email,
-      given_name: this.state.given_name,
-      middle_name: this.state.middle_name,
-      family_name: this.state.family_name,
-      birthdate: this.state.birthdate,
-      gender: this.state.gender,
-      phone_number: this.state.phone_number,
-      address: this.state.address,
-    }).catch((e) => {
-      console.log("Error updating user: ");
-      console.log(e);
-    });
+    console.log(this.isEditable);
+    if (this.isEditable) {
+      console.log("handling submit");
+      Auth.updateUserAttributes(this.state.authData, {
+        email: this.state.email,
+        given_name: this.state.given_name,
+        middle_name: this.state.middle_name,
+        family_name: this.state.family_name,
+        birthdate: this.state.birthdate,
+        gender: this.state.gender,
+        phone_number: this.state.phone_number,
+        address: this.state.address,
+      }).catch((e) => {
+        console.log("Error updating user: ");
+        console.log(e);
+      });
+      this.isEditable = false;
+    }
   };
 
   render() {
@@ -124,7 +136,7 @@ class AccountForm extends Component {
 
     return (
       <AccountFormContainer>
-        <styledForm onSubmit={this.handleSubmit} loading={loading}>
+        <StyledForm onSubmit={this.handleSubmit} loading={loading}>
           <Form.Group>
             <Form.Input label="Username" value={email} width={10} />
           </Form.Group>
@@ -217,8 +229,8 @@ class AccountForm extends Component {
             content="One of the fields has error. Please look over the forms to see where the error is. "
           />
           <ButtonContainer>
-            <Button id="change-btn" className="btn" onClick={true}>
-              Change account Info
+            <Button id="change-btn" className="btn" type="button" onClick={this.allowChange}>
+              Change Account Info
             </Button>
           </ButtonContainer>
           <ButtonContainer>
@@ -226,7 +238,7 @@ class AccountForm extends Component {
               Submit
             </Button>
           </ButtonContainer>
-        </styledForm>
+        </StyledForm>
       </AccountFormContainer>
     );
   }
