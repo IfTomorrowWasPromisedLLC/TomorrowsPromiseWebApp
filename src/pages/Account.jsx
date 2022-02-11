@@ -5,6 +5,7 @@ import "@aws-amplify/ui-react/styles.css";
 import awsExports from "../aws-exports";
 import Amplify from "aws-amplify";
 import AccountForm from "../components/AccountForm/AccountForm";
+import FileUpload from "../components/FileUpload/FileUpload";
 
 Amplify.configure(awsExports);
 
@@ -16,7 +17,7 @@ const AccountContainer = styled.div`
 `;
 const AuthWrap = styled.div`
   background-color: purple;
-  `;
+`;
 const BeneficiariesWrap = styled.div``;
 const FileWrap = styled.div``;
 const SubscriptionWrap = styled.div``;
@@ -33,6 +34,7 @@ const Account = () => {
               <BeneficiariesWrap></BeneficiariesWrap>
               <FileWrap></FileWrap>
               <SubscriptionWrap></SubscriptionWrap>
+              <FileUpload />
               <button onClick={signOut}>Sign out</button>
             </main>
           )}

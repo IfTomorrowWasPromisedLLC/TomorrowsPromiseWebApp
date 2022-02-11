@@ -78,7 +78,6 @@ class AccountForm extends Component {
 
           stateFromStorage: true,
         });
-
         console.log(this.state.authData.nickname);
       })
       .catch((e) => {
@@ -87,9 +86,14 @@ class AccountForm extends Component {
   }
 
   allowChange = () => {
+    try{
     console.log("handling editable var");
     this.isEditable = true;
     console.log(this.isEditable)
+    }
+    catch(e){
+      alert("error editing account informaton", )
+    }
   };
 
   handleChange = (e, { name, value }) => {
