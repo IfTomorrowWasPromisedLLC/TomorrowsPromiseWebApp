@@ -13,7 +13,7 @@ const ViewFiles = () => (
   <AlbumWrapper data-testid="ViewFiles">
     ViewFiles Component
   {/* May be wrong, check later once we make auth service */}
-    <S3Album level="private" path={string(await this.authService.getUsername())+'/archive/'
+    <S3Album level="private" path={string(await this.authService.getUsername())+'/thumbnail/'
 }/>
   </AlbumWrapper>
 );

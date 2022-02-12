@@ -20,28 +20,19 @@ const FileUpload = () => {
   const fileRef = React.useRef(null);
   var S3Location = "";
 
-  const handleChange = (event) => {
-    setFiles();
+  const handleChange = async (event) => {
     console.log("handle change");
+    setFiles(event.target.files);
+    console.log(event.target.files); 
+    await S3Service.uploadFiles(event.target.files);
+    alert("finished uploading files");
   };
 
   const handleClick = (targetFolder) => {
     console.log("handle click");
-    console.log(targetFolder)
     S3Location = targetFolder;
-    console.log(S3Location);
     fileRef.current.click();
-  };
-
-  const uploadFileHandler = (event) => {
-    setFiles(event.target.files);
-  };
-
-  const submitFileHandler = (event) => {
-    event.preventDefault();
-    setFileSize(true);
-    setFileUploadProgress(true);
-    setFileUploadResponse(null);
+    console.log()
   };
 
   return (
