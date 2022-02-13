@@ -13,7 +13,7 @@ const ButtonContainer = styled.div``;
 const Button = styled.button``;
 
 const Beneficiaries = () => {
-  const [inputFields, setInputFields] = useState([{ firstName: "", lastName: "" }]);
+  const [inputFields, setInputFields] = useState(formFields);
 
   const handleAddFields = () => {
     const values = [...inputFields.values];
@@ -30,7 +30,7 @@ const Beneficiaries = () => {
   const handleChange = (index, event) => {
     const values = [...inputFields];
     values[index][event.target.name] = event.target.value;
-    console.log( values[index]);
+    console.log(inputFields[0]);
     setInputFields(values);
   };
 
@@ -46,38 +46,35 @@ const Beneficiaries = () => {
     <StyledForm onSubmit={handleSubmit}>
         {inputFields.map((inputField, index) => {
           return(
-            <Fragment key={index}>
-            <div>
-                <label htmlFor={inputField[index]}></label>
-                <input
-                  // type={inputField[index].type}
-                  // className={inputField[index].type}
-                  // id={inputField[index].id}
-                  // name={inputField[index].name}
-                  value={inputField[index]}
-                  onChange={(event) => handleChange(index, event)}                />
-              </div>
-              <ButtonContainer>
+            <Fragment>
+              <label> {inputField.name}</label>
+              <input key={index}
+                type={inputField[index]}
+                className={inputField[index]}
+                id={inputField[index]}
+                name={inputField[index]}
+                value={inputField[index]}
+                onChange={(event) => handleChange(index, event)} />
+            <ButtonContainer>
                 <Button
                   type="button"
                   disabled={index === 0}
-                  onClick = {() => handleRemoveFields(index)}
+                  onClick={() => handleRemoveFields(index)}
                 >
                   -
                 </Button>
                 <Button
                   type="button"
                   disabled={index === 0}
-                  onClick = {() => handleRemoveFields(index)}
+                  onClick={() => handleRemoveFields(index)}
                 >
                   +
                 </Button>
               </ButtonContainer>
               </Fragment>
+              
           )
         })}
-
-
         <ButtonContainer>
           <Button id="submit-btn"
             type = "submit"
