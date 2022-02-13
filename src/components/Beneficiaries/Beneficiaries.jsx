@@ -16,15 +16,15 @@ const Beneficiaries = () => {
   const [inputFields, setInputFields] = useState(formFields);
 
   const handleAddFields = () => {
-    const values = [...inputFields.values];
-    values.push({formFields});
+    const values = [...inputFields];
+    values.push(formFields);
     setInputFields(values);
   };
 
   const handleRemoveFields = (index) => {
     const values = [...inputFields];
     values.splice(index, 1);
-    setInputFields(values.values);
+    setInputFields(values);
   };
 
   const handleChange = (index, event) => {
@@ -44,17 +44,48 @@ const Beneficiaries = () => {
   <BeneficiariesFormContainer data-testid="Beneficiaries">
     Beneficiaries Component
     <StyledForm onSubmit={handleSubmit}>
-        {inputFields.map((inputField, index) => {
-          return(
+        {inputFields.map((inputField, index) => (
             <Fragment>
-              <label> {inputField.name}</label>
+            <div>
+            <label htmlFor='firstName'>First Name</label>
               <input key={index}
-                type={inputField[index]}
-                className={inputField[index]}
-                id={inputField[index]}
-                name={inputField[index]}
-                value={inputField[index]}
+                type='text'
+                className='form-control'
+                id='firstName'
+                name='firstName'
+                value={inputField.firstName}
                 onChange={(event) => handleChange(index, event)} />
+            </div>
+            <div>
+            <label htmlFor='lastName'>Last Name</label>
+              <input key={index}
+               type='text'
+               className='form-control'
+               id='lastName'
+               name='lastName'
+               value={inputField.lastName}
+                onChange={(event) => handleChange(index, event)} />
+            </div>
+            <div>
+            <label htmlFor="emailAddress"> Email Address</label>
+            <input key={index}
+               type='text'
+               className='form-control'
+               id='emailAddress'
+               name='emailAddress'
+               value={inputField.email_address}
+                onChange={(event) => handleChange(index, event)} />
+            </div>
+            <div>
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <input key={index}
+               type='text'
+               className='form-control'
+               id='phoneNumber'
+               name='phoneNumber'
+               value={inputField.phone_number}
+                onChange={(event) => handleChange(index, event)} />
+            </div>
             <ButtonContainer>
                 <Button
                   type="button"
@@ -65,8 +96,7 @@ const Beneficiaries = () => {
                 </Button>
                 <Button
                   type="button"
-                  disabled={index === 0}
-                  onClick={() => handleRemoveFields(index)}
+                  onClick={() => handleAddFields(index)}
                 >
                   +
                 </Button>
@@ -74,7 +104,7 @@ const Beneficiaries = () => {
               </Fragment>
               
           )
-        })}
+        )}
         <ButtonContainer>
           <Button id="submit-btn"
             type = "submit"
