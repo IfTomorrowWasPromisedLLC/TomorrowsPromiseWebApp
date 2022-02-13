@@ -42,7 +42,7 @@ const Beneficiaries = () => {
 
   return(
   <BeneficiariesFormContainer data-testid="Beneficiaries">
-    Beneficiaries Component
+    Add Beneficiaries
     <StyledForm onSubmit={handleSubmit}>
         {inputFields.map((inputField, index) => (
             <Fragment>
