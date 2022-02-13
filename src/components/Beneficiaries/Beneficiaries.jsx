@@ -1,18 +1,103 @@
-import React from 'react';
+import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Beneficiaries.module.css';
 import styled from 'styled-components';
-import { Button, Form, Message } from "semantic-ui-react";
+import { formFields } from './formFields';
+import { formRow, input } from 'aws-amplify';
 
 const BeneficiariesFormContainer = styled.div``;
-const StyledForm = styled(Form)``;
+const StyledForm = styled.form``;
+const styledFormRow = styled.div``;
+const styledInputWrapper = styled.div``;
 const ButtonContainer = styled.div``;
+const Button = styled.button``;
 
-const Beneficiaries = () => (
+const Beneficiaries = () => {
+  const [inputFields, setInputFields] = useState([{ firstName: "", lastName: "" }]);
+
+  const handleAddFields = () => {
+    const values = [...inputFields.values];
+    values.push({formFields});
+    setInputFields(values);
+  };
+
+  const handleRemoveFields = (index) => {
+    const values = [...inputFields];
+    values.splice(index, 1);
+    setInputFields(values.values);
+  };
+
+  const handleChange = (index, event) => {
+    const values = [...inputFields];
+    values[index][event.target.name] = event.target.value;
+    console.log( values[index]);
+    setInputFields(values);
+  };
+
+  const handleSubmit = (event) => {
+    alert(JSON.stringify(inputFields,null,1));
+  };
+
+  const handleFormReset = (event) => setInputFields([formFields.values]);
+
+  return(
   <BeneficiariesFormContainer data-testid="Beneficiaries">
     Beneficiaries Component
+    <StyledForm onSubmit={handleSubmit}>
+        {inputFields.map((inputField, index) => {
+          return(
+            <Fragment key={index}>
+            <div>
+                <label htmlFor={inputField[index]}></label>
+                <input
+                  // type={inputField[index].type}
+                  // className={inputField[index].type}
+                  // id={inputField[index].id}
+                  // name={inputField[index].name}
+                  value={inputField[index]}
+                  onChange={(event) => handleChange(index, event)}                />
+              </div>
+              <ButtonContainer>
+                <Button
+                  type="button"
+                  disabled={index === 0}
+                  onClick = {() => handleRemoveFields(index)}
+                >
+                  -
+                </Button>
+                <Button
+                  type="button"
+                  disabled={index === 0}
+                  onClick = {() => handleRemoveFields(index)}
+                >
+                  +
+                </Button>
+              </ButtonContainer>
+              </Fragment>
+          )
+        })}
+
+
+        <ButtonContainer>
+          <Button id="submit-btn"
+            type = "submit"
+            onSubmit={handleSubmit}>
+              Save
+          </Button>
+          <Button
+            id="reset-btn"
+            type="reset"
+            onClick={handleFormReset}
+          >
+            Reset Form
+          </Button>
+        </ButtonContainer>
+    </StyledForm>
   </BeneficiariesFormContainer>
-);
+        );
+      }
+  
+
 
 Beneficiaries.propTypes = {};
 
