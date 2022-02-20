@@ -1,19 +1,25 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-itwpwebapp-dev-200239-authRole",
-      "UnauthRoleArn": "arn:aws:iam::837453702100:role/amplify-itwpwebapp-dev-200239-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::837453702100:role/amplify-itwpwebapp-dev-200239-authRole",
+      "AuthRoleName": "amplify-tomorrowspromiseweba-dev-153148-authRole",
+      "UnauthRoleArn": "arn:aws:iam::173772035261:role/amplify-tomorrowspromiseweba-dev-153148-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::173772035261:role/amplify-tomorrowspromiseweba-dev-153148-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-itwpwebapp-dev-200239-deployment",
-      "UnauthRoleName": "amplify-itwpwebapp-dev-200239-unauthRole",
-      "StackName": "amplify-itwpwebapp-dev-200239",
-      "StackId": "arn:aws:cloudformation:us-east-1:837453702100:stack/amplify-itwpwebapp-dev-200239/03161330-7fd6-11ec-8178-126619318597",
-      "AmplifyAppId": "d3i8jon72bak1r"
+      "DeploymentBucketName": "amplify-tomorrowspromiseweba-dev-153148-deployment",
+      "UnauthRoleName": "amplify-tomorrowspromiseweba-dev-153148-unauthRole",
+      "StackName": "amplify-tomorrowspromiseweba-dev-153148",
+      "StackId": "arn:aws:cloudformation:us-east-1:173772035261:stack/amplify-tomorrowspromiseweba-dev-153148/22f597c0-928c-11ec-b4f7-1288faaecefd",
+      "AmplifyAppId": "d2iyb7csiw7kd4"
     },
     "categories": {
       "auth": {
-        "itwpwebapp39cedce5": {}
+        "tomorrowspromiseweba60965faf": {}
+      },
+      "function": {
+        "S3Triggerb26b4f5c": {
+          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-153148-deployment",
+          "s3Key": "amplify-builds/S3Triggerb26b4f5c-4f735636577349337662-build.zip"
+        }
       }
     }
   }

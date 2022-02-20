@@ -11,6 +11,7 @@ const MockNavbar = () => {
     </BrowserRouter>
   );
 };
+
 describe("<Navbar />", () => {
   it("should render navbar", () => {
     render(<MockNavbar />);

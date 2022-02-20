@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useState } from "react";
-import { S3Service } from "../../services/s3.service";
+import { S3Service } from "../../services/storage/s3.service";
 
 const FileUploadContainer = styled.div``;
 const ButtonContainer = styled.div``;

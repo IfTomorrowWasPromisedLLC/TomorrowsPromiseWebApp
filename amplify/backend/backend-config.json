@@ -1,6 +1,6 @@
 {
   "auth": {
-    "itwpwebapp39cedce5": {
+    "tomorrowspromiseweba60965faf": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -25,6 +25,30 @@
           "EMAIL"
         ]
       }
+    }
+  },
+  "function": {
+    "S3Triggerb26b4f5c": {
+      "service": "Lambda",
+      "providerPlugin": "awscloudformation",
+      "build": true
+    }
+  },
+  "storage": {
+    "itwpDevTest": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "S3Triggerb26b4f5c",
+          "attributes": [
+            "Name",
+            "Arn",
+            "LambdaExecutionRole"
+          ]
+        }
+      ]
     }
   }
 }

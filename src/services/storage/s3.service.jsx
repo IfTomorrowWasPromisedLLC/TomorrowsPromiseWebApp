@@ -11,7 +11,7 @@ export class S3Service extends Component{
         try {
           let username = await this.authService.getUsername();
           console.log(username);
-          const archiveKey = targetFolder+'/';
+          let archiveKey = targetFolder+'/';
           for (var i = 0; i < filesToUpload.length; i++) {
             let fileKey = archiveKey + filesToUpload[i].name;
             Storage.put(fileKey, filesToUpload[i], { level: 'private' });
