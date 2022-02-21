@@ -1,17 +1,11 @@
-import React, { Component } from 'react'
+import { Auth } from "aws-amplify";
+import Storage from '@aws-amplify/storage';
 
-export class S3Service extends Component{
-    /**
-     * uploadFiles takes in an array of files and target folders
-     * and uploads each file to S3.
-     * @param {*} filesToUpload list of files to be added to S3
-     * @param {*} targetFolder must be archive, or other specification (ex. thumbnails)
-     */
-    async uploadFiles(filesToUpload, targetFolder) {
+    export async function uploadFiles(filesToUpload, targetFolder) {
         try {
-          let username = await this.authService.getUsername();
-          console.log(username);
-          let archiveKey = targetFolder+'/';
+          const { attributes } = await Auth.currentAuthenticatedUser();
+          console.log(attributes);
+          let archiveKey = attributes.email+'/'+targetFolder+'/';
           for (var i = 0; i < filesToUpload.length; i++) {
             let fileKey = archiveKey + filesToUpload[i].name;
             Storage.put(fileKey, filesToUpload[i], { level: 'private' });
@@ -29,7 +23,7 @@ export class S3Service extends Component{
      * @param {*} filesToDownload list of files to download (if specified)
      * @param {*} targetFolder location to download files from - must be archive or thumbnails, etc.
      */
-      async downloadFiles(filesToDownload, targetFolder) {
+     export async function downloadFiles(filesToDownload, targetFolder) {
         try {
           let username = await this.authService.getUsername();
           console.log(username);
@@ -45,6 +39,4 @@ export class S3Service extends Component{
           alert('Something went wrong downloading the files. Please try again.');
         }
       }
-
-    }
 

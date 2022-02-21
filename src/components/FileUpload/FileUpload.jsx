@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useState } from "react";
-import { S3Service } from "../../services/storage/s3.service";
+import * as S3Service from "../../services/storage/s3.service";
 
 const FileUploadContainer = styled.div``;
 const ButtonContainer = styled.div``;
@@ -24,7 +24,7 @@ const FileUpload = () => {
     console.log("handle change");
     setFiles(event.target.files);
     console.log(event.target.files); 
-    await S3Service.uploadFiles(event.target.files);
+    await S3Service.uploadFiles(event.target.files, "test");
     alert("finished uploading files");
   };
 
@@ -53,7 +53,7 @@ const FileUpload = () => {
       </ButtonContainer>
       {/* <Button data-testid="FileUploadButton" 
       onClick={}>
-        Upload to OTHER CHANGE NAME LATEr
+        Upload to OTHER CHANGE NAME LATER
       </Button> */}
     </FileUploadContainer>
   );

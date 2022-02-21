@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Button, Form, Message } from "semantic-ui-react";
 import styled from "styled-components";
 import aws_exports from "../../aws-exports";
+
 Amplify.configure(aws_exports);
 
 const AccountFormContainer = styled.div``;
@@ -210,7 +211,7 @@ class AccountForm extends Component {
               name="address"
               value={address}
               label="Address"
-              placeholder="2/77 New Street, Newport 3015 Melbourne, Victoria, Australia "
+              placeholder="277 New Street, Newport 3015 Melbourne, Victoria, Australia"
               width={16}
               onChange={this.handleChange}
               error={false}
