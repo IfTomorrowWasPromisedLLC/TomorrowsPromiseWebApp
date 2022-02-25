@@ -42,7 +42,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-153148-deployment/amplify-cfn-templates/auth/tomorrowspromiseweba60965faf-cloudformation-template.json",
         "logicalId": "authtomorrowspromiseweba60965faf"
       },
-      "lastPushTimeStamp": "2022-02-20T20:42:25.722Z",
+      "lastPushTimeStamp": "2022-02-23T03:22:41.105Z",
       "output": {
         "UserPoolId": "us-east-1_26fslEOk3",
         "AppClientIDWeb": "4faq309tflrhsb5tsb26cj3pkp",
@@ -74,7 +74,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-153148-deployment/amplify-cfn-templates/function/S3Triggerb26b4f5c-cloudformation-template.json",
         "logicalId": "functionS3Triggerb26b4f5c"
       },
-      "lastPushTimeStamp": "2022-02-20T20:42:25.722Z",
+      "lastPushTimeStamp": "2022-02-23T03:22:41.108Z",
       "output": {
         "Region": "us-east-1",
         "Arn": "arn:aws:lambda:us-east-1:173772035261:function:S3Triggerb26b4f5c-dev",
@@ -99,7 +99,7 @@
           ]
         }
       ],
-      "lastPushTimeStamp": "2022-02-20T20:42:25.722Z",
+      "lastPushTimeStamp": "2022-02-23T03:22:41.565Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-153148-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "logicalId": "storageitwpDevTest"

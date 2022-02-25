@@ -1,13 +1,35 @@
 import Amplify, { Auth } from "aws-amplify";
 import React, { Component } from "react";
-import { Button, Form, Message } from "semantic-ui-react";
+import Select from "react-select";
+import {Form} from "semantic-ui-react"
+
+// import Select from 'react-select'
 import styled from "styled-components";
 import aws_exports from "../../aws-exports";
 
 Amplify.configure(aws_exports);
 
 const AccountFormContainer = styled.div``;
-const StyledForm = styled(Form)``;
+const StyledForm = styled.form`
+  div{
+    padding: 4px;
+  }
+  input, .gender-select{
+    padding: 12px;
+    margin: 2px;
+    display: inline-block;
+    width: 60%;
+    border-radius: 4px;
+    border-color: transparent;
+    font-size: 18px;
+  }
+  .gender-select{
+    color: black;
+    width: 61.5%;
+    margin-left: -2px;
+  }
+`;
+
 const ButtonContainer = styled.div`
   background-color: white;
   margin: 10px;
@@ -17,19 +39,20 @@ const ButtonContainer = styled.div`
     background-color: green;
     border-radius: 10px;
     border-color: white;
-    :hover{
+    :hover {
       box-shadow: 10px 5px 5px green;
       border-color: green;
     }
   }
 `;
+const Button = styled.button``;
 
 const GENDER_OPTIONS = [
-  { key: "m", text: "Man", value: "man" },
-  { key: "w", text: "Woman", value: "woman" },
-  { key: "t", text: "Transgender", value: "transgender" },
-  { key: "n", text: "Non-Binary", value: "nonbinary" },
-  { key: "o", text: "Other", value: "other" },
+  { key: 'm', label: "Man", value: "man" },
+  { key: 'w', label: "Woman", value: "woman" },
+  { key: 't', label: "Transgender", value: "transgender" },
+  { key: 'n', label: "Non-Binary", value: "nonbinary" },
+  { key: 'o', label: "Other", value: "other" },
 ];
 
 class AccountForm extends Component {
@@ -87,13 +110,12 @@ class AccountForm extends Component {
   }
 
   allowChange = () => {
-    try{
-    console.log("handling editable var");
-    this.isEditable = true;
-    console.log(this.isEditable)
-    }
-    catch(e){
-      alert("error editing account informaton", )
+    try {
+      console.log("handling editable var");
+      this.isEditable = true;
+      console.log(this.isEditable);
+    } catch (e) {
+      alert("error editing account informaton");
     }
   };
 
@@ -142,10 +164,8 @@ class AccountForm extends Component {
     return (
       <AccountFormContainer>
         <StyledForm onSubmit={this.handleSubmit} loading={loading}>
-          <Form.Group>
+          <div>
             <Form.Input label="Username" value={email} width={10} />
-          </Form.Group>
-          <Form.Group>
             <Form.Input
               name="given_name"
               value={given_name}
@@ -153,8 +173,7 @@ class AccountForm extends Component {
               placeholder="First Name"
               width={6}
               onChange={this.handleChange}
-              error={false}
-            />
+              error={false} />
             <Form.Input
               name="middle_name"
               value={middle_name}
@@ -162,8 +181,7 @@ class AccountForm extends Component {
               placeholder="Middle Name"
               width={4}
               onChange={this.handleChange}
-              error={false}
-            />
+              error={false} />
             <Form.Input
               name="family_name"
               value={family_name}
@@ -171,10 +189,7 @@ class AccountForm extends Component {
               placeholder="Last Name"
               width={6}
               onChange={this.handleChange}
-              error={false}
-            />
-          </Form.Group>
-          <Form.Group>
+              error={false} />
             <Form.Input
               name="birthdate"
               value={birthdate}
@@ -182,20 +197,17 @@ class AccountForm extends Component {
               placeholder="02/02/2002"
               width={4}
               onChange={this.handleChange}
-              error={false}
-            />
-            <Form.Select
+              error={false} />
+            <Select
               name="gender"
+              className="gender-select"
               value={gender}
               label="Gender"
-              placeholder="Gender"
+              placeholder="Select Gender"
               options={GENDER_OPTIONS}
               width={6}
               onChange={this.handleChange}
-              error={false}
-            />
-          </Form.Group>
-          <Form.Group>
+              error={false} />
             <Form.Input
               name="phone_number"
               value={phone_number}
@@ -203,10 +215,7 @@ class AccountForm extends Component {
               placeholder="+61 0400 000 000"
               width={6}
               onChange={this.handleChange}
-              error={false}
-            />
-          </Form.Group>
-          <Form.Group>
+              error={false} />
             <Form.Input
               name="address"
               value={address}
@@ -214,27 +223,31 @@ class AccountForm extends Component {
               placeholder="277 New Street, Newport 3015 Melbourne, Victoria, Australia"
               width={16}
               onChange={this.handleChange}
-              error={false}
-            />
-          </Form.Group>
+              error={false} />
+          </div>
+          {/*
+    <Message
+      id="success-msg"
+      className="msg"
+      success
+      header="Account Details Updated"
+      content="Your details have been updated."
+    />
 
-          <Message
-            id="success-msg"
-            className="msg"
-            success
-            header="Account Details Updated"
-            content="Your details have been updated."
-          />
-
-          <Message
-            id="error-msg"
-            className="msg"
-            error
-            header="Somthing Went Wrong"
-            content="One of the fields has error. Please look over the forms to see where the error is. "
-          />
+    <Message
+      id="error-msg"
+      className="msg"
+      error
+      header="Somthing Went Wrong"
+      content="One of the fields has error. Please look over the forms to see where the error is. "
+    /> */}
           <ButtonContainer>
-            <Button id="change-btn" className="btn" type="button" onClick={this.allowChange}>
+            <Button
+              id="change-btn"
+              className="btn"
+              type="button"
+              onClick={this.allowChange}
+            >
               Change Account Info
             </Button>
           </ButtonContainer>

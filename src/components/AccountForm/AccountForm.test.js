@@ -1,11 +1,10 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { mockClient } from "aws-sdk-client-mock";
 import AccountForm from './AccountForm';
 import Amplify, {Auth} from 'aws-amplify'
-import awsconfig from '../../..'
-import { Item } from 'react-bootstrap/lib/Breadcrumb';
+import { shallow, mount } from 'enzyme'
+import {render, fireEvent} from '@testing-library/react'
 
 describe('<AccountForm />', () => {
   const testAccount = {
@@ -22,7 +21,10 @@ describe('<AccountForm />', () => {
 
   it('should mount', () => {
     render(<AccountForm />);
+  });
 
+  it('should display account fields', () =>{
+      
     const accountForm = screen.getByTestId('AccountForm');
     const given_name = screen.getByPlaceholderText("First Name");
     const middle_name = screen.getByPlaceholderText("Middle Name");
@@ -40,27 +42,21 @@ describe('<AccountForm />', () => {
     expect(gender).toBeInTheDocument();
     expect(phone_number).toBeInTheDocument();
     expect(address).toBeInTheDocument();
-
   });
 
-  it('should allow user to save changes', () => {
-    render(<AccountForm />);
-   
+  it('should allow user to save changes to Auth User', () => {
+  //User clicks allow change
+    const handleClick = jest.fn();
+    render(<AccountForm/>)
 
-
-  });
+    //user changes first name input
+  const accountForm = render(<AccountForm/>);
+  const firstName_input = accountForm.getByLabelText("First Name");
+  fireEvent.changeText(firstName_input, 'TestFirst');
   
-  it('should return AWS auth user', () => {
-    const component = Wrapper2.dive().instance();
-    //mock AWS auth with jest.
+    const submit = jest.spyOn(object, 'handleSubmit')
+    expect(AccountForm.state().given_name).toEqual("TestFirst");
 
-    //call mocked functionality
-    //expect() return value
-  });
+    });
 
-  it('should update Auth user information', () => {
-     //mock AWS auth with jest.
-    //call mocked functionality
-    //expect() return value
-  });
 });

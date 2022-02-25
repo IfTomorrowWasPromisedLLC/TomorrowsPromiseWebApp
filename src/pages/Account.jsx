@@ -1,13 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Authenticator } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
 import awsExports from "../aws-exports";
 import Amplify from "aws-amplify";
 import AccountForm from "../components/AccountForm/AccountForm";
 import FileUpload from "../components/FileUpload/FileUpload";
 import Beneficiaries from "../components/Beneficiaries/Beneficiaries"
-
 Amplify.configure(awsExports);
 
 const AccountContainer = styled.div`
