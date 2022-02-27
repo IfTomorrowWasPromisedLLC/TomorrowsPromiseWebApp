@@ -1,7 +1,7 @@
 import Amplify, { Auth } from "aws-amplify";
 import React, { Component } from "react";
 import Select from "react-select";
-import {Form} from "semantic-ui-react"
+import { Form } from "semantic-ui-react";
 
 // import Select from 'react-select'
 import styled from "styled-components";
@@ -11,10 +11,11 @@ Amplify.configure(aws_exports);
 
 const AccountFormContainer = styled.div``;
 const StyledForm = styled.form`
-  div{
+  div {
     padding: 4px;
   }
-  input, .gender-select{
+  input,
+  .gender-select {
     padding: 12px;
     margin: 2px;
     display: inline-block;
@@ -23,7 +24,7 @@ const StyledForm = styled.form`
     border-color: transparent;
     font-size: 18px;
   }
-  .gender-select{
+  .gender-select {
     color: black;
     width: 61.5%;
     margin-left: -2px;
@@ -31,28 +32,35 @@ const StyledForm = styled.form`
 `;
 
 const ButtonContainer = styled.div`
-  background-color: white;
-  margin: 10px;
+  width:60%;
   .btn {
     width: 50%;
-    height: 40px;
+    padding: 20px;
     background-color: green;
     border-radius: 10px;
+    border-width: 1px;
     border-color: white;
     :hover {
-      box-shadow: 10px 5px 5px green;
+      box-shadow: 4px 5px 5px green;
       border-color: green;
+    }
+  }
+  #submit-btn {
+    background-color: gray;
+    :hover {
+      box-shadow: 4px 5px 5px gray;
+      border-color: gray;
     }
   }
 `;
 const Button = styled.button``;
 
 const GENDER_OPTIONS = [
-  { key: 'm', label: "Man", value: "man" },
-  { key: 'w', label: "Woman", value: "woman" },
-  { key: 't', label: "Transgender", value: "transgender" },
-  { key: 'n', label: "Non-Binary", value: "nonbinary" },
-  { key: 'o', label: "Other", value: "other" },
+  { key: "m", label: "Man", value: "man" },
+  { key: "w", label: "Woman", value: "woman" },
+  { key: "t", label: "Transgender", value: "transgender" },
+  { key: "n", label: "Non-Binary", value: "nonbinary" },
+  { key: "o", label: "Other", value: "other" },
 ];
 
 class AccountForm extends Component {
@@ -139,7 +147,9 @@ class AccountForm extends Component {
       }).catch((e) => {
         console.log("Error updating user: ");
         console.log(e);
+        alert("Error updating Account Information");
       });
+      alert("Account Information Updated");
       this.isEditable = false;
     }
   };
@@ -173,7 +183,8 @@ class AccountForm extends Component {
               placeholder="First Name"
               width={6}
               onChange={this.handleChange}
-              error={false} />
+              error={false}
+            />
             <Form.Input
               name="middle_name"
               value={middle_name}
@@ -181,7 +192,8 @@ class AccountForm extends Component {
               placeholder="Middle Name"
               width={4}
               onChange={this.handleChange}
-              error={false} />
+              error={false}
+            />
             <Form.Input
               name="family_name"
               value={family_name}
@@ -189,7 +201,8 @@ class AccountForm extends Component {
               placeholder="Last Name"
               width={6}
               onChange={this.handleChange}
-              error={false} />
+              error={false}
+            />
             <Form.Input
               name="birthdate"
               value={birthdate}
@@ -197,7 +210,8 @@ class AccountForm extends Component {
               placeholder="02/02/2002"
               width={4}
               onChange={this.handleChange}
-              error={false} />
+              error={false}
+            />
             <Select
               name="gender"
               className="gender-select"
@@ -207,7 +221,8 @@ class AccountForm extends Component {
               options={GENDER_OPTIONS}
               width={6}
               onChange={this.handleChange}
-              error={false} />
+              error={false}
+            />
             <Form.Input
               name="phone_number"
               value={phone_number}
@@ -215,7 +230,8 @@ class AccountForm extends Component {
               placeholder="+61 0400 000 000"
               width={6}
               onChange={this.handleChange}
-              error={false} />
+              error={false}
+            />
             <Form.Input
               name="address"
               value={address}
@@ -223,24 +239,9 @@ class AccountForm extends Component {
               placeholder="277 New Street, Newport 3015 Melbourne, Victoria, Australia"
               width={16}
               onChange={this.handleChange}
-              error={false} />
+              error={false}
+            />
           </div>
-          {/*
-    <Message
-      id="success-msg"
-      className="msg"
-      success
-      header="Account Details Updated"
-      content="Your details have been updated."
-    />
-
-    <Message
-      id="error-msg"
-      className="msg"
-      error
-      header="Somthing Went Wrong"
-      content="One of the fields has error. Please look over the forms to see where the error is. "
-    /> */}
           <ButtonContainer>
             <Button
               id="change-btn"
