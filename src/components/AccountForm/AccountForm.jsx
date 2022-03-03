@@ -30,7 +30,6 @@ const StyledForm = styled.form`
     margin-left: -2px;
   }
 `;
-
 const ButtonContainer = styled.div`
   width:60%;
   .btn {
@@ -53,7 +52,9 @@ const ButtonContainer = styled.div`
     }
   }
 `;
-const Button = styled.button``;
+const Button = styled.button`
+  cursor: pointer;
+`;
 
 const GENDER_OPTIONS = [
   { key: "m", label: "Man", value: "man" },

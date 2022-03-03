@@ -25,6 +25,7 @@ const AccountContainer = styled.div`
     :hover{
       background-color: whitesmoke;
       border-color: #2E428B;
+      cursor: pointer;
     }
   }
 `;
@@ -34,10 +35,12 @@ const AuthWrap = styled.div`
 const BeneficiariesWrap = styled.div``;
 const FileWrap = styled.div``;
 const SubscriptionWrap = styled.div``;
-const Button = styled.button``;
-//variables
-var showHideAccountDetails = false;
-
+const Button = styled.button`
+  :hover{
+    cursor:pointer;
+  }
+`;
+ 
 const Account = () => {
   const [showHideAccountDetails, setShowHideAccountDetails] = useState(false);
   
@@ -48,7 +51,7 @@ const Account = () => {
           {({ signOut, user }) => (
             <main>
               <h1 className="hello">Hello {user.attributes.email}</h1>
-              <button onClick={() => setShowHideAccountDetails(!showHideAccountDetails)}>Account Details</button>
+              <Button onClick={() => setShowHideAccountDetails(!showHideAccountDetails)}>Account Details</Button>
               {showHideAccountDetails && <AccountForm/>}
               <BeneficiariesWrap>
                 <Beneficiaries />
@@ -56,7 +59,7 @@ const Account = () => {
               <FileWrap></FileWrap>
               <SubscriptionWrap></SubscriptionWrap>
               <FileUpload />
-              <button id="auth-btn" onClick={signOut}>Sign out</button>
+              <Button id="auth-btn" onClick={signOut}>Sign out</Button>
             </main>
           )}
         </Authenticator>
