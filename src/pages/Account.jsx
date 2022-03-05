@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Authenticator } from "@aws-amplify/ui-react";
 import awsExports from "../aws-exports";
@@ -6,25 +6,26 @@ import Amplify from "aws-amplify";
 import AccountForm from "../components/AccountForm/AccountForm";
 import FileUpload from "../components/FileUpload/FileUpload";
 import Beneficiaries from "../components/Beneficiaries/Beneficiaries";
+import Subscription from "../components/Subscription/Subscription";
 
 Amplify.configure(awsExports);
 
 const AccountContainer = styled.div`
   width: 100%;
   height: 800px;
-  .hello{
+  .hello {
     padding-left: 4px;
   }
-  #auth-btn{
+  #auth-btn {
     width: 50%;
     padding: 20px;
-    background-color: #2E428B;
+    background-color: #2e428b;
     border-radius: 10px;
     border-width: 1px;
     border-color: whitesmoke;
-    :hover{
+    :hover {
       background-color: whitesmoke;
-      border-color: #2E428B;
+      border-color: #2e428b;
       cursor: pointer;
     }
   }
@@ -32,18 +33,19 @@ const AccountContainer = styled.div`
 const AuthWrap = styled.div`
   padding-top: 20px;
 `;
-const BeneficiariesWrap = styled.div``;
 const FileWrap = styled.div``;
 const SubscriptionWrap = styled.div``;
 const Button = styled.button`
-  :hover{
-    cursor:pointer;
+  :hover {
+    cursor: pointer;
   }
 `;
- 
+
 const Account = () => {
   const [showHideAccountDetails, setShowHideAccountDetails] = useState(false);
-  
+  const [showHideBeneficiaries, setShowHideBeneficiaries] = useState(false);
+  const [showHideSubscription, setShowHideSubscription] = useState(false);
+
   return (
     <AccountContainer>
       <AuthWrap>
@@ -51,15 +53,33 @@ const Account = () => {
           {({ signOut, user }) => (
             <main>
               <h1 className="hello">Hello {user.attributes.email}</h1>
-              <Button onClick={() => setShowHideAccountDetails(!showHideAccountDetails)}>Account Details</Button>
-              {showHideAccountDetails && <AccountForm/>}
-              <BeneficiariesWrap>
-                <Beneficiaries />
-              </BeneficiariesWrap>
-              <FileWrap></FileWrap>
-              <SubscriptionWrap></SubscriptionWrap>
-              <FileUpload />
-              <Button id="auth-btn" onClick={signOut}>Sign out</Button>
+              <Button
+                onClick={() =>
+                  setShowHideAccountDetails(!showHideAccountDetails)
+                }
+              >
+                Account Details
+              </Button>
+              {showHideAccountDetails && <AccountForm />}
+              <Button
+                onClick={() => 
+                  setShowHideBeneficiaries(!showHideBeneficiaries)}
+              >
+                Beneficiaries
+              </Button>
+              {showHideBeneficiaries && <Beneficiaries />}
+              
+              <Button
+                onClick={() => 
+                  setShowHideSubscription(!showHideSubscription)}
+              >
+                Subscription
+              </Button>
+              {showHideBeneficiaries && <Subscription />}
+              <FileWrap><FileUpload /></FileWrap>
+              <Button id="auth-btn" onClick={signOut}>
+                Sign out
+              </Button>
             </main>
           )}
         </Authenticator>

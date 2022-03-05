@@ -86,7 +86,7 @@ class AccountForm extends Component {
   }
 
   findUser() {
-    Auth.currentAuthenticatedUser({ bypassCache: true })
+    Auth.currentAuthenticatedUser()
       .then((user) => {
         this.setState({
           authData: user,
