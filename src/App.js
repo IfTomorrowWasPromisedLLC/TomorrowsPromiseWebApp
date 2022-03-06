@@ -13,6 +13,7 @@ import AboutUs from "./pages/AboutUs";
 import FAQ from "./pages/FAQ";
 import Products from "./pages/Products";
 import Pricing from "./pages/Pricing";
+import Contact from "./pages/Contact";
 
 export default function App() {
   const [theme, themeToggler, mountedComponent] = useDarkMode();
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/contact" element={<Contact/>} />
       </Routes>
       <Footer />
     </ThemeProvider>

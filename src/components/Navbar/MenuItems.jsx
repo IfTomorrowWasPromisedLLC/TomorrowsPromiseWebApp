@@ -30,4 +30,9 @@ export const MenuItems = [
         url: "/account",
         classname: 'nav-links'
     },
+    {
+        title: 'Contact Us',
+        url: "/contact",
+        classname: 'nav-links'
+    },
     ]

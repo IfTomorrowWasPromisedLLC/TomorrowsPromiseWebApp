@@ -55,16 +55,13 @@ const HamburgerNav = ({ open }) => {
     <Ul open={open}>
       {MenuItems.map((item, index) => {
         return (
-          <li key={index} onClick={()=>"/{item.url}"}>
+          <li key={index} onClick={() => "/{item.url}"}>
             <Link className={item.classname} to={item.url}>
               {item.title}
             </Link>
           </li>
         );
       })}
-      <ButtonContainer>
-        <Button>Contact us</Button>
-      </ButtonContainer>
     </Ul>
   );
 };
