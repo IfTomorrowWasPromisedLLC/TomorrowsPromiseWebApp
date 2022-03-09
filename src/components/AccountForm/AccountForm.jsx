@@ -31,7 +31,7 @@ const StyledForm = styled.form`
   }
 `;
 const ButtonContainer = styled.div`
-  width:60%;
+  width: 60%;
   .btn {
     width: 50%;
     padding: 20px;
@@ -91,7 +91,6 @@ class AccountForm extends Component {
         this.setState({
           authData: user,
           authState: "signedIn",
-
           email: user.attributes.email ? user.attributes.email : "",
           given_name: user.attributes.given_name
             ? user.attributes.given_name
@@ -176,7 +175,12 @@ class AccountForm extends Component {
       <AccountFormContainer>
         <StyledForm onSubmit={this.handleSubmit} loading={loading}>
           <div>
-            <Form.Input label="Username" value={email} width={10} />
+            <Form.Input
+              label="Username"
+              value={email}
+              placeholder="Email"
+              width={10}
+            />
             <Form.Input
               name="given_name"
               value={given_name}

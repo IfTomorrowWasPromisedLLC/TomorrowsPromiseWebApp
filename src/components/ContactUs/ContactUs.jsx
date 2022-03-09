@@ -7,7 +7,8 @@ Amplify.configure(aws_exports);
 
 const ContactFormContainer = styled.div``;
 const StyledForm = styled.form`
-  div, span {
+  div,
+  span {
     padding: 4px;
   }
   input,
@@ -46,8 +47,11 @@ class ContactUs extends Component {
       email: "",
       given_name: "",
       family_name: "",
+      subject: "",
+      message: "",
     };
   }
+
   componentDidMount() {
     this.findUser();
   }
@@ -58,7 +62,6 @@ class ContactUs extends Component {
         this.setState({
           authData: user,
           authState: "signedIn",
-
           email: user.attributes.email ? user.attributes.email : "",
           given_name: user.attributes.given_name
             ? user.attributes.given_name
@@ -66,7 +69,6 @@ class ContactUs extends Component {
           family_name: user.attributes.family_name
             ? user.attributes.family_name
             : "",
-
           stateFromStorage: true,
         });
         console.log(this.state.authData.nickname);
@@ -76,13 +78,17 @@ class ContactUs extends Component {
       });
   }
 
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value });
+  };
+  
   render() {
     let loading = true;
     if (this.state.authData) {
       loading = false;
     }
 
-    const { email, given_name, family_name } = this.state;
+    const { email, given_name, family_name, subject, message } = this.state;
 
     return (
       <ContactFormContainer>
@@ -110,7 +116,8 @@ class ContactUs extends Component {
             />
             <span>Subject</span>
             <Form.TextArea
-              name="Subject"
+              name="subject"
+              value={subject}
               placeholder="Please enter a subject line for your email"
               width={16}
               onChange={this.handleChange}
@@ -118,7 +125,8 @@ class ContactUs extends Component {
             />
             <span>Message</span>
             <Form.TextArea
-              name="Message"
+              name="message"
+              value={message}
               placeholder="How can we help?"
               width={40}
               height={40}
@@ -126,7 +134,17 @@ class ContactUs extends Component {
               error={false}
             />
             <ButtonContainer>
-              <Button id="submit-btn" type="submit">
+              <Button
+                id="submit-btn"
+                type="submit"
+                disabled={
+                  this.state.email === "" ||
+                  this.state.given_name === "" ||
+                  this.state.family_name === "" ||
+                  this.state.subject === "" ||
+                  this.state.message === ""
+                }
+              >
                 Submit
               </Button>
             </ButtonContainer>
