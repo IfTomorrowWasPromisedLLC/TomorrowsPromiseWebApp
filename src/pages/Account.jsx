@@ -13,9 +13,8 @@ Amplify.configure(awsExports);
 const AccountContainer = styled.div`
   width: 100%;
   height: 800px;
-  .hello {
-    padding-left: 4px;
-  }
+  padding-left: 8px;
+
   #auth-btn {
     width: 50%;
     padding: 20px;
@@ -42,6 +41,7 @@ const Button = styled.button`
 `;
 
 const Account = () => {
+
   const [showHideAccountDetails, setShowHideAccountDetails] = useState(false);
   const [showHideBeneficiaries, setShowHideBeneficiaries] = useState(false);
   const [showHideSubscription, setShowHideSubscription] = useState(false);
@@ -75,7 +75,8 @@ const Account = () => {
               >
                 Subscription
               </Button>
-              {showHideBeneficiaries && <Subscription />}
+              {showHideSubscription && <Subscription />}
+
               <FileWrap><FileUpload /></FileWrap>
               <Button id="auth-btn" onClick={signOut}>
                 Sign out
@@ -85,9 +86,6 @@ const Account = () => {
         </Authenticator>
       </AuthWrap>
     </AccountContainer>
-    //   Need a beneficiaries page
-    // Need to display subscription data
-    // Need file upload/download to archive
   );
 };
 

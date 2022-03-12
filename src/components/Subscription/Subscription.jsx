@@ -1,11 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './Subscription.module.css';
+import styled from 'styled-components';
+
+const SubscriptionContainer = styled.div``;
+const DataContainer = styled.div``;
 
 const Subscription = () => (
-  <div className={styles.Subscription} data-testid="Subscription">
-    Subscription Component
-  </div>
+  <SubscriptionContainer>
+        Subscription Component
+    <DataContainer>
+      Data
+    </DataContainer>
+    <DataContainer>
+      Photo Count
+    </DataContainer>
+    <DataContainer>
+      Video Count
+    </DataContainer>
+    <DataContainer>
+      Document Count
+    </DataContainer>
+  </SubscriptionContainer>
 );
 
 Subscription.propTypes = {};
