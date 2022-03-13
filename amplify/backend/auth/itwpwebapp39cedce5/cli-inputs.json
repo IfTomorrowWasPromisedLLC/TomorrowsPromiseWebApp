@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "tomorrowspromiseweba60965faf_identitypool_60965faf",
+    "identityPoolName": "itwpwebapp39cedce5_identitypool_39cedce5",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "tomorr60965faf",
-    "userPoolName": "tomorrowspromiseweba60965faf_userpool_60965faf",
+    "resourceNameTruncated": "itwpwe39cedce5",
+    "userPoolName": "itwpwebapp39cedce5_userpool_39cedce5",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,20 +31,15 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "tomorr60965faf_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "itwpwe39cedce5_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "60965faf",
-    "resourceName": "tomorrowspromiseweba60965faf",
+    "sharedId": "39cedce5",
+    "resourceName": "itwpwebapp39cedce5",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "defaultSocial",
-    "hostedUI": true,
+    "useDefault": "default",
     "usernameAttributes": [
       "email"
     ],
-    "hostedUIDomainName": "tomorrowspromiseweba60965faf-60965faf",
-    "authProvidersUserPool": [],
-    "hostedUIProviderMeta": "[]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://localhost:3000/login/\"],\"LogoutURLs\":[\"https://localhost:3000/account/\"]}",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
