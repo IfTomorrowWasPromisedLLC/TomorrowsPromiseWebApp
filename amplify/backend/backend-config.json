@@ -1,6 +1,6 @@
 {
   "auth": {
-    "itwpwebapp39cedce5": {
+    "tomorrowspromiseweba56f1255b": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -27,8 +27,32 @@
       }
     }
   },
+  "function": {
+    "S3Triggerf61fd0e3": {
+      "service": "Lambda",
+      "providerPlugin": "awscloudformation",
+      "build": true
+    }
+  },
+  "storage": {
+    "itwpdevtest": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "S3Triggerf61fd0e3",
+          "attributes": [
+            "Name",
+            "Arn",
+            "LambdaExecutionRole"
+          ]
+        }
+      ]
+    }
+  },
   "api": {
-    "itwpwebapp": {
+    "tomorrowspromiseweba": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {

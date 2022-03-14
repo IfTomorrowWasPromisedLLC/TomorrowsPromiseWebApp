@@ -1,5 +1,5 @@
 {
-  "Description": "Root Stack for AWS Amplify Console",
+  "Description": "Root Stack for AWS Amplify CLI",
   "AWSTemplateFormatVersion": "2010-09-09",
   "Parameters": {
     "DeploymentBucketName": {
@@ -152,15 +152,15 @@
         }
       }
     },
-    "authitwpwebapp39cedce5": {
+    "authtomorrowspromiseweba56f1255b": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-itwpwebapp-dev-200239-deployment/amplify-cfn-templates/auth/itwpwebapp39cedce5-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-02013-deployment/amplify-cfn-templates/auth/tomorrowspromiseweba56f1255b-cloudformation-template.json",
         "Parameters": {
-          "identityPoolName": "itwpwebapp39cedce5_identitypool_39cedce5",
+          "identityPoolName": "tomorrowspromiseweba56f1255b_identitypool_56f1255b",
           "allowUnauthenticatedIdentities": false,
-          "resourceNameTruncated": "itwpwe39cedce5",
-          "userPoolName": "itwpwebapp39cedce5_userpool_39cedce5",
+          "resourceNameTruncated": "tomorr56f1255b",
+          "userPoolName": "tomorrowspromiseweba56f1255b_userpool_56f1255b",
           "autoVerifiedAttributes": "email",
           "mfaConfiguration": "OFF",
           "mfaTypes": "SMS Text Message",
@@ -177,10 +177,10 @@
           "userpoolClientRefreshTokenValidity": 30,
           "userpoolClientWriteAttributes": "email",
           "userpoolClientReadAttributes": "email",
-          "userpoolClientLambdaRole": "itwpwe39cedce5_userpoolclient_lambda_role",
+          "userpoolClientLambdaRole": "tomorr56f1255b_userpoolclient_lambda_role",
           "userpoolClientSetAttributes": false,
-          "sharedId": "39cedce5",
-          "resourceName": "itwpwebapp39cedce5",
+          "sharedId": "56f1255b",
+          "resourceName": "tomorrowspromiseweba56f1255b",
           "authSelections": "identityPoolAndUserPool",
           "useDefault": "default",
           "usernameAttributes": "email",
@@ -206,11 +206,88 @@
         }
       }
     },
+    "functionS3Triggerf61fd0e3": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-02013-deployment/amplify-cfn-templates/function/S3Triggerf61fd0e3-cloudformation-template.json",
+        "Parameters": {
+          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-02013-deployment",
+          "s3Key": "amplify-builds/S3Triggerf61fd0e3-785a793759314f685255-build.zip",
+          "env": "dev"
+        }
+      }
+    },
+    "storageitwpdevtest": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-02013-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
+        "Parameters": {
+          "bucketName": "itwpdevtestbucket",
+          "selectedGuestPermissions": "",
+          "selectedAuthenticatedPermissions": "s3:PutObject,s3:GetObject,s3:ListBucket,s3:DeleteObject",
+          "unauthRoleName": {
+            "Ref": "UnauthRoleName"
+          },
+          "authRoleName": {
+            "Ref": "AuthRoleName"
+          },
+          "triggerFunction": "S3Triggerf61fd0e3",
+          "s3PrivatePolicy": "Private_policy_d6e27214",
+          "s3ProtectedPolicy": "Protected_policy_d6e27214",
+          "s3PublicPolicy": "Public_policy_d6e27214",
+          "s3ReadPolicy": "read_policy_d6e27214",
+          "s3UploadsPolicy": "Uploads_policy_d6e27214",
+          "authPolicyName": "s3_amplify_d6e27214",
+          "unauthPolicyName": "s3_amplify_d6e27214",
+          "AuthenticatedAllowList": "ALLOW",
+          "GuestAllowList": "DISALLOW",
+          "s3PermissionsAuthenticatedPrivate": "s3:PutObject,s3:GetObject,s3:DeleteObject",
+          "s3PermissionsAuthenticatedProtected": "s3:PutObject,s3:GetObject,s3:DeleteObject",
+          "s3PermissionsAuthenticatedPublic": "s3:PutObject,s3:GetObject,s3:DeleteObject",
+          "s3PermissionsAuthenticatedUploads": "s3:PutObject",
+          "s3PermissionsGuestPublic": "DISALLOW",
+          "s3PermissionsGuestUploads": "DISALLOW",
+          "functionS3Triggerf61fd0e3Name": {
+            "Fn::GetAtt": [
+              "functionS3Triggerf61fd0e3",
+              "Outputs.Name"
+            ]
+          },
+          "functionS3Triggerf61fd0e3Arn": {
+            "Fn::GetAtt": [
+              "functionS3Triggerf61fd0e3",
+              "Outputs.Arn"
+            ]
+          },
+          "functionS3Triggerf61fd0e3LambdaExecutionRole": {
+            "Fn::GetAtt": [
+              "functionS3Triggerf61fd0e3",
+              "Outputs.LambdaExecutionRole"
+            ]
+          },
+          "env": "dev"
+        }
+      }
+    },
+    "apitomorrowspromiseweba": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-02013-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "Parameters": {
+          "AppSyncApiName": "tomorrowspromiseweba",
+          "DynamoDBBillingMode": "PAY_PER_REQUEST",
+          "DynamoDBEnableServerSideEncryption": false,
+          "S3DeploymentBucket": "amplify-tomorrowspromiseweba-dev-02013-deployment",
+          "S3DeploymentRootKey": "amplify-appsync-files/2674a8400e53741cc6351794b0279246576853f2",
+          "env": "dev"
+        }
+      }
+    },
     "UpdateRolesWithIDPFunction": {
       "DependsOn": [
         "AuthRole",
         "UnauthRole",
-        "authitwpwebapp39cedce5"
+        "authtomorrowspromiseweba56f1255b"
       ],
       "Type": "AWS::Lambda::Function",
       "Properties": {
@@ -305,7 +382,7 @@
         },
         "idpId": {
           "Fn::GetAtt": [
-            "authitwpwebapp39cedce5",
+            "authtomorrowspromiseweba56f1255b",
             "Outputs.IdentityPoolId"
           ]
         },

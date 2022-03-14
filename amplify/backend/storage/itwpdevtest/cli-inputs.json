@@ -1,0 +1,14 @@
+{
+  "resourceName": "itwpdevtest",
+  "policyUUID": "d6e27214",
+  "bucketName": "itwpdevtestbucket",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "S3Triggerf61fd0e3",
+  "groupAccess": {}
+}

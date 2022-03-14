@@ -3,20 +3,22 @@
 input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
 type Beneficiary @model {
-  id: ID! @primaryKey
-  customer: Customer! @hasOne
+  id: ID!
   firstName: String!
   lastName: String!
   emailAddress: String!
   phoneNumber: String!
+  status: String!
   notes: String
+  customerID: ID! @index(name: "byCustomer" sortKeyFields: ["username"])
 }
 
 type Customer @model {
-  id: ID!
-  authUsername: String! @primaryKey
+  id: ID! 
+  authUserName: String! @index(name: "byAuthUserName", queryField: "customerByAuthUserName", sortKeyFields: ["id"])
   firstName: String!
   lastName: String!
-  emailAddress: String!
-  beneficiares: [Beneficiary] @belongsTo
+  emailAddress: String! @index(name: "byEmail", queryField: "customerByEmail", sortKeyFields: ["id"])
+  phoneNumber: String
+  beneficiaries: [Beneficiary] @hasMany(indexName: "byCustomer")
 }
