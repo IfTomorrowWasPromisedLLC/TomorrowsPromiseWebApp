@@ -1,0 +1,26 @@
+{
+  "trigger": true,
+  "modules": [
+    "verification-link"
+  ],
+  "parentResource": "tomorrowspromiseweba40c2ed33",
+  "functionName": "tomorrowspromiseweba40c2ed33CustomMessage",
+  "resourceName": "tomorrowspromiseweba40c2ed33CustomMessage",
+  "parentStack": "auth",
+  "triggerEnvs": [
+    {
+      "key": "RESOURCENAME",
+      "value": "resourceName"
+    }
+  ],
+  "triggerDir": "C:\\Users\\crish\\AppData\\Roaming\\npm\\node_modules\\@aws-amplify\\cli\\node_modules\\@aws-amplify\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\CustomMessage",
+  "triggerTemplate": "CustomMessage.json.ejs",
+  "triggerEventPath": "CustomMessage.event.json",
+  "roleName": "tomorrowspromiseweba40c2ed33CustomMessage",
+  "skipEdit": true,
+  "REDIRECTURL": "http://localhost:3000/",
+  "EMAILSUBJECT": "Welcome to Tomorrow's Promise!",
+  "EMAILMESSAGE": "Please click the link to confirm your account at Tomorrow's Promise.",
+  "RESOURCENAME": "resourceName",
+  "enableCors": false
+}

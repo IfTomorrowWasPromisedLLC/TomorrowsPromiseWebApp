@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Select from "react-select";
 import { Form } from "semantic-ui-react";
 
+import { authSubject, getCurrentAuthenticatedUser } from "../../services/auth/auth.service";
 // import Select from 'react-select'
 import styled from "styled-components";
 import aws_exports from "../../aws-exports";
@@ -83,38 +84,42 @@ class AccountForm extends Component {
 
   componentDidMount() {
     this.findUser();
+    authSubject.subscribe(message => {
+      console.log(message);
+    })
   }
 
-  findUser() {
-    Auth.currentAuthenticatedUser()
-      .then((user) => {
-        this.setState({
-          authData: user,
-          authState: "signedIn",
-          email: user.attributes.email ? user.attributes.email : "",
-          given_name: user.attributes.given_name
-            ? user.attributes.given_name
-            : "",
-          middle_name: user.attributes.middle_name
-            ? user.attributes.middle_name
-            : "",
-          family_name: user.attributes.family_name
-            ? user.attributes.family_name
-            : "",
-          birthdate: user.attributes.birthdate ? user.attributes.birthdate : "",
-          gender: user.attributes.gender ? user.attributes.gender : "",
-          phone_number: user.attributes.phone_number
-            ? user.attributes.phone_number
-            : "",
-          address: user.attributes.address ? user.attributes.address : "",
+  async findUser() {
+    await getCurrentAuthenticatedUser();
+    // Auth.currentAuthenticatedUser()
+    //   .then((user) => {
+    //     this.setState({
+    //       authData: user,
+    //       authState: "signedIn",
+    //       email: user.attributes.email ? user.attributes.email : "",
+    //       given_name: user.attributes.given_name
+    //         ? user.attributes.given_name
+    //         : "",
+    //       middle_name: user.attributes.middle_name
+    //         ? user.attributes.middle_name
+    //         : "",
+    //       family_name: user.attributes.family_name
+    //         ? user.attributes.family_name
+    //         : "",
+    //       birthdate: user.attributes.birthdate ? user.attributes.birthdate : "",
+    //       gender: user.attributes.gender ? user.attributes.gender : "",
+    //       phone_number: user.attributes.phone_number
+    //         ? user.attributes.phone_number
+    //         : "",
+    //       address: user.attributes.address ? user.attributes.address : "",
 
-          stateFromStorage: true,
-        });
-        console.log(this.state.authData.nickname);
-      })
-      .catch((e) => {
-        this.setState({ authState: "signIn" });
-      });
+    //       stateFromStorage: true,
+    //     });
+    //     console.log(this.state.authData.nickname);
+    //   })
+    //   .catch((e) => {
+    //     this.setState({ authState: "signIn" });
+    //   });
   }
 
   allowChange = () => {

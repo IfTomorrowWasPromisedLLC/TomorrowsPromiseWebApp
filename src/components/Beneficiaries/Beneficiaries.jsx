@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { formFields } from './formFields';
 import { formRow, input } from 'aws-amplify';
 import { API } from 'aws-amplify';
+import { createBeneficiary, updateBeneficiary, deleteBeneficiary} from '../../graphql/mutations'
+import { customerByEmail, customerByUserName, getCustomer } from '../../graphql/queries'
 
 const BeneficiariesFormContainer = styled.div``;
 const StyledForm = styled.form``;
@@ -14,6 +16,7 @@ const ButtonContainer = styled.div``;
 const Button = styled.button``;
 
 const Beneficiaries = () => {
+
   const [beneficiaries, setBeneficiaries] = useState(formFields);
   
   const handleAddFields = () => {

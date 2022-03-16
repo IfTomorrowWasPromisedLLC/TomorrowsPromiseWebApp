@@ -152,15 +152,95 @@
         }
       }
     },
-    "authtomorrowspromiseweba56f1255b": {
+    "AuthTriggerCustomLambdaStack": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-02013-deployment/amplify-cfn-templates/auth/tomorrowspromiseweba56f1255b-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-175913-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json",
         "Parameters": {
-          "identityPoolName": "tomorrowspromiseweba56f1255b_identitypool_56f1255b",
-          "allowUnauthenticatedIdentities": false,
-          "resourceNameTruncated": "tomorr56f1255b",
-          "userPoolName": "tomorrowspromiseweba56f1255b_userpool_56f1255b",
+          "env": "dev",
+          "userpoolId": {
+            "Fn::GetAtt": [
+              "authtomorrowspromiseweba40c2ed33",
+              "Outputs.UserPoolId"
+            ]
+          },
+          "userpoolArn": {
+            "Fn::GetAtt": [
+              "authtomorrowspromiseweba40c2ed33",
+              "Outputs.UserPoolArn"
+            ]
+          },
+          "functiontomorrowspromiseweba40c2ed33CustomMessageArn": {
+            "Fn::GetAtt": [
+              "functiontomorrowspromiseweba40c2ed33CustomMessage",
+              "Outputs.Arn"
+            ]
+          },
+          "functiontomorrowspromiseweba40c2ed33CustomMessageName": {
+            "Fn::GetAtt": [
+              "functiontomorrowspromiseweba40c2ed33CustomMessage",
+              "Outputs.Name"
+            ]
+          },
+          "functiontomorrowspromiseweba40c2ed33PostConfirmationArn": {
+            "Fn::GetAtt": [
+              "functiontomorrowspromiseweba40c2ed33PostConfirmation",
+              "Outputs.Arn"
+            ]
+          },
+          "functiontomorrowspromiseweba40c2ed33PostConfirmationName": {
+            "Fn::GetAtt": [
+              "functiontomorrowspromiseweba40c2ed33PostConfirmation",
+              "Outputs.Name"
+            ]
+          }
+        }
+      },
+      "DependsOn": [
+        "authtomorrowspromiseweba40c2ed33",
+        "functiontomorrowspromiseweba40c2ed33CustomMessage",
+        "functiontomorrowspromiseweba40c2ed33PostConfirmation"
+      ]
+    },
+    "functiontomorrowspromiseweba40c2ed33CustomMessage": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-175913-deployment/amplify-cfn-templates/function/tomorrowspromiseweba40c2ed33CustomMessage-cloudformation-template.json",
+        "Parameters": {
+          "modules": "verification-link",
+          "resourceName": "tomorrowspromiseweba40c2ed33CustomMessage",
+          "REDIRECTURL": "http://localhost:3000/",
+          "EMAILSUBJECT": "Welcome to Tomorrow's Promise!",
+          "EMAILMESSAGE": "Please click the link to confirm your account at Tomorrow's Promise.",
+          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-175913-deployment",
+          "s3Key": "amplify-builds/tomorrowspromiseweba40c2ed33CustomMessage-386a4f2b2b78686d3330-build.zip",
+          "env": "dev"
+        }
+      }
+    },
+    "functiontomorrowspromiseweba40c2ed33PostConfirmation": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-175913-deployment/amplify-cfn-templates/function/tomorrowspromiseweba40c2ed33PostConfirmation-cloudformation-template.json",
+        "Parameters": {
+          "modules": "add-to-group",
+          "resourceName": "tomorrowspromiseweba40c2ed33PostConfirmation",
+          "GROUP": "tomorrowsPromiseCustomers",
+          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-175913-deployment",
+          "s3Key": "amplify-builds/tomorrowspromiseweba40c2ed33PostConfirmation-79627844716a39307331-build.zip",
+          "env": "dev"
+        }
+      }
+    },
+    "authtomorrowspromiseweba40c2ed33": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-175913-deployment/amplify-cfn-templates/auth/tomorrowspromiseweba40c2ed33-cloudformation-template.json",
+        "Parameters": {
+          "identityPoolName": "tomorrowspromiseweba40c2ed33_identitypool_40c2ed33",
+          "allowUnauthenticatedIdentities": true,
+          "resourceNameTruncated": "tomorr40c2ed33",
+          "userPoolName": "tomorrowspromiseweba40c2ed33_userpool_40c2ed33",
           "autoVerifiedAttributes": "email",
           "mfaConfiguration": "OFF",
           "mfaTypes": "SMS Text Message",
@@ -177,15 +257,17 @@
           "userpoolClientRefreshTokenValidity": 30,
           "userpoolClientWriteAttributes": "email",
           "userpoolClientReadAttributes": "email",
-          "userpoolClientLambdaRole": "tomorr56f1255b_userpoolclient_lambda_role",
+          "userpoolClientLambdaRole": "tomorr40c2ed33_userpoolclient_lambda_role",
           "userpoolClientSetAttributes": false,
-          "sharedId": "56f1255b",
-          "resourceName": "tomorrowspromiseweba56f1255b",
+          "sharedId": "40c2ed33",
+          "resourceName": "tomorrowspromiseweba40c2ed33",
           "authSelections": "identityPoolAndUserPool",
           "useDefault": "default",
           "usernameAttributes": "email",
+          "triggers": "{\"CustomMessage\":[\"verification-link\"],\"PostConfirmation\":[\"add-to-group\"]}",
           "userPoolGroupList": "",
           "serviceName": "Cognito",
+          "verificationBucketName": "tomorrowspromiseweba40c2ed33verificationbucket",
           "usernameCaseSensitive": false,
           "useEnabledMfas": true,
           "authRoleArn": {
@@ -201,29 +283,20 @@
             ]
           },
           "breakCircularDependency": true,
-          "dependsOn": "",
+          "dependsOn": "[object Object],[object Object]",
+          "permissions": "{\"policyName\":\"AddToGroupCognito\",\"trigger\":\"PostConfirmation\",\"effect\":\"Allow\",\"actions\":[\"cognito-idp:AdminAddUserToGroup\",\"cognito-idp:GetGroup\",\"cognito-idp:CreateGroup\"],\"resource\":{\"paramType\":\"!GetAtt\",\"keys\":[\"UserPool\",\"Arn\"]}}",
+          "authTriggerConnections": "{\"triggerType\":\"CustomMessage\",\"lambdaFunctionName\":\"tomorrowspromiseweba40c2ed33CustomMessage\"},{\"triggerType\":\"PostConfirmation\",\"lambdaFunctionName\":\"tomorrowspromiseweba40c2ed33PostConfirmation\"}",
           "env": "dev"
         }
       }
     },
-    "functionS3Triggerf61fd0e3": {
+    "storages34e2eb0e0": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-02013-deployment/amplify-cfn-templates/function/S3Triggerf61fd0e3-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-175913-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-02013-deployment",
-          "s3Key": "amplify-builds/S3Triggerf61fd0e3-785a793759314f685255-build.zip",
-          "env": "dev"
-        }
-      }
-    },
-    "storageitwpdevtest": {
-      "Type": "AWS::CloudFormation::Stack",
-      "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-02013-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
-        "Parameters": {
-          "bucketName": "itwpdevtestbucket",
-          "selectedGuestPermissions": "",
+          "bucketName": "tomorrowspromiseweba9953210f0cbb4983a74c77a7008",
+          "selectedGuestPermissions": "s3:GetObject,s3:ListBucket",
           "selectedAuthenticatedPermissions": "s3:PutObject,s3:GetObject,s3:ListBucket,s3:DeleteObject",
           "unauthRoleName": {
             "Ref": "UnauthRoleName"
@@ -231,40 +304,21 @@
           "authRoleName": {
             "Ref": "AuthRoleName"
           },
-          "triggerFunction": "S3Triggerf61fd0e3",
-          "s3PrivatePolicy": "Private_policy_d6e27214",
-          "s3ProtectedPolicy": "Protected_policy_d6e27214",
-          "s3PublicPolicy": "Public_policy_d6e27214",
-          "s3ReadPolicy": "read_policy_d6e27214",
-          "s3UploadsPolicy": "Uploads_policy_d6e27214",
-          "authPolicyName": "s3_amplify_d6e27214",
-          "unauthPolicyName": "s3_amplify_d6e27214",
+          "s3PrivatePolicy": "Private_policy_4e2eb0e0",
+          "s3ProtectedPolicy": "Protected_policy_4e2eb0e0",
+          "s3PublicPolicy": "Public_policy_4e2eb0e0",
+          "s3ReadPolicy": "read_policy_4e2eb0e0",
+          "s3UploadsPolicy": "Uploads_policy_4e2eb0e0",
+          "authPolicyName": "s3_amplify_4e2eb0e0",
+          "unauthPolicyName": "s3_amplify_4e2eb0e0",
           "AuthenticatedAllowList": "ALLOW",
-          "GuestAllowList": "DISALLOW",
+          "GuestAllowList": "ALLOW",
           "s3PermissionsAuthenticatedPrivate": "s3:PutObject,s3:GetObject,s3:DeleteObject",
           "s3PermissionsAuthenticatedProtected": "s3:PutObject,s3:GetObject,s3:DeleteObject",
           "s3PermissionsAuthenticatedPublic": "s3:PutObject,s3:GetObject,s3:DeleteObject",
           "s3PermissionsAuthenticatedUploads": "s3:PutObject",
-          "s3PermissionsGuestPublic": "DISALLOW",
+          "s3PermissionsGuestPublic": "s3:GetObject",
           "s3PermissionsGuestUploads": "DISALLOW",
-          "functionS3Triggerf61fd0e3Name": {
-            "Fn::GetAtt": [
-              "functionS3Triggerf61fd0e3",
-              "Outputs.Name"
-            ]
-          },
-          "functionS3Triggerf61fd0e3Arn": {
-            "Fn::GetAtt": [
-              "functionS3Triggerf61fd0e3",
-              "Outputs.Arn"
-            ]
-          },
-          "functionS3Triggerf61fd0e3LambdaExecutionRole": {
-            "Fn::GetAtt": [
-              "functionS3Triggerf61fd0e3",
-              "Outputs.LambdaExecutionRole"
-            ]
-          },
           "env": "dev"
         }
       }
@@ -272,13 +326,13 @@
     "apitomorrowspromiseweba": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-02013-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-175913-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "Parameters": {
           "AppSyncApiName": "tomorrowspromiseweba",
           "DynamoDBBillingMode": "PAY_PER_REQUEST",
           "DynamoDBEnableServerSideEncryption": false,
-          "S3DeploymentBucket": "amplify-tomorrowspromiseweba-dev-02013-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/2674a8400e53741cc6351794b0279246576853f2",
+          "S3DeploymentBucket": "amplify-tomorrowspromiseweba-dev-175913-deployment",
+          "S3DeploymentRootKey": "amplify-appsync-files/51cb0b2321bde8dfe4375b345a71b795340b46ca",
           "env": "dev"
         }
       }
@@ -287,7 +341,7 @@
       "DependsOn": [
         "AuthRole",
         "UnauthRole",
-        "authtomorrowspromiseweba56f1255b"
+        "authtomorrowspromiseweba40c2ed33"
       ],
       "Type": "AWS::Lambda::Function",
       "Properties": {
@@ -382,7 +436,7 @@
         },
         "idpId": {
           "Fn::GetAtt": [
-            "authtomorrowspromiseweba56f1255b",
+            "authtomorrowspromiseweba40c2ed33",
             "Outputs.IdentityPoolId"
           ]
         },

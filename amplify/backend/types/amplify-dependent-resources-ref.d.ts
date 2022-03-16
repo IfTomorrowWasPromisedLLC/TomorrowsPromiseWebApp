@@ -1,6 +1,20 @@
 export type AmplifyDependentResourcesAttributes = {
+    "function": {
+        "tomorrowspromiseweba40c2ed33CustomMessage": {
+            "Name": "string",
+            "Arn": "string",
+            "LambdaExecutionRole": "string",
+            "Region": "string"
+        },
+        "tomorrowspromiseweba40c2ed33PostConfirmation": {
+            "Name": "string",
+            "Arn": "string",
+            "LambdaExecutionRole": "string",
+            "Region": "string"
+        }
+    },
     "auth": {
-        "tomorrowspromiseweba56f1255b": {
+        "tomorrowspromiseweba40c2ed33": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
@@ -10,16 +24,8 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientID": "string"
         }
     },
-    "function": {
-        "S3Triggerf61fd0e3": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        }
-    },
     "storage": {
-        "itwpdevtest": {
+        "s34e2eb0e0": {
             "BucketName": "string",
             "Region": "string"
         }
