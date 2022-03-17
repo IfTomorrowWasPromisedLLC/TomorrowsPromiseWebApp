@@ -80,46 +80,42 @@ class AccountForm extends Component {
       address: "",
     };
     this.isEditable = false;
+    this.userMessage = null;
   }
 
   componentDidMount() {
+    
     this.findUser();
-    authSubject.subscribe(message => {
-      console.log(message);
-    })
+
   }
 
   async findUser() {
     await getCurrentAuthenticatedUser();
-    // Auth.currentAuthenticatedUser()
-    //   .then((user) => {
-    //     this.setState({
-    //       authData: user,
-    //       authState: "signedIn",
-    //       email: user.attributes.email ? user.attributes.email : "",
-    //       given_name: user.attributes.given_name
-    //         ? user.attributes.given_name
-    //         : "",
-    //       middle_name: user.attributes.middle_name
-    //         ? user.attributes.middle_name
-    //         : "",
-    //       family_name: user.attributes.family_name
-    //         ? user.attributes.family_name
-    //         : "",
-    //       birthdate: user.attributes.birthdate ? user.attributes.birthdate : "",
-    //       gender: user.attributes.gender ? user.attributes.gender : "",
-    //       phone_number: user.attributes.phone_number
-    //         ? user.attributes.phone_number
-    //         : "",
-    //       address: user.attributes.address ? user.attributes.address : "",
+    authSubject.subscribe(message => {
+      this.userMessage = message;
+    });
+    this.setState({
+        authData: this.userMessage,
+        authState: "signedIn",
+        email: this.userMessage.email ? this.userMessage.email : "",
+        given_name: this.userMessage.given_name
+          ? this.userMessage.given_name
+          : "",
+        middle_name: this.userMessage.middle_name
+          ? this.userMessage.middle_name
+          : "",
+        family_name: this.userMessage.family_name
+          ? this.userMessage.family_name
+          : "",
+        birthdate: this.userMessage.birthdate ? this.userMessage.birthdate : "",
+        gender: this.userMessage.gender ? this.userMessage.gender : "",
+        phone_number: this.userMessage.phone_number
+          ? this.userMessage.phone_number
+          : "",
+        address: this.userMessage.address ? this.userMessage.address : "",
 
-    //       stateFromStorage: true,
-    //     });
-    //     console.log(this.state.authData.nickname);
-    //   })
-    //   .catch((e) => {
-    //     this.setState({ authState: "signIn" });
-    //   });
+        stateFromStorage: true,
+        });
   }
 
   allowChange = () => {
