@@ -1,35 +1,25 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-tomorrowspromiseweba-dev-175913-authRole",
-      "UnauthRoleArn": "arn:aws:iam::837453702100:role/amplify-tomorrowspromiseweba-dev-175913-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::837453702100:role/amplify-tomorrowspromiseweba-dev-175913-authRole",
+      "AuthRoleName": "amplify-tomorrowspromiseweba-dev-153148-authRole",
+      "UnauthRoleArn": "arn:aws:iam::173772035261:role/amplify-tomorrowspromiseweba-dev-153148-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::173772035261:role/amplify-tomorrowspromiseweba-dev-153148-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-tomorrowspromiseweba-dev-175913-deployment",
-      "UnauthRoleName": "amplify-tomorrowspromiseweba-dev-175913-unauthRole",
-      "StackName": "amplify-tomorrowspromiseweba-dev-175913",
-      "StackId": "arn:aws:cloudformation:us-east-1:837453702100:stack/amplify-tomorrowspromiseweba-dev-175913/294cbaa0-a4ab-11ec-b134-1202e855dcb5",
-      "AmplifyAppId": "dpmam1x009ate",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-175913-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "DeploymentBucketName": "amplify-tomorrowspromiseweba-dev-153148-deployment",
+      "UnauthRoleName": "amplify-tomorrowspromiseweba-dev-153148-unauthRole",
+      "StackName": "amplify-tomorrowspromiseweba-dev-153148",
+      "StackId": "arn:aws:cloudformation:us-east-1:173772035261:stack/amplify-tomorrowspromiseweba-dev-153148/22f597c0-928c-11ec-b4f7-1288faaecefd",
+      "AmplifyAppId": "d2iyb7csiw7kd4"
     },
     "categories": {
-      "auth": {
-        "tomorrowspromiseweba40c2ed33": {},
-        "true": {}
-      },
       "function": {
-        "tomorrowspromiseweba40c2ed33CustomMessage": {
-          "REDIRECTURL": "http://localhost:3000/",
-          "EMAILSUBJECT": "Welcome to Tomorrow's Promise!",
-          "EMAILMESSAGE": "Please click the link to confirm your account at Tomorrow's Promise.",
-          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-175913-deployment",
-          "s3Key": "amplify-builds/tomorrowspromiseweba40c2ed33CustomMessage-386a4f2b2b78686d3330-build.zip"
-        },
-        "tomorrowspromiseweba40c2ed33PostConfirmation": {
-          "GROUP": "tomorrowsPromiseCustomers",
-          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-175913-deployment",
-          "s3Key": "amplify-builds/tomorrowspromiseweba40c2ed33PostConfirmation-79627844716a39307331-build.zip"
+        "S3Triggerb26b4f5c": {
+          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-153148-deployment",
+          "s3Key": "amplify-builds/S3Triggerb26b4f5c-4f735636577349337662-build.zip"
         }
+      },
+      "auth": {
+        "tomorrowspromiseweba60965faf": {}
       }
     }
   }

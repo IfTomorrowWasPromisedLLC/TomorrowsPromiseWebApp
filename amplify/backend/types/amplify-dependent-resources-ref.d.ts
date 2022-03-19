@@ -1,22 +1,10 @@
 export type AmplifyDependentResourcesAttributes = {
-    "function": {
-        "tomorrowspromiseweba40c2ed33CustomMessage": {
-            "Name": "string",
-            "Arn": "string",
-            "LambdaExecutionRole": "string",
-            "Region": "string"
-        },
-        "tomorrowspromiseweba40c2ed33PostConfirmation": {
-            "Name": "string",
-            "Arn": "string",
-            "LambdaExecutionRole": "string",
-            "Region": "string"
-        }
-    },
     "auth": {
-        "tomorrowspromiseweba40c2ed33": {
+        "tomorrowspromiseweba60965faf": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
+            "HostedUIDomain": "string",
+            "OAuthMetadata": "string",
             "UserPoolId": "string",
             "UserPoolArn": "string",
             "UserPoolName": "string",
@@ -24,8 +12,16 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientID": "string"
         }
     },
+    "function": {
+        "S3Triggerb26b4f5c": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        }
+    },
     "storage": {
-        "s34e2eb0e0": {
+        "itwpDevTest": {
             "BucketName": "string",
             "Region": "string"
         }

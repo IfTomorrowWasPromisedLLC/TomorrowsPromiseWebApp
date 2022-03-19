@@ -12,11 +12,9 @@ export const onCreateBeneficiary = /* GraphQL */ `
       phoneNumber
       status
       notes
-      customerID
       customerUserName
       createdAt
       updatedAt
-      customerBeneficiariesByIDId
       customerBeneficiariesByUsernameId
     }
   }
@@ -31,11 +29,9 @@ export const onUpdateBeneficiary = /* GraphQL */ `
       phoneNumber
       status
       notes
-      customerID
       customerUserName
       createdAt
       updatedAt
-      customerBeneficiariesByIDId
       customerBeneficiariesByUsernameId
     }
   }
@@ -50,11 +46,9 @@ export const onDeleteBeneficiary = /* GraphQL */ `
       phoneNumber
       status
       notes
-      customerID
       customerUserName
       createdAt
       updatedAt
-      customerBeneficiariesByIDId
       customerBeneficiariesByUsernameId
     }
   }
@@ -69,24 +63,6 @@ export const onCreateCustomer = /* GraphQL */ `
       emailAddress
       phoneNumber
       s3ArchiveName
-      beneficiariesByID {
-        items {
-          id
-          firstName
-          lastName
-          emailAddress
-          phoneNumber
-          status
-          notes
-          customerID
-          customerUserName
-          createdAt
-          updatedAt
-          customerBeneficiariesByIDId
-          customerBeneficiariesByUsernameId
-        }
-        nextToken
-      }
       beneficiariesByUsername {
         items {
           id
@@ -96,11 +72,9 @@ export const onCreateCustomer = /* GraphQL */ `
           phoneNumber
           status
           notes
-          customerID
           customerUserName
           createdAt
           updatedAt
-          customerBeneficiariesByIDId
           customerBeneficiariesByUsernameId
         }
         nextToken
@@ -120,24 +94,6 @@ export const onUpdateCustomer = /* GraphQL */ `
       emailAddress
       phoneNumber
       s3ArchiveName
-      beneficiariesByID {
-        items {
-          id
-          firstName
-          lastName
-          emailAddress
-          phoneNumber
-          status
-          notes
-          customerID
-          customerUserName
-          createdAt
-          updatedAt
-          customerBeneficiariesByIDId
-          customerBeneficiariesByUsernameId
-        }
-        nextToken
-      }
       beneficiariesByUsername {
         items {
           id
@@ -147,11 +103,9 @@ export const onUpdateCustomer = /* GraphQL */ `
           phoneNumber
           status
           notes
-          customerID
           customerUserName
           createdAt
           updatedAt
-          customerBeneficiariesByIDId
           customerBeneficiariesByUsernameId
         }
         nextToken
@@ -171,24 +125,6 @@ export const onDeleteCustomer = /* GraphQL */ `
       emailAddress
       phoneNumber
       s3ArchiveName
-      beneficiariesByID {
-        items {
-          id
-          firstName
-          lastName
-          emailAddress
-          phoneNumber
-          status
-          notes
-          customerID
-          customerUserName
-          createdAt
-          updatedAt
-          customerBeneficiariesByIDId
-          customerBeneficiariesByUsernameId
-        }
-        nextToken
-      }
       beneficiariesByUsername {
         items {
           id
@@ -198,11 +134,9 @@ export const onDeleteCustomer = /* GraphQL */ `
           phoneNumber
           status
           notes
-          customerID
           customerUserName
           createdAt
           updatedAt
-          customerBeneficiariesByIDId
           customerBeneficiariesByUsernameId
         }
         nextToken

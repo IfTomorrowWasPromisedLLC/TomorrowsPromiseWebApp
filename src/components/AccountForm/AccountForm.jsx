@@ -80,20 +80,15 @@ class AccountForm extends Component {
       address: "",
     };
     this.isEditable = false;
-    this.userMessage = null;
+    this.userMessage = authSubject.subscribe;
   }
-
   componentDidMount() {
-    
     this.findUser();
-
+    console.log(this.userMessage)
   }
 
   async findUser() {
     await getCurrentAuthenticatedUser();
-    authSubject.subscribe(message => {
-      this.userMessage = message;
-    });
     this.setState({
         authData: this.userMessage,
         authState: "signedIn",

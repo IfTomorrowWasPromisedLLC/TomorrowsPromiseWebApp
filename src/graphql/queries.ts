@@ -12,11 +12,9 @@ export const getBeneficiary = /* GraphQL */ `
       phoneNumber
       status
       notes
-      customerID
       customerUserName
       createdAt
       updatedAt
-      customerBeneficiariesByIDId
       customerBeneficiariesByUsernameId
     }
   }
@@ -36,11 +34,9 @@ export const listBeneficiaries = /* GraphQL */ `
         phoneNumber
         status
         notes
-        customerID
         customerUserName
         createdAt
         updatedAt
-        customerBeneficiariesByIDId
         customerBeneficiariesByUsernameId
       }
       nextToken
@@ -57,24 +53,6 @@ export const getCustomer = /* GraphQL */ `
       emailAddress
       phoneNumber
       s3ArchiveName
-      beneficiariesByID {
-        items {
-          id
-          firstName
-          lastName
-          emailAddress
-          phoneNumber
-          status
-          notes
-          customerID
-          customerUserName
-          createdAt
-          updatedAt
-          customerBeneficiariesByIDId
-          customerBeneficiariesByUsernameId
-        }
-        nextToken
-      }
       beneficiariesByUsername {
         items {
           id
@@ -84,11 +62,9 @@ export const getCustomer = /* GraphQL */ `
           phoneNumber
           status
           notes
-          customerID
           customerUserName
           createdAt
           updatedAt
-          customerBeneficiariesByIDId
           customerBeneficiariesByUsernameId
         }
         nextToken
@@ -113,47 +89,6 @@ export const listCustomers = /* GraphQL */ `
         emailAddress
         phoneNumber
         s3ArchiveName
-        beneficiariesByID {
-          nextToken
-        }
-        beneficiariesByUsername {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const customerByUserName = /* GraphQL */ `
-  query CustomerByUserName(
-    $UserName: String!
-    $id: ModelIDKeyConditionInput
-    $sortDirection: ModelSortDirection
-    $filter: ModelCustomerFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    customerByUserName(
-      UserName: $UserName
-      id: $id
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        UserName
-        firstName
-        lastName
-        emailAddress
-        phoneNumber
-        s3ArchiveName
-        beneficiariesByID {
-          nextToken
-        }
         beneficiariesByUsername {
           nextToken
         }
@@ -167,7 +102,6 @@ export const customerByUserName = /* GraphQL */ `
 export const customerByEmail = /* GraphQL */ `
   query CustomerByEmail(
     $emailAddress: String!
-    $id: ModelIDKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelCustomerFilterInput
     $limit: Int
@@ -175,7 +109,6 @@ export const customerByEmail = /* GraphQL */ `
   ) {
     customerByEmail(
       emailAddress: $emailAddress
-      id: $id
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -189,9 +122,6 @@ export const customerByEmail = /* GraphQL */ `
         emailAddress
         phoneNumber
         s3ArchiveName
-        beneficiariesByID {
-          nextToken
-        }
         beneficiariesByUsername {
           nextToken
         }
