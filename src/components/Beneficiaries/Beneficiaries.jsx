@@ -1,16 +1,8 @@
 import React, { useState, Fragment } from "react";
-import PropTypes from "prop-types";
-import styles from "./Beneficiaries.module.css";
 import styled from "styled-components";
 import { formFields } from "./formFields";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
 import { API, graphqlOperation } from "aws-amplify";
+
 import {
   createBeneficiary,
   updateBeneficiary,
@@ -22,6 +14,7 @@ import {
   getCustomer,
 } from "../../graphql/queries";
 import { authSubject } from "../../services/auth/auth.service";
+import { User } from "../../services/auth/auth.service";
 
 const BeneficiariesFormContainer = styled.div``;
 const StyledForm = styled.form``;
@@ -30,8 +23,9 @@ const styledInputWrapper = styled.div``;
 const ButtonContainer = styled.div``;
 const Button = styled.button``;
 
-const Beneficiaries = () => {
-  userMessage = authSubject.subscribe();
+export const Beneficiaries = () => {
+  var userMessage;
+  authSubject.subscribe();
 
   const [beneficiaries, setBeneficiaries] = useState([]);
   const [formState, setFormState] = useState({
@@ -44,21 +38,21 @@ const Beneficiaries = () => {
     customerUserName: "",
   });
 
-  const fetchBeneficiaries = () => {
-    try {
-      const beneficiariesData = await API.graphql({
-        query: getBeneficiariesByCustomer,
-        variables: {
-          id: 1,
-        },
-      });
-      const beneficiaries = beneficiariesData.items;
-      setBeneficiaries(beneficiaries);
-      console.log(beneficiaries);
-    } catch (e) {
-      console.log("error fetching beneficiaries:", e);
-    }
-  };
+  // const fetchBeneficiaries = async() => {
+  //   try {
+  //     const beneficiariesData = await API.graphql({
+  //       query: getBeneficiariesByCustomer,
+  //       variables: {
+  //         id: 1,
+  //       },
+  //     });
+  //     const beneficiaries = beneficiariesData.items;
+  //     setBeneficiaries(beneficiaries);
+  //     console.log(beneficiaries);
+  //   } catch (e) {
+  //     console.log("error fetching beneficiaries:", e);
+  //   }
+  // };
 
   const addBeneficiary = async () => {
     try {
@@ -92,8 +86,8 @@ const Beneficiaries = () => {
     console.log(removedBeneficiary);
   };
 
-  const handleChange = (key, value, isNumber) => {
-    value = isNumber ? parseInt(value) : value;
+  const handleChange = (key, value) => {
+    value = typeof value == Number ? parseInt(value) : value;
     setFormState({ ...formState, [key]: value });
     // const values = [...beneficiaries];
     // values[index][event.target.name] = event.target.value;
@@ -106,61 +100,62 @@ const Beneficiaries = () => {
   // };
 
   return (
-    <div className="home">
-      <div className="home__table">
-        <TableContainer component={Paper}>
-          <Table aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>FirstName</TableCell>
-                <TableCell>Last Name</TableCell>
-                <TableCell align="right">
-                  Email <Address></Address>
-                </TableCell>
-                <TableCell align="center">Phone Number</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {beneficiaries.map((row) => (
-                <TableRow key={row?.name}>
-                  <TableCell component="th" scope="row">
-                    {row?.firstName}
-                  </TableCell>
-                  <TableCell>{row?.lastName}</TableCell>
-                  <TableCell align="right">{row?.emailAddress}</TableCell>
-                  <TableCell>{row?.phoneNumber}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-      <inputContainer className="app__input">
-        <input
-          onChange={(event) => handleChange("firstName", event.target.value)}
-          value={formState.firstName}
-          placeholder="First Name"
-        />
-        <input
-          onChange={(event) => handleChange("lastName", event.target.value)}
-          value={formState.lastName}
-          placeholder="Last Name"
-        />
-        <input
-          onChange={(event) =>
-            handleChange("emailAddress", event.target.value, true)
-          }
-          value={formState.emailAddress}
-          placeholder="Email Address"
-        />
-        <input
-          onChange={(event) => handleChange("phoneNumber", event.target.value)}
-          value={formState.phoneNumber}
-          placeholder="Phone Number"
-        />
-        <button onClick={addBeneficiary}>Add a Beneficiary</button>
-      </inputContainer>
-    </div>
+    <></>
+    //   <div className="home">
+    //     <div className="home__table">
+    //       <TableContainer >
+    //         <Table aria-label="simple table">
+    //           <TableHead>
+    //             <TableRow>
+    //               <TableCell>FirstName</TableCell>
+    //               <TableCell>Last Name</TableCell>
+    //               <TableCell align="right">
+    //                 Email Address
+    //               </TableCell>
+    //               <TableCell align="center">Phone Number</TableCell>
+    //             </TableRow>
+    //           </TableHead>
+    //           <TableBody>
+    //             {beneficiaries.map((row) => (
+    //               <TableRow key={row?.name}>
+    //                 <TableCell component="th" scope="row">
+    //                   {row?.firstName}
+    //                 </TableCell>
+    //                 <TableCell>{row?.lastName}</TableCell>
+    //                 <TableCell align="right">{row?.emailAddress}</TableCell>
+    //                 <TableCell>{row?.phoneNumber}</TableCell>
+    //               </TableRow>
+    //             ))}
+    //           </TableBody>
+    //         </Table>
+    //       </TableContainer>
+    //     </div>
+    //     <inputContainer className="app__input">
+    //       <input
+    //         onChange={(event) => handleChange("firstName", event.target.value)}
+    //         value={formState.firstName}
+    //         placeholder="First Name"
+    //       />
+    //       <input
+    //         onChange={(event) => handleChange("lastName", event.target.value)}
+    //         value={formState.lastName}
+    //         placeholder="Last Name"
+    //       />
+    //       <input
+    //         onChange={(event) =>
+    //           handleChange("emailAddress", event.target.value, true)
+    //         }
+    //         value={formState.emailAddress}
+    //         placeholder="Email Address"
+    //       />
+    //       <input
+    //         onChange={(event) => handleChange("phoneNumber", event.target.value)}
+    //         value={formState.phoneNumber}
+    //         placeholder="Phone Number"
+    //       />
+    //       <button onClick={addBeneficiary}>Add a Beneficiary</button>
+    //     </inputContainer>
+    //   </div>
   );
 };
 

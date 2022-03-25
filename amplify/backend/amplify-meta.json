@@ -9,14 +9,34 @@
       "UnauthRoleName": "amplify-tomorrowspromiseweba-dev-153148-unauthRole",
       "StackName": "amplify-tomorrowspromiseweba-dev-153148",
       "StackId": "arn:aws:cloudformation:us-east-1:173772035261:stack/amplify-tomorrowspromiseweba-dev-153148/22f597c0-928c-11ec-b4f7-1288faaecefd",
-      "AmplifyAppId": "d2iyb7csiw7kd4"
+      "AmplifyAppId": "d2iyb7csiw7kd4",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-153148-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     }
   },
   "auth": {
     "tomorrowspromiseweba60965faf": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "tomorrowspromiseweba60965fafCustomMessage",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "tomorrowspromiseweba60965fafPostConfirmation",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ],
       "customAuth": false,
       "frontendAuthConfig": {
         "socialProviders": [],
@@ -30,7 +50,7 @@
           "passwordPolicyMinLength": 8,
           "passwordPolicyCharacters": []
         },
-        "mfaConfiguration": "OFF",
+        "mfaConfiguration": "OPTIONAL",
         "mfaTypes": [
           "SMS"
         ],
@@ -42,7 +62,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-153148-deployment/amplify-cfn-templates/auth/tomorrowspromiseweba60965faf-cloudformation-template.json",
         "logicalId": "authtomorrowspromiseweba60965faf"
       },
-      "lastPushTimeStamp": "2022-03-19T16:17:52.166Z",
+      "lastPushTimeStamp": "2022-03-20T03:59:41.678Z",
       "output": {
         "UserPoolId": "us-east-1_26fslEOk3",
         "AppClientIDWeb": "4faq309tflrhsb5tsb26cj3pkp",
@@ -55,6 +75,43 @@
         "UserPoolName": "tomorrowspromiseweba60965faf_userpool_60965faf"
       },
       "lastPushDirHash": "hhJ1SNgZHw0XAYYs2XYYufpTaW4="
+    },
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "tomorrowspromiseweba60965faf",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ]
+        }
+      ],
+      "userPoolGroups": {
+        "service": "Cognito-UserPool-Groups",
+        "providerPlugin": "awscloudformation",
+        "dependsOn": [
+          {
+            "category": "auth",
+            "resourceName": "tomorrowspromiseweba60965faf",
+            "attributes": [
+              "UserPoolId",
+              "AppClientIDWeb",
+              "AppClientID",
+              "IdentityPoolId"
+            ]
+          }
+        ]
+      },
+      "lastPushTimeStamp": "2022-03-20T03:59:41.718Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-153148-deployment/amplify-cfn-templates/auth/userPoolGroups-cloudformation-template.json",
+        "logicalId": "authuserPoolGroups"
+      }
     }
   },
   "function": {
@@ -74,7 +131,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-153148-deployment/amplify-cfn-templates/function/S3Triggerb26b4f5c-cloudformation-template.json",
         "logicalId": "functionS3Triggerb26b4f5c"
       },
-      "lastPushTimeStamp": "2022-03-19T16:17:52.174Z",
+      "lastPushTimeStamp": "2022-03-20T03:59:21.652Z",
       "output": {
         "Region": "us-east-1",
         "Arn": "arn:aws:lambda:us-east-1:173772035261:function:S3Triggerb26b4f5c-dev",
@@ -82,6 +139,42 @@
         "LambdaExecutionRole": "S3Triggerb26b4f5cLambdaRoleb26b4f5c-dev"
       },
       "lastPushDirHash": "R7tdUDaElEjQ6A8BqEp/P5baOHM="
+    },
+    "tomorrowspromiseweba60965fafCustomMessage": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2022-03-20T03:59:33.966Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2022-03-20T03:59:34.070Z",
+      "distZipFilename": "tomorrowspromiseweba60965fafCustomMessage-784e5875444e61396339-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-153148-deployment",
+        "s3Key": "amplify-builds/tomorrowspromiseweba60965fafCustomMessage-784e5875444e61396339-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-153148-deployment/amplify-cfn-templates/function/tomorrowspromiseweba60965fafCustomMessage-cloudformation-template.json",
+        "logicalId": "functiontomorrowspromiseweba60965fafCustomMessage"
+      },
+      "lastPushTimeStamp": "2022-03-20T03:59:41.634Z"
+    },
+    "tomorrowspromiseweba60965fafPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2022-03-20T03:59:33.970Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2022-03-20T03:59:34.269Z",
+      "distZipFilename": "tomorrowspromiseweba60965fafPostConfirmation-436a6464304350645377-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-153148-deployment",
+        "s3Key": "amplify-builds/tomorrowspromiseweba60965fafPostConfirmation-436a6464304350645377-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-153148-deployment/amplify-cfn-templates/function/tomorrowspromiseweba60965fafPostConfirmation-cloudformation-template.json",
+        "logicalId": "functiontomorrowspromiseweba60965fafPostConfirmation"
+      },
+      "lastPushTimeStamp": "2022-03-20T03:59:41.611Z"
     }
   },
   "storage": {
@@ -99,7 +192,7 @@
           ]
         }
       ],
-      "lastPushTimeStamp": "2022-03-19T16:17:52.180Z",
+      "lastPushTimeStamp": "2022-03-20T03:59:34.835Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-153148-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "logicalId": "storageitwpDevTest"
@@ -133,7 +226,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-153148-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apitomorrowspromiseweba"
       },
-      "lastPushTimeStamp": "2022-03-19T16:17:55.028Z",
+      "lastPushTimeStamp": "2022-03-20T03:59:41.631Z",
       "lastPushDirHash": "HcCsA/ujc/CxohJkEIuhJgnEz1o="
     }
   }

@@ -16,6 +16,18 @@
         "S3Triggerb26b4f5c": {
           "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-153148-deployment",
           "s3Key": "amplify-builds/S3Triggerb26b4f5c-4f735636577349337662-build.zip"
+        },
+        "tomorrowspromiseweba60965fafCustomMessage": {
+          "REDIRECTURL": "http://localhost:3000/account",
+          "EMAILSUBJECT": "",
+          "EMAILMESSAGE": "",
+          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-153148-deployment",
+          "s3Key": "amplify-builds/tomorrowspromiseweba60965fafCustomMessage-784e5875444e61396339-build.zip"
+        },
+        "tomorrowspromiseweba60965fafPostConfirmation": {
+          "GROUP": "ITWPCustomers",
+          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-153148-deployment",
+          "s3Key": "amplify-builds/tomorrowspromiseweba60965fafPostConfirmation-436a6464304350645377-build.zip"
         }
       },
       "auth": {
