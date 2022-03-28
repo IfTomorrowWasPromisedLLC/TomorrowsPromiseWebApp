@@ -7,6 +7,9 @@ import AccountForm from "../components/AccountForm/AccountForm";
 import FileUpload from "../components/FileUpload/FileUpload";
 import Beneficiaries from "../components/Beneficiaries/Beneficiaries";
 import Subscription from "../components/Subscription/Subscription";
+import { authSubject } from "../services/auth/auth.service";
+import AuthData from "../model/authdata";
+import Customer from "../model/customer";
 
 Amplify.configure(awsExports);
 
@@ -53,6 +56,10 @@ const Account = () => {
           {({ signOut, user }) => (
             <main>
               <h1 className="hello">Hello {user.attributes.email}</h1>
+              {authSubject.next({
+                auth: user,
+                customer: new Customer(), //change to fetch customer
+              })}
               <Button
                 onClick={() =>
                   setShowHideAccountDetails(!showHideAccountDetails)
@@ -62,22 +69,22 @@ const Account = () => {
               </Button>
               {showHideAccountDetails && <AccountForm />}
               <Button
-                onClick={() => 
-                  setShowHideBeneficiaries(!showHideBeneficiaries)}
+                onClick={() => setShowHideBeneficiaries(!showHideBeneficiaries)}
               >
                 Beneficiaries
               </Button>
               {showHideBeneficiaries && <Beneficiaries />}
-              
+
               <Button
-                onClick={() => 
-                  setShowHideSubscription(!showHideSubscription)}
+                onClick={() => setShowHideSubscription(!showHideSubscription)}
               >
                 Subscription
               </Button>
               {showHideSubscription && <Subscription />}
 
-              <FileWrap><FileUpload /></FileWrap>
+              <FileWrap>
+                <FileUpload />
+              </FileWrap>
               <Button id="auth-btn" onClick={signOut}>
                 Sign out
               </Button>

@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-tomorrowspromiseweba-dev-153148-unauthRole",
       "StackName": "amplify-tomorrowspromiseweba-dev-153148",
       "StackId": "arn:aws:cloudformation:us-east-1:173772035261:stack/amplify-tomorrowspromiseweba-dev-153148/22f597c0-928c-11ec-b4f7-1288faaecefd",
-      "AmplifyAppId": "d2iyb7csiw7kd4"
+      "AmplifyAppId": "d2iyb7csiw7kd4",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-153148-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "function": {
@@ -27,7 +28,7 @@
         "tomorrowspromiseweba60965fafPostConfirmation": {
           "GROUP": "ITWPCustomers",
           "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-153148-deployment",
-          "s3Key": "amplify-builds/tomorrowspromiseweba60965fafPostConfirmation-436a6464304350645377-build.zip"
+          "s3Key": "amplify-builds/tomorrowspromiseweba60965fafPostConfirmation-693663747a744d55756d-build.zip"
         }
       },
       "auth": {
