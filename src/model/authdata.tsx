@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 export default class AuthData {
   //Fields
-  username = '';
+  username = "";
+  state = "";
   attributes = {
     sub: "",
     birthdate: "",
@@ -19,12 +20,14 @@ export default class AuthData {
     zone_info: "",
     updated_at: "",
     website: "",
+    address: "",
   };
 
   constructor(
     username: string,
     email: string,
     sub: string,
+    state: string = "not signed in",
     //optional params
     birthdate?: string,
     family_name?: string,
@@ -38,7 +41,8 @@ export default class AuthData {
     preffered_username?: string,
     zone_info?: string,
     updated_at?: string,
-    website?: string
+    website?: string,
+    address?: string
   ) {
     this.username = username;
     this.attributes.email = email;
@@ -77,5 +81,8 @@ export default class AuthData {
     website
       ? (this.attributes.website = website)
       : (this.attributes.website = "");
+    address
+      ? (this.attributes.address = address)
+      : (this.attributes.address = "");
   }
 }
