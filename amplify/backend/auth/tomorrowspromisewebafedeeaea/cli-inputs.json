@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "tomorrowspromiseweba60965faf_identitypool_60965faf",
+    "identityPoolName": "tomorrowspromisewebafedeeaea_identitypool_fedeeaea",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "tomorr60965faf",
-    "userPoolName": "tomorrowspromiseweba60965faf_userpool_60965faf",
+    "resourceNameTruncated": "tomorrfedeeaea",
+    "userPoolName": "tomorrowspromisewebafedeeaea_userpool_fedeeaea",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,22 +31,26 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "tomorr60965faf_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "tomorrfedeeaea_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "60965faf",
-    "resourceName": "tomorrowspromiseweba60965faf",
+    "sharedId": "fedeeaea",
+    "resourceName": "tomorrowspromisewebafedeeaea",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "defaultSocial",
-    "hostedUI": true,
+    "useDefault": "default",
     "usernameAttributes": [
       "email"
     ],
-    "hostedUIDomainName": "tomorrowspromiseweba60965faf-60965faf",
-    "authProvidersUserPool": [],
-    "hostedUIProviderMeta": "[]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://localhost:3000/login/\"],\"LogoutURLs\":[\"https://localhost:3000/account/\"]}",
+    "triggers": {
+      "CustomMessage": [
+        "verification-link"
+      ],
+      "PostConfirmation": [
+        "add-to-group"
+      ]
+    },
     "userPoolGroupList": [],
     "serviceName": "Cognito",
+    "verificationBucketName": "tomorrowspromisewebafedeeaeaverificationbucket",
     "usernameCaseSensitive": false,
     "useEnabledMfas": true
   }

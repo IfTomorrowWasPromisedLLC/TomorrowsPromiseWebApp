@@ -1,38 +1,34 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-tomorrowspromiseweba-dev-153148-authRole",
-      "UnauthRoleArn": "arn:aws:iam::173772035261:role/amplify-tomorrowspromiseweba-dev-153148-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::173772035261:role/amplify-tomorrowspromiseweba-dev-153148-authRole",
+      "AuthRoleName": "amplify-tomorrowspromiseweba-dev-223520-authRole",
+      "UnauthRoleArn": "arn:aws:iam::173772035261:role/amplify-tomorrowspromiseweba-dev-223520-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::173772035261:role/amplify-tomorrowspromiseweba-dev-223520-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-tomorrowspromiseweba-dev-153148-deployment",
-      "UnauthRoleName": "amplify-tomorrowspromiseweba-dev-153148-unauthRole",
-      "StackName": "amplify-tomorrowspromiseweba-dev-153148",
-      "StackId": "arn:aws:cloudformation:us-east-1:173772035261:stack/amplify-tomorrowspromiseweba-dev-153148/22f597c0-928c-11ec-b4f7-1288faaecefd",
-      "AmplifyAppId": "d2iyb7csiw7kd4",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-153148-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "DeploymentBucketName": "amplify-tomorrowspromiseweba-dev-223520-deployment",
+      "UnauthRoleName": "amplify-tomorrowspromiseweba-dev-223520-unauthRole",
+      "StackName": "amplify-tomorrowspromiseweba-dev-223520",
+      "StackId": "arn:aws:cloudformation:us-east-1:173772035261:stack/amplify-tomorrowspromiseweba-dev-223520/b6ba89e0-b2f6-11ec-9bc6-1290a17374a3",
+      "AmplifyAppId": "d3etx5h1whw10r",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-223520-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
-      "function": {
-        "S3Triggerb26b4f5c": {
-          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-153148-deployment",
-          "s3Key": "amplify-builds/S3Triggerb26b4f5c-4f735636577349337662-build.zip"
-        },
-        "tomorrowspromiseweba60965fafCustomMessage": {
-          "REDIRECTURL": "http://localhost:3000/account",
-          "EMAILSUBJECT": "",
-          "EMAILMESSAGE": "",
-          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-153148-deployment",
-          "s3Key": "amplify-builds/tomorrowspromiseweba60965fafCustomMessage-784e5875444e61396339-build.zip"
-        },
-        "tomorrowspromiseweba60965fafPostConfirmation": {
-          "GROUP": "ITWPCustomers",
-          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-153148-deployment",
-          "s3Key": "amplify-builds/tomorrowspromiseweba60965fafPostConfirmation-693663747a744d55756d-build.zip"
-        }
-      },
       "auth": {
-        "tomorrowspromiseweba60965faf": {}
+        "tomorrowspromisewebafedeeaea": {}
+      },
+      "function": {
+        "tomorrowspromisewebafedeeaeaCustomMessage": {
+          "REDIRECTURL": "http://localhost:3000/",
+          "EMAILSUBJECT": "Tomorrows Promise Account Confirmation",
+          "EMAILMESSAGE": "",
+          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-223520-deployment",
+          "s3Key": "amplify-builds/tomorrowspromisewebafedeeaeaCustomMessage-56646262474771457775-build.zip"
+        },
+        "tomorrowspromisewebafedeeaeaPostConfirmation": {
+          "GROUP": "",
+          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-223520-deployment",
+          "s3Key": "amplify-builds/tomorrowspromisewebafedeeaeaPostConfirmation-5465706f7431364e785a-build.zip"
+        }
       }
     }
   }
