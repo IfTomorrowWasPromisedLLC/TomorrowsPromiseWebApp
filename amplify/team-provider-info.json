@@ -14,7 +14,8 @@
     },
     "categories": {
       "auth": {
-        "tomorrowspromisewebafedeeaea": {}
+        "tomorrowspromisewebafedeeaea": {},
+        "true": {}
       },
       "function": {
         "tomorrowspromisewebafedeeaeaCustomMessage": {
@@ -28,6 +29,10 @@
           "GROUP": "",
           "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-223520-deployment",
           "s3Key": "amplify-builds/tomorrowspromisewebafedeeaeaPostConfirmation-5465706f7431364e785a-build.zip"
+        },
+        "S3Triggere723b06f": {
+          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-223520-deployment",
+          "s3Key": "amplify-builds/S3Triggere723b06f-79615441742b4e744944-build.zip"
         }
       }
     }

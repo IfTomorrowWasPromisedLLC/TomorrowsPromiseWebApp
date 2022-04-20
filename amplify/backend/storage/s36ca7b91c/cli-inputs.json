@@ -1,0 +1,16 @@
+{
+  "resourceName": "s36ca7b91c",
+  "policyUUID": "6ca7b91c",
+  "bucketName": "tomorrowspromisewebaab23de22ebe442cbaa73d7601c5",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "S3Triggere723b06f",
+  "groupAccess": {}
+}

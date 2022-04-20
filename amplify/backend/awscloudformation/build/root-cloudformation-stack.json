@@ -232,13 +232,24 @@
         }
       }
     },
+    "functionS3Triggere723b06f": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-223520-deployment/amplify-cfn-templates/function/S3Triggere723b06f-cloudformation-template.json",
+        "Parameters": {
+          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-223520-deployment",
+          "s3Key": "amplify-builds/S3Triggere723b06f-79615441742b4e744944-build.zip",
+          "env": "dev"
+        }
+      }
+    },
     "authtomorrowspromisewebafedeeaea": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
         "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-223520-deployment/amplify-cfn-templates/auth/tomorrowspromisewebafedeeaea-cloudformation-template.json",
         "Parameters": {
           "identityPoolName": "tomorrowspromisewebafedeeaea_identitypool_fedeeaea",
-          "allowUnauthenticatedIdentities": false,
+          "allowUnauthenticatedIdentities": true,
           "resourceNameTruncated": "tomorrfedeeaea",
           "userPoolName": "tomorrowspromisewebafedeeaea_userpool_fedeeaea",
           "autoVerifiedAttributes": "email",
@@ -286,6 +297,72 @@
           "dependsOn": "[object Object],[object Object]",
           "permissions": "{\"policyName\":\"AddToGroupCognito\",\"trigger\":\"PostConfirmation\",\"effect\":\"Allow\",\"actions\":[\"cognito-idp:AdminAddUserToGroup\",\"cognito-idp:GetGroup\",\"cognito-idp:CreateGroup\"],\"resource\":{\"paramType\":\"!GetAtt\",\"keys\":[\"UserPool\",\"Arn\"]}}",
           "authTriggerConnections": "{\"triggerType\":\"CustomMessage\",\"lambdaFunctionName\":\"tomorrowspromisewebafedeeaeaCustomMessage\"},{\"triggerType\":\"PostConfirmation\",\"lambdaFunctionName\":\"tomorrowspromisewebafedeeaeaPostConfirmation\"}",
+          "env": "dev"
+        }
+      }
+    },
+    "apitomorrowspromiseweba": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-223520-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "Parameters": {
+          "AppSyncApiName": "tomorrowspromiseweba",
+          "DynamoDBBillingMode": "PAY_PER_REQUEST",
+          "DynamoDBEnableServerSideEncryption": false,
+          "S3DeploymentBucket": "amplify-tomorrowspromiseweba-dev-223520-deployment",
+          "S3DeploymentRootKey": "amplify-appsync-files/17de3ef0b079d7afa9933135841ccb2bf5f2273f",
+          "env": "dev"
+        }
+      }
+    },
+    "storages36ca7b91c": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-223520-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
+        "Parameters": {
+          "bucketName": "tomorrowspromisewebaab23de22ebe442cbaa73d7601c5",
+          "selectedGuestPermissions": "s3:GetObject,s3:ListBucket",
+          "selectedAuthenticatedPermissions": "s3:PutObject,s3:GetObject,s3:ListBucket,s3:DeleteObject",
+          "unauthRoleName": {
+            "Ref": "UnauthRoleName"
+          },
+          "authRoleName": {
+            "Ref": "AuthRoleName"
+          },
+          "triggerFunction": "S3Triggere723b06f",
+          "s3PrivatePolicy": "Private_policy_6ca7b91c",
+          "s3ProtectedPolicy": "Protected_policy_6ca7b91c",
+          "s3PublicPolicy": "Public_policy_6ca7b91c",
+          "s3ReadPolicy": "read_policy_6ca7b91c",
+          "s3UploadsPolicy": "Uploads_policy_6ca7b91c",
+          "authPolicyName": "s3_amplify_6ca7b91c",
+          "unauthPolicyName": "s3_amplify_6ca7b91c",
+          "AuthenticatedAllowList": "ALLOW",
+          "GuestAllowList": "ALLOW",
+          "s3PermissionsAuthenticatedPrivate": "s3:PutObject,s3:GetObject,s3:DeleteObject",
+          "s3PermissionsAuthenticatedProtected": "s3:PutObject,s3:GetObject,s3:DeleteObject",
+          "s3PermissionsAuthenticatedPublic": "s3:PutObject,s3:GetObject,s3:DeleteObject",
+          "s3PermissionsAuthenticatedUploads": "s3:PutObject",
+          "s3PermissionsGuestPublic": "s3:GetObject",
+          "s3PermissionsGuestUploads": "DISALLOW",
+          "functionS3Triggere723b06fName": {
+            "Fn::GetAtt": [
+              "functionS3Triggere723b06f",
+              "Outputs.Name"
+            ]
+          },
+          "functionS3Triggere723b06fArn": {
+            "Fn::GetAtt": [
+              "functionS3Triggere723b06f",
+              "Outputs.Arn"
+            ]
+          },
+          "functionS3Triggere723b06fLambdaExecutionRole": {
+            "Fn::GetAtt": [
+              "functionS3Triggere723b06f",
+              "Outputs.LambdaExecutionRole"
+            ]
+          },
           "env": "dev"
         }
       }

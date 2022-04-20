@@ -23,7 +23,8 @@ export default function App() {
   return (
     <ThemeProvider theme={themeMode}>
       <GlobalStyles></GlobalStyles>
-      <Navbar />
+      <Navbar>
+      </Navbar>
       <Toggle theme={theme} toggleTheme={themeToggler} />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -10,11 +10,13 @@ import {
 } from "../../graphql/mutations";
 import {
   customerByEmail,
-  customerByUserName,
   getCustomer,
 } from "../../graphql/queries";
 import { authSubject } from "../../services/auth/auth.service";
-import { User } from "../../services/auth/auth.service";
+import AuthData from "../../model/authdata";
+import Customer from "../../model/customer";
+import Beneficiary from "../../model/beneficiary";
+import { getBeneficiaryByCustomerEmail } from "../../graphql/custom_queries";
 
 const BeneficiariesFormContainer = styled.div``;
 const StyledForm = styled.form``;
@@ -24,35 +26,40 @@ const ButtonContainer = styled.div``;
 const Button = styled.button``;
 
 export const Beneficiaries = () => {
-  var userMessage;
-  authSubject.subscribe();
+  var userMessage = {
+    auth: new AuthData("", "", ""),
+    customer: new Customer(),
+  };
+  authSubject.subscribe((value) => {
+    userMessage = value;
+  });
 
-  const [beneficiaries, setBeneficiaries] = useState([]);
-  const [formState, setFormState] = useState({
+  const [beneficiaries, setBeneficiaries] = useState<Beneficiary[]>([]);
+  const [formState, setFormState] = useState<Beneficiary>({
     firstName: "",
     lastName: "",
     emailAddress: "",
     phoneNumber: "",
     status: "UNCONFIRMED",
-    customerID: "",
+    notes: "",
     customerUserName: "",
   });
 
-  // const fetchBeneficiaries = async() => {
-  //   try {
-  //     const beneficiariesData = await API.graphql({
-  //       query: getBeneficiariesByCustomer,
-  //       variables: {
-  //         id: 1,
-  //       },
-  //     });
-  //     const beneficiaries = beneficiariesData.items;
-  //     setBeneficiaries(beneficiaries);
-  //     console.log(beneficiaries);
-  //   } catch (e) {
-  //     console.log("error fetching beneficiaries:", e);
-  //   }
-  // };
+  const fetchBeneficiaries = async () => {
+    try {
+      const beneficiariesData = await API.graphql({
+        query: getBeneficiaryByCustomerEmail,
+        variables: {
+          emailAddress: userMessage.auth.username,
+        },
+      });
+      const beneficiaryList = beneficiariesData.items;
+      setBeneficiaries(beneficiaryList);
+      console.log(beneficiaryList);
+    } catch (e) {
+      console.log("error fetching beneficiaries:", e);
+    }
+  };
 
   const addBeneficiary = async () => {
     try {
@@ -63,31 +70,44 @@ export const Beneficiaries = () => {
       )
         return;
 
-      const beneficiary = { ...formState };
-      setBeneficiaries([...beneficiaries, beneficiary]);
+      const newBeneficiary = new Beneficiary(
+        formState.firstName,
+        formState.lastName,
+        formState.emailAddress,
+        formState.phoneNumber,
+        formState.status,
+        formState.notes,
+        formState.customerUserName
+      );
+
+      setBeneficiaries([...beneficiaries, newBeneficiary]);
       setFormState({
         firstName: "",
         lastName: "",
         emailAddress: "",
         phoneNumber: "",
+        status: "UNCONFIRMED",
+        notes: "",
+        customerUserName: "",
       });
+
       await API.graphql(
-        graphqlOperation(createBeneficiary, { input: beneficiary })
+        graphqlOperation(createBeneficiary, { input: newBeneficiary })
       );
     } catch (e) {
       console.log("error creating beneficiary:", e);
     }
   };
 
-  const handleRemoveFields = (index) => {
+  const handleRemoveFields = (index: number) => {
     const values = [...beneficiaries];
     const removedBeneficiary = values.splice(index, 1);
     setBeneficiaries(values);
     console.log(removedBeneficiary);
   };
 
-  const handleChange = (key, value) => {
-    value = typeof value == Number ? parseInt(value) : value;
+  const handleChange = (key: any, value: number | string) => {
+    // (typeof value === "number" ? parseInt(value) : value);
     setFormState({ ...formState, [key]: value });
     // const values = [...beneficiaries];
     // values[index][event.target.name] = event.target.value;
@@ -95,9 +115,9 @@ export const Beneficiaries = () => {
     // setBeneficiaries(values);
   };
 
-  // const handleSubmit = (event) => {
-  //   alert(JSON.stringify(beneficiaries, null, 1));
-  // };
+  const handleSubmit = (event: any) => {
+    alert(JSON.stringify(beneficiaries, null, 1));
+  };
 
   return (
     <></>
