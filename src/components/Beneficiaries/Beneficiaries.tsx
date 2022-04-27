@@ -2,7 +2,13 @@ import React, { useState, Fragment } from "react";
 import styled from "styled-components";
 import { formFields } from "./formFields";
 import { API, graphqlOperation } from "aws-amplify";
-
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 import {
   createBeneficiary,
   updateBeneficiary,
@@ -15,11 +21,7 @@ import {
 import { authSubject } from "../../services/auth/auth.service";
 import AuthData from "../../model/authdata";
 import Customer from "../../model/customer";
-<<<<<<< HEAD:src/components/Beneficiaries/Beneficiaries.tsx
-=======
 import Beneficiary from "../../model/beneficiary";
-import { getBeneficiaryByCustomerEmail } from "../../graphql/custom_queries";
->>>>>>> 0829fd6543fa3162f5e7f9629e7c9f74f3c2fb79:src/components/Beneficiaries/Beneficiaries.jsx
 
 const BeneficiariesFormContainer = styled.div``;
 const StyledForm = styled.form``;
@@ -34,20 +36,11 @@ export const Beneficiaries = () => {
     auth: new AuthData("", "", ""),
     customer: new Customer(),
   };
-<<<<<<< HEAD:src/components/Beneficiaries/Beneficiaries.tsx
     authSubject.subscribe((value) => {
     userMessage = value;
   });
-  const [beneficiaries, setBeneficiaries] = useState<{[key: string]: string}[]>([]);
-  const [formState, setFormState] = useState<{[key: string]: string}>({
-=======
-  authSubject.subscribe((value) => {
-    userMessage = value;
-  });
-
   const [beneficiaries, setBeneficiaries] = useState<Beneficiary[]>([]);
-  const [formState, setFormState] = useState<Beneficiary>({
->>>>>>> 0829fd6543fa3162f5e7f9629e7c9f74f3c2fb79:src/components/Beneficiaries/Beneficiaries.jsx
+  const [formState, setFormState] = useState<{[key: string]: string}>({
     firstName: "",
     lastName: "",
     emailAddress: "",
@@ -57,10 +50,8 @@ export const Beneficiaries = () => {
     customerUserName: "",
   });
 
-<<<<<<< HEAD:src/components/Beneficiaries/Beneficiaries.tsx
   const fetchBeneficiaries = async() => {
     try{
-
       const beneficiariesData: any = await API.graphql({
         query: customerByEmail,
         variables: {
@@ -70,19 +61,6 @@ export const Beneficiaries = () => {
       const beneficiaries = beneficiariesData.data.customerByEmail.items.beneficiariesByUsername;
       setBeneficiaries(beneficiaries);
       console.log(beneficiaries);
-=======
-  const fetchBeneficiaries = async () => {
-    try {
-      const beneficiariesData = await API.graphql({
-        query: getBeneficiaryByCustomerEmail,
-        variables: {
-          emailAddress: userMessage.auth.username,
-        },
-      });
-      const beneficiaryList = beneficiariesData.items;
-      setBeneficiaries(beneficiaryList);
-      console.log(beneficiaryList);
->>>>>>> 0829fd6543fa3162f5e7f9629e7c9f74f3c2fb79:src/components/Beneficiaries/Beneficiaries.jsx
     } catch (e) {
       console.log("error fetching beneficiaries:", e);
     }
@@ -112,15 +90,9 @@ export const Beneficiaries = () => {
         firstName: "",
         lastName: "",
         emailAddress: "",
-<<<<<<< HEAD:src/components/Beneficiaries/Beneficiaries.tsx
         phoneNumber: "", 
         status: "UNCONFIRMED",
         customerID: "",
-=======
-        phoneNumber: "",
-        status: "UNCONFIRMED",
-        notes: "",
->>>>>>> 0829fd6543fa3162f5e7f9629e7c9f74f3c2fb79:src/components/Beneficiaries/Beneficiaries.jsx
         customerUserName: "",
       });
 
@@ -139,12 +111,7 @@ export const Beneficiaries = () => {
     console.log(removedBeneficiary);
   };
 
-<<<<<<< HEAD:src/components/Beneficiaries/Beneficiaries.tsx
   const handleChange = (key:string, value: string) => {
-=======
-  const handleChange = (key: any, value: number | string) => {
-    // (typeof value === "number" ? parseInt(value) : value);
->>>>>>> 0829fd6543fa3162f5e7f9629e7c9f74f3c2fb79:src/components/Beneficiaries/Beneficiaries.jsx
     setFormState({ ...formState, [key]: value });
     // const values = [...beneficiaries];
     // values[index][event.target.name] = event.target.value;
@@ -157,62 +124,61 @@ export const Beneficiaries = () => {
   };
 
   return (
-    <></>
-    //   <div className="home">
-    //     <div className="home__table">
-    //       <TableContainer >
-    //         <Table aria-label="simple table">
-    //           <TableHead>
-    //             <TableRow>
-    //               <TableCell>FirstName</TableCell>
-    //               <TableCell>Last Name</TableCell>
-    //               <TableCell align="right">
-    //                 Email Address
-    //               </TableCell>
-    //               <TableCell align="center">Phone Number</TableCell>
-    //             </TableRow>
-    //           </TableHead>
-    //           <TableBody>
-    //             {beneficiaries.map((row) => (
-    //               <TableRow key={row?.name}>
-    //                 <TableCell component="th" scope="row">
-    //                   {row?.firstName}
-    //                 </TableCell>
-    //                 <TableCell>{row?.lastName}</TableCell>
-    //                 <TableCell align="right">{row?.emailAddress}</TableCell>
-    //                 <TableCell>{row?.phoneNumber}</TableCell>
-    //               </TableRow>
-    //             ))}
-    //           </TableBody>
-    //         </Table>
-    //       </TableContainer>
-    //     </div>
-    //     <inputContainer className="app__input">
-    //       <input
-    //         onChange={(event) => handleChange("firstName", event.target.value)}
-    //         value={formState.firstName}
-    //         placeholder="First Name"
-    //       />
-    //       <input
-    //         onChange={(event) => handleChange("lastName", event.target.value)}
-    //         value={formState.lastName}
-    //         placeholder="Last Name"
-    //       />
-    //       <input
-    //         onChange={(event) =>
-    //           handleChange("emailAddress", event.target.value, true)
-    //         }
-    //         value={formState.emailAddress}
-    //         placeholder="Email Address"
-    //       />
-    //       <input
-    //         onChange={(event) => handleChange("phoneNumber", event.target.value)}
-    //         value={formState.phoneNumber}
-    //         placeholder="Phone Number"
-    //       />
-    //       <button onClick={addBeneficiary}>Add a Beneficiary</button>
-    //     </inputContainer>
-    //   </div>
+      <div className="home">
+        <div className="home__table">
+          <TableContainer >
+            <Table aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>FirstName</TableCell>
+                  <TableCell>Last Name</TableCell>
+                  <TableCell align="right">
+                    Email Address
+                  </TableCell>
+                  <TableCell align="center">Phone Number</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {beneficiaries.map((row) => (
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      {row?.firstName}
+                    </TableCell>
+                    <TableCell>{row?.lastName}</TableCell>
+                    <TableCell align="right">{row?.emailAddress}</TableCell>
+                    <TableCell>{row?.phoneNumber}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+        <div className="app__input">
+          <input
+            onChange={(event) => handleChange("firstName", event.target.value)}
+            value={formState.firstName}
+            placeholder="First Name"
+          />
+          <input
+            onChange={(event) => handleChange("lastName", event.target.value)}
+            value={formState.lastName}
+            placeholder="Last Name"
+          />
+          <input
+            onChange={(event) =>
+              handleChange("emailAddress", event.target.value, true)
+            }
+            value={formState.emailAddress}
+            placeholder="Email Address"
+          />
+          <input
+            onChange={(event) => handleChange("phoneNumber", event.target.value)}
+            value={formState.phoneNumber}
+            placeholder="Phone Number"
+          />
+          <button onClick={addBeneficiary}>Add a Beneficiary</button>
+        </div>
+      </div>
   );
 };
 
