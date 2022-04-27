@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "tomorrowspromisewebaf9075a46_identitypool_f9075a46",
+    "identityPoolName": "tomorrowspromisewebac5107cde_identitypool_c5107cde",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "tomorrf9075a46",
-    "userPoolName": "tomorrowspromisewebaf9075a46_userpool_f9075a46",
+    "resourceNameTruncated": "tomorrc5107cde",
+    "userPoolName": "tomorrowspromisewebac5107cde_userpool_c5107cde",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,26 +31,17 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "tomorrf9075a46_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "tomorrc5107cde_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "f9075a46",
-    "resourceName": "tomorrowspromisewebaf9075a46",
+    "sharedId": "c5107cde",
+    "resourceName": "tomorrowspromisewebac5107cde",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
     "usernameAttributes": [
       "email"
     ],
-    "triggers": {
-      "CustomMessage": [
-        "verification-link"
-      ],
-      "PostConfirmation": [
-        "add-to-group"
-      ]
-    },
     "userPoolGroupList": [],
     "serviceName": "Cognito",
-    "verificationBucketName": "tomorrowspromisewebaf9075a46verificationbucket",
     "usernameCaseSensitive": false,
     "useEnabledMfas": true
   }

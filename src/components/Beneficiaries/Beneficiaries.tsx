@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from "react";
 import styled from "styled-components";
-import { formFields } from "./formFields";
 import { API, graphqlOperation } from "aws-amplify";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -166,7 +165,7 @@ export const Beneficiaries = () => {
           />
           <input
             onChange={(event) =>
-              handleChange("emailAddress", event.target.value, true)
+              handleChange("emailAddress", event.target.value)
             }
             value={formState.emailAddress}
             placeholder="Email Address"
