@@ -117,7 +117,7 @@ export type DeleteBeneficiaryInput = {
 
 export type CreateCustomerInput = {
   id?: string | null,
-  UserName: string,
+  AuthUserName: string,
   firstName: string,
   lastName: string,
   emailAddress: string,
@@ -126,7 +126,7 @@ export type CreateCustomerInput = {
 };
 
 export type ModelCustomerConditionInput = {
-  UserName?: ModelStringInput | null,
+  AuthUserName?: ModelStringInput | null,
   firstName?: ModelStringInput | null,
   lastName?: ModelStringInput | null,
   emailAddress?: ModelStringInput | null,
@@ -140,7 +140,7 @@ export type ModelCustomerConditionInput = {
 export type Customer = {
   __typename: "Customer",
   id: string,
-  UserName: string,
+  AuthUserName: string,
   firstName: string,
   lastName: string,
   emailAddress: string,
@@ -159,7 +159,7 @@ export type ModelBeneficiaryConnection = {
 
 export type UpdateCustomerInput = {
   id: string,
-  UserName?: string | null,
+  AuthUserName?: string | null,
   firstName?: string | null,
   lastName?: string | null,
   emailAddress?: string | null,
@@ -188,7 +188,7 @@ export type ModelBeneficiaryFilterInput = {
 
 export type ModelCustomerFilterInput = {
   id?: ModelIDInput | null,
-  UserName?: ModelStringInput | null,
+  AuthUserName?: ModelStringInput | null,
   firstName?: ModelStringInput | null,
   lastName?: ModelStringInput | null,
   emailAddress?: ModelStringInput | null,
@@ -296,7 +296,7 @@ export type CreateCustomerMutation = {
   createCustomer?:  {
     __typename: "Customer",
     id: string,
-    UserName: string,
+    AuthUserName: string,
     firstName: string,
     lastName: string,
     emailAddress: string,
@@ -334,7 +334,7 @@ export type UpdateCustomerMutation = {
   updateCustomer?:  {
     __typename: "Customer",
     id: string,
-    UserName: string,
+    AuthUserName: string,
     firstName: string,
     lastName: string,
     emailAddress: string,
@@ -372,7 +372,7 @@ export type DeleteCustomerMutation = {
   deleteCustomer?:  {
     __typename: "Customer",
     id: string,
-    UserName: string,
+    AuthUserName: string,
     firstName: string,
     lastName: string,
     emailAddress: string,
@@ -457,7 +457,7 @@ export type GetCustomerQuery = {
   getCustomer?:  {
     __typename: "Customer",
     id: string,
-    UserName: string,
+    AuthUserName: string,
     firstName: string,
     lastName: string,
     emailAddress: string,
@@ -498,7 +498,7 @@ export type ListCustomersQuery = {
     items:  Array< {
       __typename: "Customer",
       id: string,
-      UserName: string,
+      AuthUserName: string,
       firstName: string,
       lastName: string,
       emailAddress: string,
@@ -530,7 +530,7 @@ export type CustomerByEmailQuery = {
     items:  Array< {
       __typename: "Customer",
       id: string,
-      UserName: string,
+      AuthUserName: string,
       firstName: string,
       lastName: string,
       emailAddress: string,
@@ -602,7 +602,7 @@ export type OnCreateCustomerSubscription = {
   onCreateCustomer?:  {
     __typename: "Customer",
     id: string,
-    UserName: string,
+    AuthUserName: string,
     firstName: string,
     lastName: string,
     emailAddress: string,
@@ -635,7 +635,7 @@ export type OnUpdateCustomerSubscription = {
   onUpdateCustomer?:  {
     __typename: "Customer",
     id: string,
-    UserName: string,
+    AuthUserName: string,
     firstName: string,
     lastName: string,
     emailAddress: string,
@@ -668,7 +668,7 @@ export type OnDeleteCustomerSubscription = {
   onDeleteCustomer?:  {
     __typename: "Customer",
     id: string,
-    UserName: string,
+    AuthUserName: string,
     firstName: string,
     lastName: string,
     emailAddress: string,

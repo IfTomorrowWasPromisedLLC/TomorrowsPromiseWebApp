@@ -69,7 +69,7 @@ export const createCustomer = /* GraphQL */ `
   ) {
     createCustomer(input: $input, condition: $condition) {
       id
-      UserName
+      AuthUserName
       firstName
       lastName
       emailAddress
@@ -103,7 +103,7 @@ export const updateCustomer = /* GraphQL */ `
   ) {
     updateCustomer(input: $input, condition: $condition) {
       id
-      UserName
+      AuthUserName
       firstName
       lastName
       emailAddress
@@ -137,7 +137,7 @@ export const deleteCustomer = /* GraphQL */ `
   ) {
     deleteCustomer(input: $input, condition: $condition) {
       id
-      UserName
+      AuthUserName
       firstName
       lastName
       emailAddress

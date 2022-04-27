@@ -47,7 +47,7 @@ export const getCustomer = /* GraphQL */ `
   query GetCustomer($id: ID!) {
     getCustomer(id: $id) {
       id
-      UserName
+      AuthUserName
       firstName
       lastName
       emailAddress
@@ -83,7 +83,7 @@ export const listCustomers = /* GraphQL */ `
     listCustomers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        UserName
+        AuthUserName
         firstName
         lastName
         emailAddress
@@ -102,6 +102,7 @@ export const listCustomers = /* GraphQL */ `
 export const customerByEmail = /* GraphQL */ `
   query CustomerByEmail(
     $emailAddress: String!
+    $lastName: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelCustomerFilterInput
     $limit: Int
@@ -109,6 +110,7 @@ export const customerByEmail = /* GraphQL */ `
   ) {
     customerByEmail(
       emailAddress: $emailAddress
+      lastName: $lastName
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -116,7 +118,7 @@ export const customerByEmail = /* GraphQL */ `
     ) {
       items {
         id
-        UserName
+        AuthUserName
         firstName
         lastName
         emailAddress

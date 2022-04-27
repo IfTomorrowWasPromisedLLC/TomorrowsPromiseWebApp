@@ -15,6 +15,11 @@ import {
 import { authSubject } from "../../services/auth/auth.service";
 import AuthData from "../../model/authdata";
 import Customer from "../../model/customer";
+<<<<<<< HEAD:src/components/Beneficiaries/Beneficiaries.tsx
+=======
+import Beneficiary from "../../model/beneficiary";
+import { getBeneficiaryByCustomerEmail } from "../../graphql/custom_queries";
+>>>>>>> 0829fd6543fa3162f5e7f9629e7c9f74f3c2fb79:src/components/Beneficiaries/Beneficiaries.jsx
 
 const BeneficiariesFormContainer = styled.div``;
 const StyledForm = styled.form``;
@@ -29,20 +34,30 @@ export const Beneficiaries = () => {
     auth: new AuthData("", "", ""),
     customer: new Customer(),
   };
+<<<<<<< HEAD:src/components/Beneficiaries/Beneficiaries.tsx
     authSubject.subscribe((value) => {
     userMessage = value;
   });
   const [beneficiaries, setBeneficiaries] = useState<{[key: string]: string}[]>([]);
   const [formState, setFormState] = useState<{[key: string]: string}>({
+=======
+  authSubject.subscribe((value) => {
+    userMessage = value;
+  });
+
+  const [beneficiaries, setBeneficiaries] = useState<Beneficiary[]>([]);
+  const [formState, setFormState] = useState<Beneficiary>({
+>>>>>>> 0829fd6543fa3162f5e7f9629e7c9f74f3c2fb79:src/components/Beneficiaries/Beneficiaries.jsx
     firstName: "",
     lastName: "",
     emailAddress: "",
     phoneNumber: "",
     status: "UNCONFIRMED",
-    customerID: "",
+    notes: "",
     customerUserName: "",
   });
 
+<<<<<<< HEAD:src/components/Beneficiaries/Beneficiaries.tsx
   const fetchBeneficiaries = async() => {
     try{
 
@@ -55,6 +70,19 @@ export const Beneficiaries = () => {
       const beneficiaries = beneficiariesData.data.customerByEmail.items.beneficiariesByUsername;
       setBeneficiaries(beneficiaries);
       console.log(beneficiaries);
+=======
+  const fetchBeneficiaries = async () => {
+    try {
+      const beneficiariesData = await API.graphql({
+        query: getBeneficiaryByCustomerEmail,
+        variables: {
+          emailAddress: userMessage.auth.username,
+        },
+      });
+      const beneficiaryList = beneficiariesData.items;
+      setBeneficiaries(beneficiaryList);
+      console.log(beneficiaryList);
+>>>>>>> 0829fd6543fa3162f5e7f9629e7c9f74f3c2fb79:src/components/Beneficiaries/Beneficiaries.jsx
     } catch (e) {
       console.log("error fetching beneficiaries:", e);
     }
@@ -69,19 +97,35 @@ export const Beneficiaries = () => {
       )
         return;
 
-      const beneficiary = { ...formState };
-      setBeneficiaries([...beneficiaries, beneficiary]);
+      const newBeneficiary = new Beneficiary(
+        formState.firstName,
+        formState.lastName,
+        formState.emailAddress,
+        formState.phoneNumber,
+        formState.status,
+        formState.notes,
+        formState.customerUserName
+      );
+
+      setBeneficiaries([...beneficiaries, newBeneficiary]);
       setFormState({
         firstName: "",
         lastName: "",
         emailAddress: "",
+<<<<<<< HEAD:src/components/Beneficiaries/Beneficiaries.tsx
         phoneNumber: "", 
         status: "UNCONFIRMED",
         customerID: "",
+=======
+        phoneNumber: "",
+        status: "UNCONFIRMED",
+        notes: "",
+>>>>>>> 0829fd6543fa3162f5e7f9629e7c9f74f3c2fb79:src/components/Beneficiaries/Beneficiaries.jsx
         customerUserName: "",
       });
+
       await API.graphql(
-        graphqlOperation(createBeneficiary, { input: beneficiary })
+        graphqlOperation(createBeneficiary, { input: newBeneficiary })
       );
     } catch (e) {
       console.log("error creating beneficiary:", e);
@@ -95,7 +139,12 @@ export const Beneficiaries = () => {
     console.log(removedBeneficiary);
   };
 
+<<<<<<< HEAD:src/components/Beneficiaries/Beneficiaries.tsx
   const handleChange = (key:string, value: string) => {
+=======
+  const handleChange = (key: any, value: number | string) => {
+    // (typeof value === "number" ? parseInt(value) : value);
+>>>>>>> 0829fd6543fa3162f5e7f9629e7c9f74f3c2fb79:src/components/Beneficiaries/Beneficiaries.jsx
     setFormState({ ...formState, [key]: value });
     // const values = [...beneficiaries];
     // values[index][event.target.name] = event.target.value;
@@ -103,9 +152,9 @@ export const Beneficiaries = () => {
     // setBeneficiaries(values);
   };
 
-  // const handleSubmit = (event) => {
-  //   alert(JSON.stringify(beneficiaries, null, 1));
-  // };
+  const handleSubmit = (event: any) => {
+    alert(JSON.stringify(beneficiaries, null, 1));
+  };
 
   return (
     <></>
