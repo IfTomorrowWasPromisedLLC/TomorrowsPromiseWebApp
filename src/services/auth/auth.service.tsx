@@ -6,7 +6,6 @@ import Amplify, { API, Auth, graphqlOperation } from "aws-amplify";
 import AuthData from "../../model/authdata";
 import Customer from "../../model/customer";
 
-
 export const authSubject = new BehaviorSubject<{auth: AuthData, customer: Customer}>({
   auth: new AuthData('','',''),
   customer: new Customer,

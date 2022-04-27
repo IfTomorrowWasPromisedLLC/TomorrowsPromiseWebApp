@@ -22,6 +22,6 @@ type Customer @model {
   emailAddress: String! @index(name: "byEmail", 
     queryField: "customerByEmail", sortKeyFields: ["lastName"])
   phoneNumber: String
-  s3ArchiveName: String
+  s3ArchivePath: String
   beneficiariesByUsername: [Beneficiary] @hasMany(indexName: "byCustomerByUserName")
 }

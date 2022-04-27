@@ -1,36 +1,27 @@
 export type AmplifyDependentResourcesAttributes = {
+    "function": {
+        "tomorrowspromisewebaf9075a46CustomMessage": {
+            "Name": "string",
+            "Arn": "string",
+            "LambdaExecutionRole": "string",
+            "Region": "string"
+        },
+        "tomorrowspromisewebaf9075a46PostConfirmation": {
+            "Name": "string",
+            "Arn": "string",
+            "LambdaExecutionRole": "string",
+            "Region": "string"
+        }
+    },
     "auth": {
-        "tomorrowspromiseweba60965faf": {
+        "tomorrowspromisewebaf9075a46": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
-            "HostedUIDomain": "string",
-            "OAuthMetadata": "string",
             "UserPoolId": "string",
             "UserPoolArn": "string",
             "UserPoolName": "string",
             "AppClientIDWeb": "string",
             "AppClientID": "string"
-        }
-    },
-    "function": {
-        "S3Triggerb26b4f5c": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        }
-    },
-    "storage": {
-        "itwpDevTest": {
-            "BucketName": "string",
-            "Region": "string"
-        }
-    },
-    "api": {
-        "tomorrowspromiseweba": {
-            "GraphQLAPIKeyOutput": "string",
-            "GraphQLAPIIdOutput": "string",
-            "GraphQLAPIEndpointOutput": "string"
         }
     }
 }
