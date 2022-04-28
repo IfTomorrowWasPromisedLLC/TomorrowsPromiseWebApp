@@ -28,12 +28,15 @@ const styledFormRow = styled.div``;
 const styledInputWrapper = styled.div``;
 const ButtonContainer = styled.div``;
 const Button = styled.button``;
- 
+const TableWrapper = styled.div`
+width: 200px;
+`;
+
 
 export const Beneficiaries = () => {
   var userMessage = {
     auth: new AuthData("", "", ""),
-    customer: new Customer(),
+    customer: new Customer("","","","","",[],""),
   };
     authSubject.subscribe((value) => {
     userMessage = value;
@@ -51,15 +54,21 @@ export const Beneficiaries = () => {
 
   const fetchBeneficiaries = async() => {
     try{
+      if(userMessage.customer.beneficiariesByUsername.length > 0){
+        //already have beneficiaries
+        setBeneficiaries(userMessage.customer.beneficiariesByUsername);
+        console.log("beneficiaries already in authsubject", beneficiaries);
+        return
+      }
       const beneficiariesData: any = await API.graphql({
         query: customerByEmail,
         variables: {
           emailAddress: userMessage 
         },
       });
-      const beneficiaries = beneficiariesData.data.customerByEmail.items.beneficiariesByUsername;
-      setBeneficiaries(beneficiaries);
-      console.log(beneficiaries);
+      const beneficiariesList = beneficiariesData.data.customerByEmail.items.beneficiariesByUsername;
+      setBeneficiaries(beneficiariesList);
+      console.log("fetched beneficiaries from db", beneficiaries);
     } catch (e) {
       console.log("error fetching beneficiaries:", e);
     }
@@ -108,6 +117,7 @@ export const Beneficiaries = () => {
     const removedBeneficiary = values.splice(index, 1);
     setBeneficiaries(values);
     console.log(removedBeneficiary);
+    //TODO: Add functionality to remove beneficiaries from database after submitting
   };
 
   const handleChange = (key:string, value: string) => {
@@ -122,9 +132,9 @@ export const Beneficiaries = () => {
     alert(JSON.stringify(beneficiaries, null, 1));
   };
 
-  return (
+  return(
       <div className="home">
-        <div className="home__table">
+        <TableWrapper className="home__table">
           <TableContainer >
             <Table aria-label="simple table">
               <TableHead>
@@ -151,7 +161,7 @@ export const Beneficiaries = () => {
               </TableBody>
             </Table>
           </TableContainer>
-        </div>
+        </TableWrapper>
         <div className="app__input">
           <input
             onChange={(event) => handleChange("firstName", event.target.value)}
