@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "tomorrowspromiseweba",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "C:\\Users\\crish\\Source\\TomorrowsPromiseWebApp\\amplify\\backend\\api\\tomorrowspromiseweba\\schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 30,
+      "apiKeyExpirationDate": "2022-05-29T03:26:21.062Z",
+      "keyDescription": "graphql"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": []
+  }
+}

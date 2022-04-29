@@ -9,6 +9,7 @@ export default class Beneficiary {
   status = "UNCONFIRMED";
   notes = "";
   customerUserName = "";
+  id = "";
 
   constructor(
     firstName: string,
@@ -17,7 +18,8 @@ export default class Beneficiary {
     phoneNumber: string,
     status: string,
     notes: string,
-    customerUserName: string
+    customerUserName: string,
+    id?: string
   ) {
     this.firstName = firstName;
     this.lastName = lastName;
@@ -26,5 +28,6 @@ export default class Beneficiary {
     this.status = status;
     this.notes = notes ? notes : "";
     this.customerUserName = customerUserName;
+    id ? (this.id = id) : (this.id = "");
   }
 }

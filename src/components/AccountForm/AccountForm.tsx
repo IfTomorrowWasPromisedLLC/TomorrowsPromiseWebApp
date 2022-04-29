@@ -21,7 +21,7 @@ import { GENDER_OPTIONS } from "./GenderOptions";
 export default class AccountForm extends Component {
   userMessage = {
     auth: new AuthData("", "", ""),
-    customer: new Customer(),
+    customer: new Customer("","","","","",[],""),
   };
   //authdata
   email: String = "";
