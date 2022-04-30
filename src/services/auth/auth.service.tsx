@@ -84,11 +84,11 @@ export const fetchCustomer = async (): Promise<Customer | undefined> => {
       },
     });
     //if theres no fetchedCustomerData, customer doesn't exist, make the customer
-    console.log(fetchedCustomer.data.customerByEmail.items,
-      !fetchedCustomer.data.customerByEmail.items
+    console.log(fetchedCustomer.data.customerByEmail.items.length,
+      (fetchedCustomer.data.customerByEmail.items.length === 0)
     );
     //didn't find a customer with matching email - make a new customer
-    if (!fetchedCustomer.data.customerByEmail.items) {
+    if (fetchedCustomer.data.customerByEmail.items.length === 0){
       console.log("fetch -> make");
       const customer = await MakeCustomer(userMessage.auth); //go make the customer
       console.log("final customer", customer);
