@@ -9,61 +9,10 @@
       "UnauthRoleName": "amplify-tomorrowspromiseweba-dev-223520-unauthRole",
       "StackName": "amplify-tomorrowspromiseweba-dev-223520",
       "StackId": "arn:aws:cloudformation:us-east-1:173772035261:stack/amplify-tomorrowspromiseweba-dev-223520/b6ba89e0-b2f6-11ec-9bc6-1290a17374a3",
-      "AmplifyAppId": "d3etx5h1whw10r",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-223520-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "AmplifyAppId": "d3etx5h1whw10r"
     }
   },
   "function": {
-    "tomorrowspromisewebafedeeaeaCustomMessage": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "lastBuildTimeStamp": "2022-04-03T02:38:50.854Z",
-      "lastBuildType": "PROD",
-      "lastPackageTimeStamp": "2022-04-03T02:38:50.924Z",
-      "distZipFilename": "tomorrowspromisewebafedeeaeaCustomMessage-56646262474771457775-build.zip",
-      "s3Bucket": {
-        "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-223520-deployment",
-        "s3Key": "amplify-builds/tomorrowspromisewebafedeeaeaCustomMessage-56646262474771457775-build.zip"
-      },
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-223520-deployment/amplify-cfn-templates/function/tomorrowspromisewebafedeeaeaCustomMessage-cloudformation-template.json",
-        "logicalId": "functiontomorrowspromisewebafedeeaeaCustomMessage"
-      },
-      "lastPushTimeStamp": "2022-04-29T03:32:26.047Z",
-      "output": {
-        "Region": "us-east-1",
-        "Arn": "arn:aws:lambda:us-east-1:173772035261:function:tomorrowspromisewebafedeeaeaCustomMessage-dev",
-        "Name": "tomorrowspromisewebafedeeaeaCustomMessage-dev",
-        "LambdaExecutionRole": "tomorrowspromisewebafedeeaeaCustomMessage-dev"
-      },
-      "lastPushDirHash": "TAnKgyElCP96aDWU24PAzKRExMM="
-    },
-    "tomorrowspromisewebafedeeaeaPostConfirmation": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "lastBuildTimeStamp": "2022-04-03T02:38:50.855Z",
-      "lastBuildType": "PROD",
-      "lastPackageTimeStamp": "2022-04-03T02:38:51.112Z",
-      "distZipFilename": "tomorrowspromisewebafedeeaeaPostConfirmation-5465706f7431364e785a-build.zip",
-      "s3Bucket": {
-        "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-223520-deployment",
-        "s3Key": "amplify-builds/tomorrowspromisewebafedeeaeaPostConfirmation-5465706f7431364e785a-build.zip"
-      },
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-223520-deployment/amplify-cfn-templates/function/tomorrowspromisewebafedeeaeaPostConfirmation-cloudformation-template.json",
-        "logicalId": "functiontomorrowspromisewebafedeeaeaPostConfirmation"
-      },
-      "lastPushTimeStamp": "2022-04-29T03:32:26.075Z",
-      "output": {
-        "Region": "us-east-1",
-        "Arn": "arn:aws:lambda:us-east-1:173772035261:function:tomorrowspromisewebafedeeaeaPostConfirmation-dev",
-        "Name": "tomorrowspromisewebafedeeaeaPostConfirmation-dev",
-        "LambdaExecutionRole": "tomorrowspromisewebafedeeaeaPostConfirmation-dev"
-      },
-      "lastPushDirHash": "8+MXetncwbDe3dkuM/v/ZAzvBtU="
-    },
     "S3Triggere723b06f": {
       "service": "Lambda",
       "providerPlugin": "awscloudformation",
@@ -80,7 +29,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-223520-deployment/amplify-cfn-templates/function/S3Triggere723b06f-cloudformation-template.json",
         "logicalId": "functionS3Triggere723b06f"
       },
-      "lastPushTimeStamp": "2022-04-29T03:32:26.099Z",
+      "lastPushTimeStamp": "2022-04-30T07:02:43.240Z",
       "output": {
         "Region": "us-east-1",
         "Arn": "arn:aws:lambda:us-east-1:173772035261:function:S3Triggere723b06f-dev",
@@ -91,29 +40,10 @@
     }
   },
   "auth": {
-    "tomorrowspromisewebafedeeaea": {
+    "tomorrowspromiseweba11770b8a": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "tomorrowspromisewebafedeeaeaCustomMessage",
-          "triggerProvider": "Cognito",
-          "attributes": [
-            "Arn",
-            "Name"
-          ]
-        },
-        {
-          "category": "function",
-          "resourceName": "tomorrowspromisewebafedeeaeaPostConfirmation",
-          "triggerProvider": "Cognito",
-          "attributes": [
-            "Arn",
-            "Name"
-          ]
-        }
-      ],
+      "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
         "socialProviders": [],
@@ -136,20 +66,20 @@
         ]
       },
       "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-223520-deployment/amplify-cfn-templates/auth/tomorrowspromisewebafedeeaea-cloudformation-template.json",
-        "logicalId": "authtomorrowspromisewebafedeeaea"
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-223520-deployment/amplify-cfn-templates/auth/tomorrowspromiseweba11770b8a-cloudformation-template.json",
+        "logicalId": "authtomorrowspromiseweba11770b8a"
       },
-      "lastPushTimeStamp": "2022-04-29T03:32:26.122Z",
+      "lastPushTimeStamp": "2022-04-30T07:02:43.268Z",
       "output": {
-        "UserPoolId": "us-east-1_vLDUoZ9s1",
-        "AppClientIDWeb": "t6u1d0nr8g2oart29lkgf33ss",
-        "AppClientID": "1j1cen4f8oc3639jkt11j44hco",
-        "IdentityPoolId": "us-east-1:8347f562-d522-499a-af04-f9a552f4af56",
-        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:173772035261:userpool/us-east-1_vLDUoZ9s1",
-        "IdentityPoolName": "tomorrowspromisewebafedeeaea_identitypool_fedeeaea__dev",
-        "UserPoolName": "tomorrowspromisewebafedeeaea_userpool_fedeeaea"
+        "UserPoolId": "us-east-1_WfUFtA54r",
+        "AppClientIDWeb": "31il0cf5gdb1e3rvv77v09r08m",
+        "AppClientID": "68sovkaig7lqa3n7gg0i2gt0tp",
+        "IdentityPoolId": "us-east-1:d8edfbb6-9724-465a-9d71-2ac6869db00f",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:173772035261:userpool/us-east-1_WfUFtA54r",
+        "IdentityPoolName": "tomorrowspromiseweba11770b8a_identitypool_11770b8a__dev",
+        "UserPoolName": "tomorrowspromiseweba11770b8a_userpool_11770b8a"
       },
-      "lastPushDirHash": "fTKd2atcyv+CgNk/VkPhzdZAFvk="
+      "lastPushDirHash": "cKEMyVVuekxGbKIfGh876z6DRtk="
     }
   },
   "api": {
@@ -176,8 +106,8 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-223520-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apitomorrowspromiseweba"
       },
-      "lastPushTimeStamp": "2022-04-29T03:32:29.560Z",
-      "lastPushDirHash": "nOA6u88vO9KIX5aoXTFsKXzEgKs=",
+      "lastPushTimeStamp": "2022-04-30T07:02:43.284Z",
+      "lastPushDirHash": "/xjOJ38ddH5gsUBt5MKQ/o+Lpfc=",
       "dependsOn": []
     }
   },
@@ -196,7 +126,7 @@
           ]
         }
       ],
-      "lastPushTimeStamp": "2022-04-29T03:32:26.149Z",
+      "lastPushTimeStamp": "2022-04-30T07:02:43.300Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-223520-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "logicalId": "storages36ca7b91c"

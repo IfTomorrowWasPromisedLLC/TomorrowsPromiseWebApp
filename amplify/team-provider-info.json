@@ -13,22 +13,14 @@
       "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-tomorrowspromiseweba-dev-223520-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
-      "auth": {
-        "tomorrowspromisewebafedeeaea": {}
-      },
       "function": {
-        "tomorrowspromisewebafedeeaeaCustomMessage": {
-          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-223520-deployment",
-          "s3Key": "amplify-builds/tomorrowspromisewebafedeeaeaCustomMessage-56646262474771457775-build.zip"
-        },
-        "tomorrowspromisewebafedeeaeaPostConfirmation": {
-          "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-223520-deployment",
-          "s3Key": "amplify-builds/tomorrowspromisewebafedeeaeaPostConfirmation-5465706f7431364e785a-build.zip"
-        },
         "S3Triggere723b06f": {
           "deploymentBucketName": "amplify-tomorrowspromiseweba-dev-223520-deployment",
           "s3Key": "amplify-builds/S3Triggere723b06f-79615441742b4e744944-build.zip"
         }
+      },
+      "auth": {
+        "tomorrowspromiseweba11770b8a": {}
       }
     }
   }

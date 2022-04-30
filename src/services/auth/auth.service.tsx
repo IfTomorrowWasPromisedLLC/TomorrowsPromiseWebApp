@@ -7,58 +7,75 @@ import Beneficiary from "../../model/beneficiary";
 import { createCustomer } from "../../graphql/mutations";
 import { customerByEmail } from "../../graphql/queries";
 
-export const authSubject = new BehaviorSubject<{auth: AuthData, customer: Customer}>({
-  auth: new AuthData('','',''),
-  customer: new Customer("","","","","",[],""),
+export const authSubject = new BehaviorSubject<{
+  auth: AuthData;
+  customer: Customer;
+}>({
+  auth: new AuthData("", "", ""),
+  customer: new Customer("", "", "", "", "", [], ""),
 });
 
-export const MakeCustomer = async () => {
-  console.log("making customer");
-  const [customer, setCustomer] = useState<Customer>({
-  UserName: "",
-  firstName: "",
-  lastName: "",
-  emailAddress: "",
-  phoneNumber: "",
-  beneficiariesByUsername: [],
-  s3ArchivePath: "",
-  });
-
-  try{
+export const MakeCustomer = async (props: any) => {
+  // turn into a post confirmation function in lambda
+  try {
+    console.log("making customer");
     var userMessage = {
-      auth: new AuthData("","",""),
-      customer: new Customer("","","","","",[],""),
-    }
-   
-    authSubject.subscribe((value) => userMessage = value);
-    console.log("subject user data from make", userMessage);   
+      auth: new AuthData("", "", ""),
+      customer: new Customer("", "", "", "", "", [], ""),
+    };
+    await authSubject.subscribe((value) => (userMessage = value));
+    console.log("1", props.attributes);
+    console.log("2", userMessage.auth.attributes);
+    //need to figure out which customerToCreate version
+    const customerToCreate = {
+      authUserName: props.attributes.sub,
+      firstName: props.attributes.given_name ? props.attributes.given_name : "",
+      lastName: props.attributes.family_name
+        ? props.attributes.family_name
+        : "",
+      emailAddress: props.attributes.email,
+      //cutting out beneficiaries list and s3 archive - dont exist yet.
+      //customer not in database yet = no beneficiaries yet //customer not in database yet = no archive yet
+    };
+    console.log(customerToCreate);
+    await API.graphql(
+      graphqlOperation(createCustomer, { input: customerToCreate })
+    );
+    console.log("moving to fetch after making customer");
+    //customer made, back to fetch
+    return new Customer(
+      userMessage.auth.attributes.sub ? userMessage.auth.attributes.sub : "",
+      userMessage.auth.attributes.given_name
+        ? userMessage.auth.attributes.given_name
+        : "",
+      userMessage.auth.attributes.family_name
+        ? userMessage.auth.attributes.family_name
+        : "",
 
-    setCustomer({
-      UserName: userMessage.auth.username ? userMessage.auth.username : '',
-      firstName: userMessage.auth.attributes.given_name ? userMessage.auth.attributes.given_name : '',
-      lastName: userMessage.auth.attributes.family_name ? userMessage.auth.attributes.family_name : '' ,
-      emailAddress: userMessage.auth.attributes.email ? userMessage.auth.attributes.email : '',
-      phoneNumber: userMessage.auth.attributes.phone_number ? userMessage.auth.attributes.phone_number: '',
-      beneficiariesByUsername: [], //customer not in database yet = no beneficiaries yet
-      s3ArchivePath: "", //customer not in database yet = no archive yet
-    });
+      userMessage.auth.attributes.email
+        ? userMessage.auth.attributes.email
+        : "",
 
-    await API.graphql(graphqlOperation(createCustomer, {input: customer}));
-    
-    console.log("customer created")
-  } catch(e){
+      userMessage.auth.attributes.phone_number
+        ? userMessage.auth.attributes.phone_number
+        : "",
+      [],
+      ""
+    );
+  } catch (e) {
     console.log("error creating customer", e);
   }
-}
+};
 
-export const fetchCustomer = async () => {
+export const fetchCustomer = async (): Promise<Customer | undefined> => {
+  var userMessage = {
+    auth: new AuthData("", "", ""),
+    customer: new Customer("", "", "", "", "", [], ""),
+  };
+  await authSubject.subscribe((value) => (userMessage = value));
+
   try {
-    var userMessage = {
-      auth: new AuthData("","",""),
-      customer: new Customer("","","","","",[],""),
-    }
-    authSubject.subscribe((value) => userMessage = value);
-    console.log("subject user data from fetch", userMessage);
+    console.log("subject user data pre - fetch", userMessage);
 
     const fetchedCustomer: any = await API.graphql({
       query: customerByEmail,
@@ -66,37 +83,71 @@ export const fetchCustomer = async () => {
         emailAddress: userMessage.auth.attributes.email,
       },
     });
-    const fetchedCustomerData = fetchedCustomer.data.customerByEmail.items;
-    //if customer exists we pass the data to our behaviour subject, if not we create the customer
-    if (!userMessage.customer) return MakeCustomer;
-    //send message with customer data
-    authSubject.next({
-      auth: userMessage.auth ? userMessage.auth : new AuthData("","",""),
-      customer: new Customer(fetchedCustomerData.UserName,
-        fetchedCustomerData.firstName,
-        fetchedCustomerData.lastName,
-        fetchedCustomerData.emailAddress,
-        fetchedCustomerData.phoneNumber,
-        fetchedCustomerData.beneficiariesByUsername,
-        fetchedCustomerData.s3ArchivePath,
-        ),
-    });
+    //if theres no fetchedCustomerData, customer doesn't exist, make the customer
+    console.log(fetchedCustomer.data.customerByEmail.items,
+      !fetchedCustomer.data.customerByEmail.items
+    );
+    //didn't find a customer with matching email - make a new customer
+    if (!fetchedCustomer.data.customerByEmail.items) {
+      console.log("fetch -> make");
+      const customer = await MakeCustomer(userMessage.auth); //go make the customer
+      console.log("final customer", customer);
+      return customer;
+    }
 
+    const fetchedCustomerData = fetchedCustomer.data.customerByEmail.items;
+    //customer did exist so we can update our message
+
+    console.log("got customer", fetchedCustomerData);
+    return new Customer(
+      fetchedCustomerData.AuthUserName,
+      fetchedCustomerData.firstName,
+      fetchedCustomerData.lastName,
+      fetchedCustomerData.emailAddress,
+      fetchedCustomerData.phoneNumber,
+      fetchedCustomerData.beneficiariesByUsername,
+      fetchedCustomerData.s3ArchivePath
+    );
   } catch (e) {
-    console.log("error fetching customer:", e);
+    console.log(
+      "error fetching customer:",
+      userMessage.auth.attributes.email,
+      e
+    );
   }
-}
+};
 
 export const getCurrentAuthenticatedUser = async () => {
   var userMessage = {
-    auth: new AuthData("","",""),
-    customer: new Customer("","","","","",[],""),
-  }
-   const user = await Auth.currentAuthenticatedUser()
+    auth: new AuthData("", "", ""),
+    customer: new Customer("", "", "", "", "", [], ""),
+  };
+  const user = await Auth.currentAuthenticatedUser()
     .then((user) => {
       authSubject.next({
-        auth: new AuthData(user.attributes.username, user.attributes.email, user.attributes.sub),
-        customer: userMessage.customer ? userMessage.customer : new Customer("","","","","",[],""),
+        auth: new AuthData(
+          user.attributes.username,
+          user.attributes.email,
+          user.attributes.sub,
+          "",
+          "",
+          user.attributes.family_name ? user.attributes.family_name : "",
+          user.attributes.gender ? user.attributes.gender : "",
+          user.attributes.given_name ? user.attributes.given_name : "",
+          "",
+          user.attributes.middle_name ? user.attributes.middle_name : "",
+          "",
+          user.attributes.nickname ? user.attributes : "",
+          user.attributes.phone_number ? user.attributes.phone_number : "",
+          "",
+          "",
+          "",
+          "",
+          user.attributes.addres ? user.attributes.address : ""
+        ),
+        customer: userMessage.customer
+          ? userMessage.customer
+          : new Customer("", "", "", "", "", [], ""),
       });
     })
     .catch((e) => {

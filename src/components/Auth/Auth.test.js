@@ -6,8 +6,9 @@ import Auth from './Auth';
 describe('<Auth />', () => {
   test('it should mount', () => {
     render(<Auth />);
+    
     const auth = screen.getByTestId('Auth');
+
     expect(auth).toBeInTheDocument();
   });
-
 });

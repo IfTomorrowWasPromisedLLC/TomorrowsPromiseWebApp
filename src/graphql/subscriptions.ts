@@ -57,7 +57,7 @@ export const onCreateCustomer = /* GraphQL */ `
   subscription OnCreateCustomer {
     onCreateCustomer {
       id
-      AuthUserName
+      authUserName
       firstName
       lastName
       emailAddress
@@ -88,7 +88,7 @@ export const onUpdateCustomer = /* GraphQL */ `
   subscription OnUpdateCustomer {
     onUpdateCustomer {
       id
-      AuthUserName
+      authUserName
       firstName
       lastName
       emailAddress
@@ -119,7 +119,7 @@ export const onDeleteCustomer = /* GraphQL */ `
   subscription OnDeleteCustomer {
     onDeleteCustomer {
       id
-      AuthUserName
+      authUserName
       firstName
       lastName
       emailAddress

@@ -47,7 +47,7 @@ export const getCustomer = /* GraphQL */ `
   query GetCustomer($id: ID!) {
     getCustomer(id: $id) {
       id
-      AuthUserName
+      authUserName
       firstName
       lastName
       emailAddress
@@ -83,7 +83,7 @@ export const listCustomers = /* GraphQL */ `
     listCustomers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        AuthUserName
+        authUserName
         firstName
         lastName
         emailAddress
@@ -118,7 +118,7 @@ export const customerByEmail = /* GraphQL */ `
     ) {
       items {
         id
-        AuthUserName
+        authUserName
         firstName
         lastName
         emailAddress

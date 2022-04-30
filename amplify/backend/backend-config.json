@@ -1,15 +1,5 @@
 {
   "function": {
-    "tomorrowspromisewebafedeeaeaCustomMessage": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "tomorrowspromisewebafedeeaeaPostConfirmation": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "S3Triggere723b06f": {
       "service": "Lambda",
       "providerPlugin": "awscloudformation",
@@ -17,29 +7,10 @@
     }
   },
   "auth": {
-    "tomorrowspromisewebafedeeaea": {
+    "tomorrowspromiseweba11770b8a": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "tomorrowspromisewebafedeeaeaCustomMessage",
-          "triggerProvider": "Cognito",
-          "attributes": [
-            "Arn",
-            "Name"
-          ]
-        },
-        {
-          "category": "function",
-          "resourceName": "tomorrowspromisewebafedeeaeaPostConfirmation",
-          "triggerProvider": "Cognito",
-          "attributes": [
-            "Arn",
-            "Name"
-          ]
-        }
-      ],
+      "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
         "socialProviders": [],

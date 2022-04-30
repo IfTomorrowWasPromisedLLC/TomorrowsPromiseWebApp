@@ -41,10 +41,10 @@ export const Beneficiaries = () => {
   authSubject.subscribe((value) => {
     userMessage = value;
   });
+  console.log(userMessage);
 
   useEffect(() => {
-    fetchBeneficiaries()
-
+    // fetchBeneficiaries();
 }, [])
 
   const [beneficiaries, setBeneficiaries] = useState<Beneficiary[]>([]);
@@ -60,8 +60,8 @@ export const Beneficiaries = () => {
 
   const fetchBeneficiaries = async () => {
     try {
-      if (userMessage.customer.beneficiariesByUsername.length > 0) {
-        //already have beneficiaries
+      if (userMessage.customer.beneficiariesByUsername){
+        //assuming they already have beneficiaries if not null
         setBeneficiaries(userMessage.customer.beneficiariesByUsername);
         console.log("beneficiaries already in authsubject", beneficiaries);
         return;
@@ -69,9 +69,10 @@ export const Beneficiaries = () => {
       const beneficiariesData: any = await API.graphql({
         query: customerByEmail,
         variables: {
-          emailAddress: userMessage,
+          emailAddress: userMessage.auth.attributes.email,
         },
       });
+      console.log(beneficiariesData);
       const beneficiariesList =
         beneficiariesData.data.customerByEmail.beneficiariesByUsername.items;
       setBeneficiaries(beneficiariesList);
@@ -89,6 +90,7 @@ export const Beneficiaries = () => {
         !formState.emailAddress
       )
         return;
+
       const newBeneficiary = new Beneficiary(
         formState.firstName,
         formState.lastName,

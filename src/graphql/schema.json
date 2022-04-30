@@ -998,7 +998,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "AuthUserName",
+          "name" : "authUserName",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1017,13 +1017,9 @@
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -1032,13 +1028,9 @@
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -1319,7 +1311,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "AuthUserName",
+          "name" : "authUserName",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1975,7 +1967,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "AuthUserName",
+          "name" : "authUserName",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
@@ -1991,26 +1983,18 @@
           "name" : "firstName",
           "description" : null,
           "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
           },
           "defaultValue" : null
         }, {
           "name" : "lastName",
           "description" : null,
           "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
           },
           "defaultValue" : null
         }, {
@@ -2054,7 +2038,7 @@
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
-          "name" : "AuthUserName",
+          "name" : "authUserName",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2165,7 +2149,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "AuthUserName",
+          "name" : "authUserName",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",

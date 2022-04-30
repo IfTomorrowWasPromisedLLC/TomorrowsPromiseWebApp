@@ -3,29 +3,29 @@ import Beneficiary from "./beneficiary";
 
 export default class Customer {
   //Fields
-  UserName = "";
+  authUserName = "";
   firstName = "";
   lastName = "";
   emailAddress = "";
   phoneNumber = "";
-  beneficiariesByUsername: Beneficiary[];
+  beneficiariesByUsername: Beneficiary[] | undefined;
   s3ArchivePath = "";
 
   constructor(
-    UserName: string,
-    firstName: string,
-    lastName: string,
+    authUserName: string,
     emailAddress: string,
-    phoneNumber: string,
-    beneficiariesByUsername: Beneficiary[],
-    s3ArchivePath: string,
+    firstName?: string,
+    lastName?: string,
+    phoneNumber?: string,
+    beneficiariesByUsername?: Beneficiary[],
+    s3ArchivePath?: string,
     ) {
-    this.UserName = UserName;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.emailAddress = emailAddress;
-    this.phoneNumber = phoneNumber ? phoneNumber : "";
-    this.s3ArchivePath = s3ArchivePath ? s3ArchivePath : "";
-    this.beneficiariesByUsername = beneficiariesByUsername ? beneficiariesByUsername : [];
+    this.authUserName = authUserName;
+    this.emailAddress = emailAddress; 
+    if(firstName) this.firstName = firstName;
+    if(lastName) this.lastName = lastName;
+    if(phoneNumber) this.phoneNumber = phoneNumber;
+    if(beneficiariesByUsername) this.beneficiariesByUsername = beneficiariesByUsername;
+    if(s3ArchivePath) this.s3ArchivePath = s3ArchivePath;
   }
 }

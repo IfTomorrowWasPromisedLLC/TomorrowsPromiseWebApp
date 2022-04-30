@@ -17,8 +17,8 @@ type Beneficiary @model {
 type Customer @model {
   id: ID!
   authUserName: String! @index(name: "byAuthUserName")
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   emailAddress: String! @index(name: "byEmail", 
     queryField: "customerByEmail", sortKeyFields: ["lastName"])
   phoneNumber: String
