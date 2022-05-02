@@ -12,10 +12,9 @@ export const getBeneficiary = /* GraphQL */ `
       phoneNumber
       status
       notes
-      customerUserName
+      CustomerID
       createdAt
       updatedAt
-      customerBeneficiariesByUsernameId
     }
   }
 `;
@@ -34,10 +33,9 @@ export const listBeneficiaries = /* GraphQL */ `
         phoneNumber
         status
         notes
-        customerUserName
+        CustomerID
         createdAt
         updatedAt
-        customerBeneficiariesByUsernameId
       }
       nextToken
     }
@@ -53,20 +51,7 @@ export const getCustomer = /* GraphQL */ `
       emailAddress
       phoneNumber
       s3ArchiveName
-      beneficiariesByUsername {
-        items {
-          id
-          firstName
-          lastName
-          emailAddress
-          phoneNumber
-          status
-          notes
-          customerUserName
-          createdAt
-          updatedAt
-          customerBeneficiariesByUsernameId
-        }
+      beneficiaries {
         nextToken
       }
       createdAt
@@ -89,9 +74,6 @@ export const listCustomers = /* GraphQL */ `
         emailAddress
         phoneNumber
         s3ArchiveName
-        beneficiariesByUsername {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -124,9 +106,6 @@ export const customerByEmail = /* GraphQL */ `
         emailAddress
         phoneNumber
         s3ArchiveName
-        beneficiariesByUsername {
-          nextToken
-        }
         createdAt
         updatedAt
       }

@@ -7,11 +7,10 @@ type Beneficiary @model {
   firstName: String!
   lastName: String!
   emailAddress: String! @index(name: "beneficiaryByEmail")
-  phoneNumber: String
+  phoneNumber: String!
   status: String!
   notes: String
-  customerUserName: String! @index(name: "byCustomerByUserName" 
-    sortKeyFields: ["status"])
+  CustomerID: ID! @index(name: "byCustomer" sortKeyFields: ["status"])
 }
 
 type Customer @model {
@@ -23,5 +22,5 @@ type Customer @model {
     queryField: "customerByEmail", sortKeyFields: ["lastName"])
   phoneNumber: String
   s3ArchiveName: String
-  beneficiariesByUsername: [Beneficiary] @hasMany(indexName: "byCustomerByUserName")
+  beneficiaries: [Beneficiary] @hasMany(indexName: "byCustomer", fields: ["id", "emailAddress"])
 }

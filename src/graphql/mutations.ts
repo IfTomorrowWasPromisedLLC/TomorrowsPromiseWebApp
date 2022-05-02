@@ -15,10 +15,9 @@ export const createBeneficiary = /* GraphQL */ `
       phoneNumber
       status
       notes
-      customerUserName
+      CustomerID
       createdAt
       updatedAt
-      customerBeneficiariesByUsernameId
     }
   }
 `;
@@ -35,10 +34,9 @@ export const updateBeneficiary = /* GraphQL */ `
       phoneNumber
       status
       notes
-      customerUserName
+      CustomerID
       createdAt
       updatedAt
-      customerBeneficiariesByUsernameId
     }
   }
 `;
@@ -55,10 +53,9 @@ export const deleteBeneficiary = /* GraphQL */ `
       phoneNumber
       status
       notes
-      customerUserName
+      CustomerID
       createdAt
       updatedAt
-      customerBeneficiariesByUsernameId
     }
   }
 `;
@@ -75,20 +72,7 @@ export const createCustomer = /* GraphQL */ `
       emailAddress
       phoneNumber
       s3ArchiveName
-      beneficiariesByUsername {
-        items {
-          id
-          firstName
-          lastName
-          emailAddress
-          phoneNumber
-          status
-          notes
-          customerUserName
-          createdAt
-          updatedAt
-          customerBeneficiariesByUsernameId
-        }
+      beneficiaries {
         nextToken
       }
       createdAt
@@ -109,20 +93,7 @@ export const updateCustomer = /* GraphQL */ `
       emailAddress
       phoneNumber
       s3ArchiveName
-      beneficiariesByUsername {
-        items {
-          id
-          firstName
-          lastName
-          emailAddress
-          phoneNumber
-          status
-          notes
-          customerUserName
-          createdAt
-          updatedAt
-          customerBeneficiariesByUsernameId
-        }
+      beneficiaries {
         nextToken
       }
       createdAt
@@ -143,20 +114,7 @@ export const deleteCustomer = /* GraphQL */ `
       emailAddress
       phoneNumber
       s3ArchiveName
-      beneficiariesByUsername {
-        items {
-          id
-          firstName
-          lastName
-          emailAddress
-          phoneNumber
-          status
-          notes
-          customerUserName
-          createdAt
-          updatedAt
-          customerBeneficiariesByUsernameId
-        }
+      beneficiaries {
         nextToken
       }
       createdAt

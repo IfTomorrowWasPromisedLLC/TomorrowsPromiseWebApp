@@ -2,32 +2,32 @@ import React, { Component } from "react";
 
 export default class Beneficiary {
   //Fields
-  firstName = "";
-  lastName = "";
-  emailAddress = "";
-  phoneNumber = "";
-  status = "UNCONFIRMED";
-  notes = "";
-  customerUserName = "";
-  id = "";
+   lastName = "";
+   emailAddress = "";
+   firstName = "";
+   phoneNumber = "";
+   status = "UNCONFIRMED";
+   notes = "";
+   customerID = "";
+   id = "";
 
   constructor(
     firstName: string,
     lastName: string,
     emailAddress: string,
-    phoneNumber: string,
     status: string,
-    notes: string,
-    customerUserName: string,
+    customerID: string,
+    phoneNumber?: string,
+    notes?: string,
     id?: string
   ) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.emailAddress = emailAddress;
-    this.phoneNumber = phoneNumber ? phoneNumber : "";
     this.status = status;
-    this.notes = notes ? notes : "";
-    this.customerUserName = customerUserName;
-    id ? (this.id = id) : (this.id = "");
+    this.customerID = customerID;
+    if(phoneNumber) this.phoneNumber = phoneNumber;
+    if(notes) this.notes = notes;
+    if(id) this.id = id;
   }
 }

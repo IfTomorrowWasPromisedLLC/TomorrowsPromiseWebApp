@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { API, graphqlOperation } from "aws-amplify";
 import Table from "@material-ui/core/Table";
@@ -12,6 +12,7 @@ import {
   createBeneficiary,
   updateBeneficiary,
   deleteBeneficiary,
+  updateCustomer,
 } from "../../graphql/mutations";
 import {
   customerByEmail,
@@ -30,7 +31,7 @@ const styledInputWrapper = styled.div``;
 const ButtonContainer = styled.div``;
 const Button = styled.button``;
 const TableWrapper = styled.div`
-  width: 200px;
+  width: 90%;
 `;
 
 export const Beneficiaries = () => {
@@ -41,11 +42,10 @@ export const Beneficiaries = () => {
   authSubject.subscribe((value) => {
     userMessage = value;
   });
-  console.log(userMessage);
 
   useEffect(() => {
-    // fetchBeneficiaries();
-}, [])
+    fetchBeneficiaries();
+  }, []);
 
   const [beneficiaries, setBeneficiaries] = useState<Beneficiary[]>([]);
   const [formState, setFormState] = useState<{ [key: string]: string }>({
@@ -60,7 +60,7 @@ export const Beneficiaries = () => {
 
   const fetchBeneficiaries = async () => {
     try {
-      if (userMessage.customer.beneficiariesByUsername){
+      if (userMessage.customer.beneficiariesByUsername) {
         //assuming they already have beneficiaries if not null
         setBeneficiaries(userMessage.customer.beneficiariesByUsername);
         console.log("beneficiaries already in authsubject", beneficiaries);
@@ -82,6 +82,7 @@ export const Beneficiaries = () => {
     }
   };
 
+  //move to beneficiaries service section (microservice)
   const addBeneficiary = async () => {
     try {
       if (
@@ -95,15 +96,25 @@ export const Beneficiaries = () => {
         formState.firstName,
         formState.lastName,
         formState.emailAddress,
-        formState.phoneNumber,
         formState.status,
-        formState.notes,
-        formState.customerUserName
+        userMessage.customer.id,
+        formState.phoneNumber,
+        formState.notes,        
       );
-      console.log({...newBeneficiary});
+      console.log({ ...newBeneficiary });
       await API.graphql(
-        graphqlOperation(createBeneficiary, { input: {...formState}})
+        graphqlOperation(createBeneficiary, { input: { ...formState } })
       );
+      // await API.graphql(
+      //   graphqlOperation(updateCustomer, {
+      //     input: {
+      //       id: userMessage.customer.id,
+      //       beneficiaries: {
+      //         customerEmail: userMessage.auth.attributes.email,
+      //       }
+      //     },
+      //   })
+      // );
       setBeneficiaries([...beneficiaries, newBeneficiary]);
       setFormState({
         firstName: "",

@@ -106,7 +106,8 @@ export const fetchCustomer = async (): Promise<Customer | undefined> => {
       fetchedCustomerData.emailAddress,
       fetchedCustomerData.phoneNumber,
       fetchedCustomerData.beneficiariesByUsername,
-      fetchedCustomerData.s3ArchivePath
+      fetchedCustomerData.s3ArchivePath,
+      fetchedCustomerData.id,
     );
   } catch (e) {
     console.log(

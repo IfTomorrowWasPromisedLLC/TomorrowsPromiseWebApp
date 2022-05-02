@@ -38,20 +38,20 @@
     "tomorrowspromiseweba": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
+      "dependsOn": [],
       "output": {
         "authConfig": {
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 30,
-              "apiKeyExpirationDate": "2022-05-29T03:26:21.062Z",
-              "description": "graphql"
+              "apiKeyExpirationDays": 7,
+              "apiKeyExpirationDate": "2022-05-08T23:30:55.643Z",
+              "description": ""
             }
           },
           "additionalAuthenticationProviders": []
         }
-      },
-      "dependsOn": []
+      }
     }
   },
   "storage": {

@@ -2,5 +2,5 @@
   "AppSyncApiName": "tomorrowspromiseweba",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2022-04-29T03:26:24.254Z"
+  "AuthModeLastUpdated": "2022-05-01T23:30:56.764Z"
 }

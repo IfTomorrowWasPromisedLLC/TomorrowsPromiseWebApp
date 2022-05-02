@@ -5,14 +5,15 @@ import AccountForm from "../components/AccountForm/AccountForm";
 import FileUpload from "../components/FileUpload/FileUpload";
 import Beneficiaries from "../components/Beneficiaries/Beneficiaries";
 import Subscription from "../components/Subscription/Subscription";
-import { authSubject, fetchCustomer, getCurrentAuthenticatedUser } from "../services/auth/auth.service";
+import {
+  authSubject,
+  fetchCustomer,
+  getCurrentAuthenticatedUser,
+} from "../services/auth/auth.service";
 import AuthData from "../model/authdata";
 import Customer from "../model/customer";
-import Auth from "../components/Auth/Auth";
 import { Amplify } from "aws-amplify";
 import { withAuthenticator } from "@aws-amplify/ui-react";
-
-import "@aws-amplify/ui-react/styles.css";
 import awsExports from "../aws-exports";
 import { fetchBeneficiaries } from "../services/beneificiaries/beneficiaries.service";
 Amplify.configure(awsExports);
@@ -20,8 +21,7 @@ Amplify.configure(awsExports);
 const AccountContainer = styled.div`
   width: 100%;
   height: 800px;
-  padding-left: 8px;
-
+  padding-left: 1rem;
   #auth-btn {
     width: 50%;
     padding: 20px;
@@ -36,8 +36,8 @@ const AccountContainer = styled.div`
     }
   }
 `;
-const AuthWrap = styled.div`
-  padding-top: 20px;
+const AccountHelloDiv = styled.div`
+  padding-top: 1rem;
 `;
 const FileWrap = styled.div``;
 const SubscriptionWrap = styled.div``;
@@ -46,7 +46,8 @@ const Button = styled.button`
     cursor: pointer;
   }
 `;
-
+const StyledSignOutButton = styled.button`
+`;
 const formFields = {
   signUp: {
     email: {
@@ -82,14 +83,14 @@ function Account({ signOut, user }) {
   console.log("in account");
 
   useEffect(() => {
-     // declare the data fetching function
-  const fetchData = async () => {
-        await getCurrentAuthenticatedUser();// will handle our user message stuff
-        console.log(userMessage.auth);
-        await fetchCustomer();
-  }
-  // call the function
-  fetchData().catch(console.error);
+    // declare the data fetching function
+    const fetchData = async () => {
+      await getCurrentAuthenticatedUser(); // will handle our user message stuff
+      console.log(userMessage.auth);
+      await fetchCustomer();
+    };
+    // call the function
+    fetchData().catch(console.error);
   }, []);
 
   //user is logged in if this FC is called
@@ -101,8 +102,20 @@ function Account({ signOut, user }) {
 
   return (
     <>
-      <h1>Hello {user.attributes.given_name ? user.attributes.given_name : user.attributes.email}</h1>
-      <button onClick={signOut}>Sign out</button>
+      <AccountContainer>
+        <AccountHelloDiv>
+          <h1>
+            Hello{" "}
+            {user.attributes.given_name
+              ? user.attributes.given_name
+              : user.attributes.email}
+          </h1>
+          <AccountForm/>
+          <Beneficiaries/>
+          <Subscription/>
+          <Button className="sign-out-button"onClick={signOut}>Sign out</Button>
+        </AccountHelloDiv>
+      </AccountContainer>
     </>
   );
 }
@@ -113,7 +126,7 @@ export default withAuthenticator(Account, {
     signUp: {
       email: {
         isRequired: true,
-        order:1,
+        order: 1,
       },
       given_name: {
         placeholder: "First Name",
@@ -144,45 +157,3 @@ export async function getStaticProps() {
     },
   };
 }
-// <AccountContainer>
-//   <AuthWrap>
-//     <Authenticator socialProviders={["amazon", "facebook", "google"]}>
-//       {({ signOut, user }) => (
-//         <main>
-//           <h1 className="hello">Hello {user.attributes.email}{authSubject.next({
-//             auth: user,
-//             customer: fetchCustomer(),//change to fetch customer
-//           })}</h1>
-//           <Button
-//             onClick={() =>
-//               setShowHideAccountDetails(!showHideAccountDetails)
-//             }
-//           >
-//             Account Details
-//           </Button>
-//           {showHideAccountDetails && <AccountForm />}
-//           <Button
-//             onClick={() => setShowHideBeneficiaries(!showHideBeneficiaries)}
-//           >
-//             Beneficiaries
-//           </Button>
-//           {showHideBeneficiaries && <Beneficiaries />}
-
-//           <Button
-//             onClick={() => setShowHideSubscription(!showHideSubscription)}
-//           >
-//             Subscription
-//           </Button>
-//           {showHideSubscription && <Subscription />}
-
-//           <FileWrap>
-//             <FileUpload />
-//           </FileWrap>
-//           <Button id="auth-btn" onClick={signOut}>
-//             Sign out
-//           </Button>
-//         </main>
-//       )}
-//     </Authenticator>
-//   </AuthWrap>
-// </AccountContainer>
