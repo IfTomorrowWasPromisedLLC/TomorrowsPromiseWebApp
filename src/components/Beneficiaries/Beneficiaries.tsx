@@ -18,6 +18,7 @@ import {
   customerByEmail,
   getBeneficiary,
   getCustomer,
+  Test,
 } from "../../graphql/queries";
 import { authSubject } from "../../services/auth/auth.service";
 import AuthData from "../../model/authdata";
@@ -60,22 +61,23 @@ export const Beneficiaries = () => {
 
   const fetchBeneficiaries = async () => {
     try {
-      if (userMessage.customer.beneficiariesByUsername) {
-        //assuming they already have beneficiaries if not null
-        setBeneficiaries(userMessage.customer.beneficiariesByUsername);
-        console.log("beneficiaries already in authsubject", beneficiaries);
-        return;
-      }
+      // if (userMessage.customer.beneficiaries) {
+      //   //assuming they already have beneficiaries if not null
+      //   setBeneficiaries(userMessage.customer.beneficiaries);
+      //   console.log("beneficiaries already in authsubject", beneficiaries);
+      //   return;
+      // }
       const beneficiariesData: any = await API.graphql({
-        query: customerByEmail,
+        query: Test,
         variables: {
-          emailAddress: userMessage.auth.attributes.email,
+          id: userMessage.customer.id
         },
       });
       console.log(beneficiariesData);
-      const beneficiariesList =
-        beneficiariesData.data.customerByEmail.beneficiariesByUsername.items;
-      setBeneficiaries(beneficiariesList);
+      // if(beneficiariesData.data.customerByEmail.items.length === 0) return;
+      // const beneficiariesList =
+      //   beneficiariesData.data.customerByEmail.items;
+      // setBeneficiaries(beneficiariesList);
       console.log("fetched beneficiaries from db", beneficiaries);
     } catch (e) {
       console.log("error fetching beneficiaries:", e);
@@ -83,6 +85,8 @@ export const Beneficiaries = () => {
   };
 
   //move to beneficiaries service section (microservice)
+  //solved beneficiary problem. Make customer first, make beneficiary with customerID passed in.
+  //need to fetch customer again to update. Can likely be ignored until a page reload
   const addBeneficiary = async () => {
     try {
       if (
@@ -92,30 +96,32 @@ export const Beneficiaries = () => {
       )
         return;
 
-      const newBeneficiary = new Beneficiary(
-        formState.firstName,
-        formState.lastName,
-        formState.emailAddress,
-        formState.status,
-        userMessage.customer.id,
-        formState.phoneNumber,
-        formState.notes,        
-      );
-      console.log({ ...newBeneficiary });
+      const newBeneficiary = {
+        firstName: formState.firstName,
+        lastName: formState.lastName,
+        emailAddress: formState.emailAddress,
+        status: formState.status,
+        customerID: userMessage.customer.id,
+        phoneNumber: formState.phoneNumber,
+        notes: formState.notes,
+      };
+      console.log(userMessage.customer);
+      console.log("new bene", { ...newBeneficiary });
       await API.graphql(
-        graphqlOperation(createBeneficiary, { input: { ...formState } })
+        graphqlOperation(createBeneficiary, { input: { ...newBeneficiary } })
       );
-      // await API.graphql(
-      //   graphqlOperation(updateCustomer, {
-      //     input: {
-      //       id: userMessage.customer.id,
-      //       beneficiaries: {
-      //         customerEmail: userMessage.auth.attributes.email,
-      //       }
-      //     },
-      //   })
-      // );
-      setBeneficiaries([...beneficiaries, newBeneficiary]);
+      setBeneficiaries([
+        ...beneficiaries,
+        new Beneficiary(
+          newBeneficiary.firstName,
+          newBeneficiary.lastName,
+          newBeneficiary.emailAddress,
+          newBeneficiary.status,
+          newBeneficiary.customerID,
+          newBeneficiary.phoneNumber,
+          newBeneficiary.notes
+        ),
+      ]);
       setFormState({
         firstName: "",
         lastName: "",

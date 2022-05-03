@@ -8,7 +8,7 @@ export default class Customer {
   lastName = "";
   emailAddress = "";
   phoneNumber = "";
-  beneficiariesByUsername: Beneficiary[] | undefined;
+  beneficiaries: Beneficiary[] | undefined;
   s3ArchivePath = "";
   id = "";
   constructor(
@@ -17,7 +17,7 @@ export default class Customer {
     firstName?: string,
     lastName?: string,
     phoneNumber?: string,
-    beneficiariesByUsername?: Beneficiary[],
+    beneficiaries?: Beneficiary[],
     s3ArchivePath?: string,
     id?: string,
     ) {
@@ -26,7 +26,7 @@ export default class Customer {
     if(firstName) this.firstName = firstName;
     if(lastName) this.lastName = lastName;
     if(phoneNumber) this.phoneNumber = phoneNumber;
-    if(beneficiariesByUsername) this.beneficiariesByUsername = beneficiariesByUsername;
+    if(beneficiaries) this.beneficiaries = beneficiaries;
     if(s3ArchivePath) this.s3ArchivePath = s3ArchivePath;
     if(id) this.id = id;
   }

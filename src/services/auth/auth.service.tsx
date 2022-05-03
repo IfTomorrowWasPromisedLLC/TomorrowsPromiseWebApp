@@ -67,7 +67,7 @@ export const MakeCustomer = async (props: any) => {
   }
 };
 
-export const fetchCustomer = async (): Promise<Customer | undefined> => {
+export const fetchCustomer = async () => {
   var userMessage = {
     auth: new AuthData("", "", ""),
     customer: new Customer("", "", "", "", "", [], ""),
@@ -82,33 +82,38 @@ export const fetchCustomer = async (): Promise<Customer | undefined> => {
       variables: {
         emailAddress: userMessage.auth.attributes.email,
       },
+      
     });
     //if theres no fetchedCustomerData, customer doesn't exist, make the customer
-    console.log(fetchedCustomer.data.customerByEmail.items.length,
-      (fetchedCustomer.data.customerByEmail.items.length === 0)
+    console.log(
+      fetchedCustomer.data.customerByEmail.items.length,
+      fetchedCustomer.data.customerByEmail.items.length === 0
     );
     //didn't find a customer with matching email - make a new customer
-    if (fetchedCustomer.data.customerByEmail.items.length === 0){
+    if (fetchedCustomer.data.customerByEmail.items.length === 0) {
       console.log("fetch -> make");
       const customer = await MakeCustomer(userMessage.auth); //go make the customer
       console.log("final customer", customer);
       return customer;
     }
 
-    const fetchedCustomerData = fetchedCustomer.data.customerByEmail.items;
+    const fetchedCustomerData = fetchedCustomer.data.customerByEmail.items[0];
     //customer did exist so we can update our message
 
-    console.log("got customer", fetchedCustomerData);
-    return new Customer(
-      fetchedCustomerData.AuthUserName,
-      fetchedCustomerData.firstName,
-      fetchedCustomerData.lastName,
-      fetchedCustomerData.emailAddress,
-      fetchedCustomerData.phoneNumber,
-      fetchedCustomerData.beneficiariesByUsername,
-      fetchedCustomerData.s3ArchivePath,
-      fetchedCustomerData.id,
-    );
+    console.log("got customer", fetchedCustomerData.beneficiaries);
+    authSubject.next({
+      auth: userMessage.auth,
+      customer: new Customer(
+        fetchedCustomerData.authUserName,
+        fetchedCustomerData.firstName,
+        fetchedCustomerData.lastName,
+        fetchedCustomerData.emailAddress,
+        fetchedCustomerData.phoneNumber,
+        fetchedCustomerData.beneficiaries,
+        fetchedCustomerData.s3ArchivePath,
+        fetchedCustomerData.id,
+      ),
+    });
   } catch (e) {
     console.log(
       "error fetching customer:",

@@ -12,7 +12,7 @@ export const onCreateBeneficiary = /* GraphQL */ `
       phoneNumber
       status
       notes
-      CustomerID
+      customerID
       createdAt
       updatedAt
     }
@@ -28,7 +28,7 @@ export const onUpdateBeneficiary = /* GraphQL */ `
       phoneNumber
       status
       notes
-      CustomerID
+      customerID
       createdAt
       updatedAt
     }
@@ -44,7 +44,7 @@ export const onDeleteBeneficiary = /* GraphQL */ `
       phoneNumber
       status
       notes
-      CustomerID
+      customerID
       createdAt
       updatedAt
     }
