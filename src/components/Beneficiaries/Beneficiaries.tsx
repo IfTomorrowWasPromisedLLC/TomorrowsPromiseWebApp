@@ -24,6 +24,7 @@ import { authSubject } from "../../services/auth/auth.service";
 import AuthData from "../../model/authdata";
 import Customer from "../../model/customer";
 import Beneficiary from "../../model/beneficiary";
+import { getCustomerWithBeneficiaries } from "../../model/customQueries";
 
 const BeneficiariesFormContainer = styled.div``;
 const StyledForm = styled.form``;
@@ -61,24 +62,14 @@ export const Beneficiaries = () => {
 
   const fetchBeneficiaries = async () => {
     try {
-      // if (userMessage.customer.beneficiaries) {
-      //   //assuming they already have beneficiaries if not null
-      //   setBeneficiaries(userMessage.customer.beneficiaries);
-      //   console.log("beneficiaries already in authsubject", beneficiaries);
-      //   return;
-      // }
-      const beneficiariesData: any = await API.graphql({
-        query: Test,
-        variables: {
-          id: userMessage.customer.id
-        },
-      });
-      console.log(beneficiariesData);
-      // if(beneficiariesData.data.customerByEmail.items.length === 0) return;
-      // const beneficiariesList =
-      //   beneficiariesData.data.customerByEmail.items;
-      // setBeneficiaries(beneficiariesList);
-      console.log("fetched beneficiaries from db", beneficiaries);
+      if ((userMessage.customer.beneficiaries) && (userMessage.customer.beneficiaries.length > 0)) {
+        //assuming they already have beneficiaries if not null
+        setBeneficiaries(userMessage.customer.beneficiaries);
+        console.log("beneficiaries already in authsubject", userMessage.customer.beneficiaries[0], beneficiaries);
+        return;
+      }
+      //TODO: Add query to handle any errors. Probably a manual fetch with CustomerID (shouldn't be necessary though)
+      console.log("beneficiaries were NOT in auth subject", beneficiaries);
     } catch (e) {
       console.log("error fetching beneficiaries:", e);
     }

@@ -6,6 +6,7 @@ import Customer from "../../model/customer";
 import Beneficiary from "../../model/beneficiary";
 import { createCustomer } from "../../graphql/mutations";
 import { customerByEmail } from "../../graphql/queries";
+import { getCustomerWithBeneficiaries } from "../../model/customQueries";
 
 export const authSubject = new BehaviorSubject<{
   auth: AuthData;
@@ -75,14 +76,11 @@ export const fetchCustomer = async () => {
   await authSubject.subscribe((value) => (userMessage = value));
 
   try {
-    console.log("subject user data pre - fetch", userMessage);
-
     const fetchedCustomer: any = await API.graphql({
-      query: customerByEmail,
+      query: getCustomerWithBeneficiaries,
       variables: {
         emailAddress: userMessage.auth.attributes.email,
       },
-      
     });
     //if theres no fetchedCustomerData, customer doesn't exist, make the customer
     console.log(
@@ -109,7 +107,7 @@ export const fetchCustomer = async () => {
         fetchedCustomerData.lastName,
         fetchedCustomerData.emailAddress,
         fetchedCustomerData.phoneNumber,
-        fetchedCustomerData.beneficiaries,
+        fetchedCustomerData.beneficiaries.items,
         fetchedCustomerData.s3ArchivePath,
         fetchedCustomerData.id,
       ),

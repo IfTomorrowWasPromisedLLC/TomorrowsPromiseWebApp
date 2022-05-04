@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from "react";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+import { Amplify } from "aws-amplify";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Authenticator } from "@aws-amplify/ui-react";
+import awsExports from "../aws-exports";
 import AccountForm from "../components/AccountForm/AccountForm";
-import FileUpload from "../components/FileUpload/FileUpload";
 import Beneficiaries from "../components/Beneficiaries/Beneficiaries";
 import Subscription from "../components/Subscription/Subscription";
+import AuthData from "../model/authdata";
+import Customer from "../model/customer";
 import {
   authSubject,
   fetchCustomer,
   getCurrentAuthenticatedUser,
 } from "../services/auth/auth.service";
-import AuthData from "../model/authdata";
-import Customer from "../model/customer";
-import { Amplify } from "aws-amplify";
-import { withAuthenticator } from "@aws-amplify/ui-react";
-import awsExports from "../aws-exports";
-import { fetchBeneficiaries } from "../services/beneificiaries/beneficiaries.service";
 Amplify.configure(awsExports);
 
 const AccountContainer = styled.div`
@@ -46,8 +43,7 @@ const Button = styled.button`
     cursor: pointer;
   }
 `;
-const StyledSignOutButton = styled.button`
-`;
+const StyledSignOutButton = styled.button``;
 const formFields = {
   signUp: {
     email: {
@@ -82,11 +78,11 @@ function Account({ signOut, user }) {
   // }
   console.log("in account");
 
+  const [showBeneficiaries, setShowBeneficiaries] = useState(false);
   useEffect(() => {
     // declare the data fetching function
     const fetchData = async () => {
       await getCurrentAuthenticatedUser(); // will handle our user message stuff
-      console.log(userMessage.auth);
       await fetchCustomer();
     };
     // call the function
@@ -100,6 +96,10 @@ function Account({ signOut, user }) {
     userMessage = value;
   });
 
+  const toggleBeneficiaries = () => {
+    setShowBeneficiaries(!showBeneficiaries);
+  };
+
   return (
     <>
       <AccountContainer>
@@ -110,10 +110,13 @@ function Account({ signOut, user }) {
               ? user.attributes.given_name
               : user.attributes.email}
           </h1>
-          <AccountForm/>
-          <Beneficiaries/>
-          <Subscription/>
-          <Button className="sign-out-button"onClick={signOut}>Sign out</Button>
+          <AccountForm />
+          <button onClick={toggleBeneficiaries}>SHOW BENEFICIARIES</button>
+          {showBeneficiaries ? <Beneficiaries /> : <></>}
+          <Subscription />
+          <Button className="sign-out-button" onClick={signOut}>
+            Sign out
+          </Button>
         </AccountHelloDiv>
       </AccountContainer>
     </>
