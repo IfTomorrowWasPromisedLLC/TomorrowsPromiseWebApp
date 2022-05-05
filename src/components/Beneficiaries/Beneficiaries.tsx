@@ -25,6 +25,7 @@ import AuthData from "../../model/authdata";
 import Customer from "../../model/customer";
 import Beneficiary from "../../model/beneficiary";
 import { getCustomerWithBeneficiaries } from "../../model/customQueries";
+import { timeStamp } from "console";
 
 const BeneficiariesFormContainer = styled.div``;
 const StyledForm = styled.form``;
@@ -48,7 +49,7 @@ export const Beneficiaries = () => {
   useEffect(() => {
     fetchBeneficiaries();
   }, []);
-
+  const [fieldToUpdate, setFieldToUpdate] = useState<string>();
   const [beneficiaries, setBeneficiaries] = useState<Beneficiary[]>([]);
   const [formState, setFormState] = useState<{ [key: string]: string }>({
     firstName: "",
@@ -62,13 +63,21 @@ export const Beneficiaries = () => {
 
   const fetchBeneficiaries = async () => {
     try {
-      if ((userMessage.customer.beneficiaries) && (userMessage.customer.beneficiaries.length > 0)) {
+      if (
+        userMessage.customer.beneficiaries &&
+        userMessage.customer.beneficiaries.length > 0
+      ) {
         //assuming they already have beneficiaries if not null
         setBeneficiaries(userMessage.customer.beneficiaries);
-        console.log("beneficiaries already in authsubject", userMessage.customer.beneficiaries[0], beneficiaries);
+        console.log(
+          "beneficiaries already in authsubject",
+          userMessage.customer.beneficiaries[0],
+          beneficiaries
+        );
         return;
       }
       //TODO: Add query to handle any errors. Probably a manual fetch with CustomerID (shouldn't be necessary though)
+      //
       console.log("beneficiaries were NOT in auth subject", beneficiaries);
     } catch (e) {
       console.log("error fetching beneficiaries:", e);
@@ -126,30 +135,40 @@ export const Beneficiaries = () => {
     }
   };
 
-  const removeBeneficiary = async (beneficiaryToDelete: Beneficiary) => {
+  const removeBeneficiary = async (beneficiary: Beneficiary) => {
+    console.log(beneficiary.id);
     await API.graphql(
-      graphqlOperation(deleteBeneficiary, { input: beneficiaryToDelete.id })
+      graphqlOperation(deleteBeneficiary, {
+        input: {
+          id: beneficiary.id,
+        },
+      })
     );
   };
+  //TODO: POTENTIALLY add a list tracking additions and removals
 
-  const handleRemoveFields = (index: number) => {
-    const values = [...beneficiaries];
-    const removedBeneficiary = values.splice(index, 1)[0];
-    setBeneficiaries(values);
-    console.log(removedBeneficiary);
-    //TODO: Add functionality to remove beneficiaries from database after submitting
-    removeBeneficiary(removedBeneficiary);
+  const handleRemoveFields = (
+    index: number
+  ) => {
+    try {
+      const values = [...beneficiaries];
+      const removedBeneficiary = values.splice(index, 1)[0];
+      setBeneficiaries(values);
+      console.log(removedBeneficiary);
+      //TODO: Add functionality to remove beneficiaries from database after submitting
+      removeBeneficiary(removedBeneficiary);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  const setInput = async (key: string, value: string) => {
+  const handleUpdateBeneficiary = (benficiary: Beneficiary) => {
+    
+    //need to route to a new page just displaying that data for the field to update (ex. check out google updating)
+  };
+  const setInput = (key: string, value: string) => {
     setFormState({ ...formState, [key]: value });
   };
-
-  const handleSubmit = (event: any) => {
-    alert(JSON.stringify(beneficiaries, null, 1));
-  };
-
-  let property: keyof typeof Beneficiary;
 
   return (
     <div className="home">
@@ -165,7 +184,7 @@ export const Beneficiaries = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {beneficiaries.map((row) => (
+              {beneficiaries.map((row, index) => (
                 <TableRow key={row?.phoneNumber}>
                   <TableCell component="th" scope="row">
                     {row?.firstName}
@@ -173,6 +192,10 @@ export const Beneficiaries = () => {
                   <TableCell>{row?.lastName}</TableCell>
                   <TableCell align="right">{row?.emailAddress}</TableCell>
                   <TableCell>{row?.phoneNumber}</TableCell>
+                  <button onClick={() => handleUpdateBeneficiary(row)}>Update Beneficiary Data</button>
+                  <button onClick={() => handleRemoveFields(index)}>
+                    Remove Beneficiary
+                  </button>
                 </TableRow>
               ))}
             </TableBody>
@@ -205,88 +228,6 @@ export const Beneficiaries = () => {
     </div>
   );
 };
-
-// <BeneficiariesFormContainer data-testid="Beneficiaries">
-//   Add Beneficiaries
-//   <StyledForm onSubmit={handleSubmit}>
-//       {beneficiaries.map((inputField, index) => (
-//           <Fragment>
-//           <div>
-//           <label htmlFor='firstName'>First Name</label>
-//             <input key={index}
-//               type='text'
-//               className='form-control'
-//               id='firstName'
-//               name='firstName'
-//               value={inputField.firstName}
-//               onChange={(event) => handleChange(index, event)} />
-//           </div>
-//           <div>
-//           <label htmlFor='lastName'>Last Name</label>
-//             <input key={index}
-//              type='text'
-//              className='form-control'
-//              id='lastName'
-//              name='lastName'
-//              value={inputField.lastName}
-//               onChange={(event) => handleChange(index, event)} />
-//           </div>
-//           <div>
-//           <label htmlFor="emailAddress"> Email Address</label>
-//           <input key={index}
-//              type='text'
-//              className='form-control'
-//              id='emailAddress'
-//              name='emailAddress'
-//              value={inputField.email_address}
-//               onChange={(event) => handleChange(index, event)} />
-//           </div>
-//           <div>
-//           <label htmlFor="phoneNumber">Phone Number</label>
-//           <input key={index}
-//              type='text'
-//              className='form-control'
-//              id='phoneNumber'
-//              name='phoneNumber'
-//              value={inputField.phone_number}
-//               onChange={(event) => handleChange(index, event)} />
-//           </div>
-//           <ButtonContainer>
-//               <Button
-//                 type="button"
-//                 disabled={index === 0}
-//                 onClick={() => handleRemoveFields(index)}
-//               >
-//                 -
-//               </Button>
-//               <Button
-//                 type="button"
-//                 onClick={() => handleAddFields(index)}
-//               >
-//                 +
-//               </Button>
-//             </ButtonContainer>
-//             </Fragment>
-//         )
-//       )}
-//       <ButtonContainer>
-//         <Button id="submit-btn"
-//           type = "submit"
-//           onSubmit={handleSubmit}>
-//             Save
-//         </Button>
-//         <Button
-//           id="reset-btn"
-//           type="reset"
-//           onClick={handleFormReset}
-//         >
-//           Reset Form
-//         </Button>
-//       </ButtonContainer>
-//   </StyledForm>
-// </BeneficiariesFormContainer>
-//       );
-//     }
 
 Beneficiaries.propTypes = {};
 
